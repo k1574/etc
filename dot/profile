@@ -19,6 +19,7 @@ export_loop(){
 export_loop ENVDIR "$HOME/env" \
 	SETENV '$HOME/.setenv' \
 	SHPROMPT '"; "' \
+	PS1 '"$SHPROMPT"' \
 	SUDO_PROMPT '"#"' \
 	EDITOR 'ed' \
 	GIT_EDITOR '$EDITOR' \
