@@ -2,7 +2,7 @@
 # Automatic user configuration installation and updating script.
 
 # Getting profile file to get start variables.
-rpath="$(dirname `realpath $0`)"
+rpath="$(dirname `readlink -f $0`)"
 profile="$rpath/profile"
 . $profile
 
@@ -13,12 +13,12 @@ arg="$@"
 mkdir -p "$XDG_CONFIG_HOME"
 # Config dir.
 for i in $configs/* ; do
-	ln -sT $arg "$i" "$XDG_CONFIG_HOME/`basename $i`"
+	ln -sh $arg "$i" "$XDG_CONFIG_HOME/`basename $i`"
 done
 # Run commands dir.
 for i in $rcs/*  ; do
-	ln -sT $arg "$i" "$HOME/.`basename $i`"
+	ln -sh $arg "$i" "$HOME/.`basename $i`"
 done
 
-mkdirs=$(eval "echo $HOME/{mnt,drv,tmp}")
+mkdirs="echo $HOME/mnt $HOME/drv $HOME/tmp"
 mkdir -p $mkdirs

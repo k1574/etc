@@ -12,7 +12,7 @@
 # Lazy to type uname every fucking time.
 	export ARCH="`uname -p`"
 	export OPSYS="`uname -s`"
-	exoprt KERNEL_RELEASE="`uname -r`"
+	export KERNEL_RELEASE="`uname -r`"
 
 # Man.
 	export MANPAPH="$SHARE/man:$MANPATH"
