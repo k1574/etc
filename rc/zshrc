@@ -1,0 +1,228 @@
+# Jien's zshrc.
+source $HOME/.profile
+
+# Modules.
+source $SHMODS/chores/hasprog.sh
+source $SHMODS/chores/loseall.sh
+source $SHMODS/chores/alifhas.sh
+
+if [ "$TERM" = "linux" ] ; then
+	# Running from virtual console.
+
+	echo -en "\e]P0000000" #black
+	echo -en "\e]P8666666" #darkgrey
+	echo -en "\e]P1DD2222" #darkred
+	echo -en "\e]P9FF0000" #red
+	echo -en "\e]P267E300" #darkgreen
+	echo -en "\e]PAA9F16C" #green
+	echo -en "\e]P3F7FF00" #brown
+	echo -en "\e]PBEBF22C" #yellow
+	echo -en "\e]P45190D0" #darkblue
+	echo -en "\e]PC346AA1" #blue
+	echo -en "\e]P5FF6E00" #darkmagenta
+	echo -en "\e]PDDE6000" #magenta
+	echo -en "\e]P600CFCF" #darkcyan
+	echo -en "\e]PE00FFFF" #cyan
+	echo -en "\e]P7DDDDDD" #lightgrey
+	echo -en "\e]PFFFFFFF" #white
+	clear #for background artifacting
+
+	r="300"
+	d="60"
+	font="drdos8x16"
+	keys="dvorak"
+	echo
+	print -P "Handling %F{cyan}'virtual console'%f..."
+	if hasprog kbdrate ; then
+		print -P "\tSetting %F{cyan}'kbdrate'%f:\n\t\t%F{red}rate%f=%F{cyan}'$r'%f;\n\t\t%F{red}delay%f=%F{cyan}'$d'%f;"
+		echo "(" $(kbdrate -d $d -r $r) ")"
+	fi
+	print -Pn "\tSetting %F{red}font%f=%F{green}'$font'%f(";echo $(setfont $font) ")"
+	print -Pn "\tSetting %F{red}keys%f=%F{green}'$keys'%f(";echo $(loadkeys $keys) ")"
+
+fi
+
+autoload -Uz compinit promptinit
+bindkey "<Shift-Tab>" undo
+
+compinit
+promptinit
+zstyle ':completion:*' menu select
+#zstyle ':completion:*:manuals'   separate-sections true
+#zstyle ':completion:*:manuals.*' insert-sections true
+#zstyle ':completion:*:man:*'     menu yes select
+setopt correct
+# History configuration.
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
+HISTFILE=~/.zhistory
+HISTSIZE=SAVEHIST=10000
+setopt MENU_COMPLETE
+setopt append_history
+setopt extended_history
+setopt histignorealldups
+setopt histignorespace
+
+setopt auto_cd
+#setopt extended_glob
+setopt nonomatch
+setopt notify
+setopt hash_list_all
+setopt nohup
+setopt nobeep
+setopt noglobdots
+setopt noshwordsplit
+
+
+
+shpwd() {
+  echo ${${:-/${(j:/:)${(M)${(s:/:)${(D)PWD:h}}#(|.)[^.]}}/${PWD:t}}//\/~/\~}
+}
+
+setopt PROMPT_SUBST
+PROMPT="%F{yellow}%f%F{red}%n%f@%F{blue}%m%f:%F{yellow}%~%f%(!.#.$)"
+RPROMPT="%F{red}[%f%F{brgreen}%T%f%F{red}]%f[%F{yellow}%?%f%F{blue}%L%f]"
+
+my-backward-delete-word() {
+    local WORDCHARS=${WORDCHARS/\//}
+    zle backward-delete-word
+}
+
+
+# Git status.
+git_custom_status(){
+}
+
+# Vi Mode.
+bindkey -v
+
+#bindkey '^P' up-history
+#bindkey '^N' down-history
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+#bindkey '^w' backward-kill-word
+zle -N my-backward-delete-word
+bindkey '^W' my-backward-delete-word
+bindkey '^r' history-incremental-search-backward
+
+EPS1=$RPROMPT
+function zle-line-init zle-keymap-select {
+	VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+	RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}($(git_custom_status))$EPS1"
+	zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
+
+# Plugins.
+
+set -A plugin_dirs \
+	"/usr/share/" \
+	"/usr/share/zsh/plugins"
+
+set -A plugins \
+	syntax-highlighting \
+	autosuggestions
+
+for plugin in $plugins ; do
+	for dir in $plugin_dirs ; do
+		file=$dir/zsh-$plugin/zsh-$plugin.zsh
+		if [ -f $file ] ; then
+			print -P "[%F{green}+%f]Got %F{cyan}'$plugin'%f plugin from %F{red}'$file'%f;"
+			source $file
+			break
+		fi
+	done
+done
+
+
+
+ZSH_AUTOSUGGEST_STRATEGY="history"
+bindkey '^ ' autosuggest-accept
+bindkey "^o" lfcd
+
+#vi_mode_plugin="~/code/scripts/sh/zsh/plugins/vi-mode.plugin.zsh"
+#if [ -f $vi_mode_plugin ] ; then
+#	source $vi_mode_plugin
+#fi
+
+# Aliases.
+#
+print "Alias section. Aliasing..."
+alias edg="$VISUAL"
+alias edgsu="$VISUAL"
+alias ed="$EDITOR"
+alias edsu="sudo $EDITOR"
+alias l="ls      --color=always"
+alias ll="ls -l  --color=always"
+alias la="ls -la --color=always"
+asdf(){
+	if [ -n $DISPLAY ] ; then
+		loadkeys dvorak
+	else
+		echo Use your X-skills, Idiot!
+	fi
+}
+
+aoeu(){
+	if [ -n $DISPLAY ] ; then
+		loadkeys us
+	else
+		echo Use your X-ability, $USER!
+	fi
+}
+
+	alias "mnt"="sudo mount"
+	alias "umnt"="sudo umount"
+
+	alias "sudo"='sudo -p "\$->#_"'
+	alias "info"='info --vi-keys'
+	alias "ipython"="ipython --TerminlInteractiveShell.editing_mode=vi"
+	alias "ipython2"="ipython2 --TerminalInteractiveShell.editing_mode=vi"
+	alias "ipython3"="ipython3 --TerminalInteractiveShell.editing_mode=vi"
+
+set -A grc_progs \
+	cat cvs df digg gcc g++ ls ifconfig \
+	make mount mtr netstat ping ps tail \
+	traceroute wdiff blkid du dnf docker\
+	docker-machine env id ip iostat last\
+	lsattr lsblk lspci lsmod lsof getfacl\
+	getsebool ulimit uptime nmap fdisk findmnt\
+	free semanage sar ss sysctl systemctl stat showmount\
+	tune2fs tcpdump
+
+if hasprog grc ; then
+	print -P "We have %F{cyan}'grc'%f here! Aliasing colors..."
+	for prog in $grc_progs ; do
+		
+		alias $prog="grc --colour=auto $prog"
+	done
+	alias ll="grc --colour=auto ls -l  --color=always"
+	alias la="grc --colour=auto ls -al --color=always"
+	print -Pn "%F{yellow}$grc_progs%f"
+fi
+
+# Functions.
+source $SHMODS/interactive/helpa.sh # Automatic help getter.
+
+# LF.
+#
+if hasprog lf ; then
+	LFCD="$XDG_CONFIG_HOME/lf/lfrc"
+	#LFCD=""
+	if [ -f $LFCD ]; then
+		source $LFCD
+	fi
+fi
+
+print -P "\n%F{red}F%f%F{green}A%f%F{blue}K%f::%F{red}Freedom%f:%F{green}Anarchy%f:%F{blue}Knowledge%f::%F{red}F%f%F{green}A%f%F{blue}K%f"
+print -P " %F{red}#--------------------------------------------------#%f"
+if hasprog screenfetch ; then
+	screenfetch
+fi
+print -P " %F{red}#--------------------------------------------------#%f"
+print -P '%F{red}F%f%F{green}A%f%F{blue}K%f%F{yellow}YOU%f... why are you using zsh? Fish is better.'

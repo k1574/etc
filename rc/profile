@@ -1,0 +1,118 @@
+# No recursion at first.
+#if [ $(expr $PROFILE_IS_SOURCED + 1 ) = 2 ] ; then
+#	return
+#fi ; export PROFILE_IS_SOURCED=1
+
+# Path to scripts directory.
+export SHMODS="$HOME/code/sh/modules"
+export ETC="$HOME/etc"
+# Config files directory.
+export XDG_CONFIG_HOME=$HOME/.config
+
+# Shell chore functions.
+source $SHMODS/chores/hasprog.sh
+
+# Default console editor.
+export EDITOR="$(which cat)" # Not found any editor.
+for editor in nvim vim vi nano ex; do
+	if hasprog "$editor"  ; then
+		export EDITOR="$( which $editor )"
+		break
+	fi
+done
+export GIT_EDITOR="$EDITOR"
+
+# Pagers.
+export PAGER="$(which more)" # Not found any pager
+for pager in most less more ; do
+	if hasprog "$pager" ; then
+		if [ $pager = most ] ; then
+			export PAGER="$(which $pager)"
+			break;
+		fi
+		export PAGER="$(which $pager)"
+		break;
+	fi
+done
+export MANPAGER="$PAGER"
+export HELPPAGER="less -R"
+
+# Less colors
+export LESS_TERMCAP_md=$'\E[01;31m'
+#export LESS_TERMCAP_md=$(perl -e "print \"\\033[1;31m\"")
+#export LESS_TERMCAP_me=$(perl -e "print \"\\033[0m\"")
+export LESS_TERMCAP_me=$'\E[0m'
+	# Underlined
+#export LESS_TERMCAP_us=$(perl -e "print \"\\033[1;32m\";")
+#export LESS_TERMCAP_ue=(perl -e "print \"\033[0m\"; ")
+export LESS_TERMCAP_us=$'\E[01;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
+	# Service info
+#export LESS_TERMCAP_so=$(perl -e "print \"\\033[1;33m\";")
+#export LESS_TERMCAP_se=$(perl -e "print \"\\033[0m\";")
+export LESS_TERMCAP_so=$'\E[01;33m'
+export LESS_TERMCAP_se=$'\E[0m'
+	# Blinking color
+#export LESS_TERMCAP_mb=$(perl -e "print \"\\033[1;32m\";")
+#export LESS_TERMCAP_me=$(perl -e "print \"\\033[0m\";")
+export LESS_TERMCAP_mb=$'\E[1;34m'
+export LESS_TERMCAP_me=$'\E[0m'
+
+# Default terminal.
+export TERMINAL="$(uxterm)"
+for terminal in st urxvt terminator terminology ; do
+	if hasprog "$terminal" ; then
+		export TERMINAL="$(which $terminal)"
+		break
+	fi
+done
+
+# GUI/Visual editor.
+export VISUAL="$(which gedi)" # Not found any.
+for visual in gvim notepadqq leafpad mousepad adie ; do
+	if hasprog $visual ; then
+		export VISUAL="$(which $visual)"
+		break;
+	fi
+done
+
+# Shell.
+export SHELL=$(which sh) # Not found any.
+for shell in zsh bash dash ; do
+	if hasprog $shell ; then
+		export SHELL="$(which $shell)"
+		break;
+	fi
+done
+
+# Browser.
+if [ -n $DISPLAY ] ; then
+	# No display.
+	export BROWSER=$(which lynx)
+	for browser in elinks links2 links ; do
+		if hasprog "$browser" ; then
+			export BROWSER="$(which $browser)"
+			break;
+		fi
+	done
+else
+	# Have X.
+	for browser in firefox chromium opera vimb luakit ; do
+		if hasprog "$browser" ; then
+			export BROWSER="$(which $browser)"
+			break;
+		fi
+	done
+fi
+
+# GCC.
+export C_INCLUDE_PATH="$S/c/modules"
+
+# Perl.
+export PERL5LIB="$S/pl/5/modules"
+
+# Python.
+export PYTHONPATH="$S/py/modules"
+
+# Nethack.
+export NETHACKOPTIONS="boulder:0, color, autodig"

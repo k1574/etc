@@ -1,0 +1,34 @@
+#!/bin/sh
+
+rpath="$(dirname `realpath $0`)"
+source "$rpath/rc/profile"
+
+arg="$@"
+lns(){
+	rm $arg ${@:2}
+	for i in ${@:2} ; do
+		ln -s $arg "$1" "$i"
+		echo "'$i'->'$1'"
+	done
+}
+
+# Config dir.
+for i in $ETC/config/* ; do
+	lns "$i" "$XDG_CONFIG_HOME/`basename $i`"
+done
+# Run commands dir.
+
+for i in $ETC/rc/*  ; do
+	lns "$i" "$HOME/.`basename $i`"
+done
+# Bash and zsh profiles have to be just profile.
+lns "$HOME/.profile" "$HOME/.zprofile" "$HOME/.bash_profile"
+# Make neovim the same as vim.
+lns "$HOME/.vim" "$XDG_CONFIG_HOME/nvim"
+lns "$HOME/.vimrc" "$XDG_CONFIG_HOME/nvim/init.vim"
+# Dirs.
+mkdir -p $HOME/video $HOME/docs $HOME/temps    $HOME/shared \
+	     $HOME/code/ $HOME/progs $HOME/torrent $HOME/bluetooth \
+	     $HOME/etc   $HOME/share $HOME/bin     $HOME/tmp
+lns "$HOME/MEGA/neij/imgs"  "$HOME/imgs"
+lns "$HOME/MEGA/neij/audio" "$HOME/audio"

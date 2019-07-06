@@ -1,0 +1,125 @@
+" Jien's vimrc.
+
+" In many terminal emulators the mouse works just fine.
+" By enabling it you can position the cursor,
+" Visually select and scroll with the mouse.
+if( has('mouse') )
+	set mouse=a
+endif
+
+" Set.
+set nowrap
+set number
+"set cindent
+"set cinoptions=(0,u0,U0
+"set backspace=2
+set autoindent
+set smartindent
+
+"set smarttab
+
+" Fuck the spaces.
+
+" Especially in the Python...
+" 'ftplugin'(For neovim)
+let g:python_recommended_style=0
+
+imap <S-Tab> <Space><Space><Space><Space>
+"imap <S-Backspace> <Esc>xa
+"set smarttab
+"set noexpandtab
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=4
+
+set smarttab
+set noet ci pi sw=4 ts=4
+"set noet sts=0 sw=4 ts=4
+"imap <C-Return> <CR><CR><C-o>k<Tab>
+
+set showcmd
+set showmatch
+set ignorecase
+set autowrite
+set hlsearch
+" set term=ansi
+" List.
+set list
+set listchars=tab:\|\.,trail:.
+" Spell checking.
+"set spell
+match NonText /\t/
+
+" Folding.
+set foldenable
+set foldmethod=indent
+set foldnestmax=10
+
+hi CursorLine gui=bold cterm=bold
+" Cursor line in GUI(It works too slow in terminal).
+if has("gui_running")
+	set cursorline
+	colorscheme vividchalk
+else
+	" My colorscheme based on 'slate'.
+	 colorscheme jien
+	"colorscheme torte
+endif
+
+
+syntax on
+
+" Syntax everywhere.
+" :syn match Function /\(new\s\+\)\@<=\w\+/
+" :syn match Operator /\(+\)\|\(-\)/
+
+" Maps.
+	" Nerd-Tree.
+	nmap \nt :NERDTree . <enter>
+	" Disable highlight.
+	nmap \nl :if &cursorline==1<enter>set nocursorline<enter>else<enter>set cursorline<enter>endif<enter><enter>
+	nmap \nh :nohlsearch<enter>
+	nmap <Return> o<Esc>
+	nmap <Space> i<Space><Esc>
+	nmap <Backspace> i<Backspace><Esc>l
+	nmap <C-l> <C-w>l
+	nmap <C-h> <C-w>h
+	nmap <C-j> <C-w>j
+	nmap <C-k> <C-w>k
+
+	imap <M-a> <Esc>
+	imap <C-Space> <Esc>
+	" Emacs-like keys.
+	" imap <C-f> <Right>
+	" imap <C-n> <Down>
+	" imap <C-p> <Up>
+	nmap + <C-W>+
+	nmap - <C-W>-
+
+	cnoremap <C-A> <Home>
+	cnoremap <C-F> <Right>
+	cnoremap <C-B> <Left>
+	cnoremap <Esc>b <S-Left>
+	cnoremap <Esc>f <S-Right>
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on "gvim").
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
+" Encoding.
+set encoding=utf-8
+"
+"function s:myFoldText()
+"	let nblines = v:foldend - v:foldstart + 1
+"	let w = winwidth(0) - &foldcolumn - (&number ? 8:0)
+"	let line = getline(v:foldstart)
+"	let comment = "Comment" " substitute(line, '/\*\|\*\|{{{\d=', '', 'g')
+"	let expansion_string = repeat("!", w - strwidth(nblines.comment.'"'))
+"	let txt  = "'" " . comment . expansion_string . nblines
+"	return txt
+"endfunction
+"set foldtext=s:myFoldText()
