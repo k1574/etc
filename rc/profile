@@ -6,8 +6,11 @@
 # Path to scripts directory.
 export SHMODS="$HOME/code/sh/modules"
 export ETC="$HOME/etc"
+export CODE="$HOME/code"
 # Config files directory.
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export PATH="$PATH:$HOME/bin"
 
 # Shell chore functions.
 source $SHMODS/chores/hasprog.sh
@@ -23,7 +26,7 @@ done
 export GIT_EDITOR="$EDITOR"
 
 # Pagers.
-export PAGER="$(which more)" # Not found any pager
+export PAGER="$(which more)" # Not found any pager.
 for pager in most less more ; do
 	if hasprog "$pager" ; then
 		if [ $pager = most ] ; then
@@ -59,13 +62,13 @@ export LESS_TERMCAP_mb=$'\E[1;34m'
 export LESS_TERMCAP_me=$'\E[0m'
 
 # Default terminal.
-export TERMINAL="$(uxterm)"
-for terminal in st urxvt terminator terminology ; do
-	if hasprog "$terminal" ; then
-		export TERMINAL="$(which $terminal)"
-		break
-	fi
-done
+#export TERMINAL="$(uxterm)"
+#for terminal in st urxvt terminator terminology ; do
+#	if hasprog "$terminal" ; then
+#		export TERMINAL="$(which $terminal)"
+#		break
+#	fi
+#done
 
 # GUI/Visual editor.
 export VISUAL="$(which gedi)" # Not found any.
@@ -86,7 +89,7 @@ for shell in zsh bash dash ; do
 done
 
 # Browser.
-if [ -n $DISPLAY ] ; then
+if [ "$TERM" == "linux" ] ; then
 	# No display.
 	export BROWSER=$(which lynx)
 	for browser in elinks links2 links ; do

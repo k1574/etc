@@ -1,6 +1,4 @@
 # Jien's zshrc.
-source $HOME/.profile
-
 # Modules.
 source $SHMODS/chores/hasprog.sh
 source $SHMODS/chores/loseall.sh
@@ -161,7 +159,7 @@ alias l="ls      --color=always"
 alias ll="ls -l  --color=always"
 alias la="ls -la --color=always"
 asdf(){
-	if [ -n $DISPLAY ] ; then
+	if [ -z $DISPLAY ] ; then
 		loadkeys dvorak
 	else
 		echo Use your X-skills, Idiot!
@@ -169,21 +167,21 @@ asdf(){
 }
 
 aoeu(){
-	if [ -n $DISPLAY ] ; then
+	if [ -z $DISPLAY ] ; then
 		loadkeys us
 	else
 		echo Use your X-ability, $USER!
 	fi
 }
 
-	alias "mnt"="sudo mount"
-	alias "umnt"="sudo umount"
+alias "mnt"="sudo mount"
+alias "umnt"="sudo umount"
 
-	alias "sudo"='sudo -p "\$->#_"'
-	alias "info"='info --vi-keys'
-	alias "ipython"="ipython --TerminlInteractiveShell.editing_mode=vi"
-	alias "ipython2"="ipython2 --TerminalInteractiveShell.editing_mode=vi"
-	alias "ipython3"="ipython3 --TerminalInteractiveShell.editing_mode=vi"
+alias "sudo"='sudo -p "\$->#_"'
+alias "info"='info --vi-keys'
+alias "ipython"="ipython --TerminlInteractiveShell.editing_mode=vi"
+alias "ipython2"="ipython2 --TerminalInteractiveShell.editing_mode=vi"
+alias "ipython3"="ipython3 --TerminalInteractiveShell.editing_mode=vi"
 
 set -A grc_progs \
 	cat cvs df digg gcc g++ ls ifconfig \
