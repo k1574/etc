@@ -2,11 +2,15 @@
 # Modules.
 source $SHMODS/chores/hasprog.sh
 source $SHMODS/chores/loseall.sh
-source $SHMODS/chores/alifhas.sh
+
+G="$GIT"
+C="$CODE"
+E="$ETC"
+S="$SHARE"
+B="$BIN"
 
 if [ "$TERM" = "linux" ] ; then
 	# Running from virtual console.
-
 	echo -en "\e]P0000000" #black
 	echo -en "\e]P8666666" #darkgrey
 	echo -en "\e]P1DD2222" #darkred
@@ -24,7 +28,6 @@ if [ "$TERM" = "linux" ] ; then
 	echo -en "\e]P7DDDDDD" #lightgrey
 	echo -en "\e]PFFFFFFF" #white
 	clear #for background artifacting
-
 	r="300"
 	d="60"
 	font="drdos8x16"
@@ -35,9 +38,8 @@ if [ "$TERM" = "linux" ] ; then
 		print -P "\tSetting %F{cyan}'kbdrate'%f:\n\t\t%F{red}rate%f=%F{cyan}'$r'%f;\n\t\t%F{red}delay%f=%F{cyan}'$d'%f;"
 		echo "(" $(kbdrate -d $d -r $r) ")"
 	fi
-	print -Pn "\tSetting %F{red}font%f=%F{green}'$font'%f(";echo $(setfont $font) ")"
-	print -Pn "\tSetting %F{red}keys%f=%F{green}'$keys'%f(";echo $(loadkeys $keys) ")"
-
+	print -Pn "\tSetting %F{red}font%f=%F{green}'$font'%f(";echo -n $(setfont $font) ")"
+	print -Pn "\tSetting %F{red}keys%f=%F{green}'$keys'%f(";echo -n $(loadkeys $keys) ")"
 fi
 
 autoload -Uz compinit promptinit
@@ -52,8 +54,8 @@ zstyle ':completion:*' menu select
 setopt correct
 # History configuration.
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
-HISTFILE=~/.zhistory
-HISTSIZE=SAVEHIST=10000
+HISTFILE="~/.zhistory"
+HISTSIZE=SAVEHIST="10000"
 setopt MENU_COMPLETE
 setopt append_history
 setopt extended_history
@@ -205,7 +207,7 @@ if hasprog grc ; then
 fi
 
 # Functions.
-source $SHMODS/interactive/helpa.sh # Automatic help getter.
+source $SHMODS/auto/helpa.sh # Automatic help getter.
 
 # LF.
 #

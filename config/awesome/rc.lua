@@ -25,16 +25,17 @@ local toggledvorakcmd  =
                 "fi\n"
 
 -- My library.
-package.path = package.path..";"..os.getenv("S").."/lua/modules/?.lua" ;
+package.path = package.path..";"..os.getenv("CODE").."/lua/modules/?.lua" ;
 
 -- Blackarch.
 local addbamenu = true -- Should I add menu.
 local bamaxmenu = 65   -- Maximum items in one column.
-local balist = os.getenv("S").."/pl/5/utils/blackarch/utils.lst" -- Path to the list of utils.
+local balist    = os.getenv("SHARE").."/blackarch/utils.lst" -- Path to the list of utils.
+local bascript  = os.getenv("CODE").."/sh/blackarch/util.sh"  -- Path to script which is called with menu item.
 local ba = require("blackarch")
 local bamenu = {}
 if addbamenu then
-	ret = ba.awesome.getUtilList(balist, bamaxmenu)
+	ret = ba.awesome.getUtilList(balist, bamaxmenu, termcmd, bascript)
 	for _, cat in pairs(ret[2]) do
 		table.insert(bamenu, cat)
 	end

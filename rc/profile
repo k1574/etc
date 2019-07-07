@@ -3,10 +3,13 @@
 #	return
 #fi ; export PROFILE_IS_SOURCED=1
 
-# Path to scripts directory.
+# Main varibles for my workflow.
 export SHMODS="$HOME/code/sh/modules"
 export ETC="$HOME/etc"
 export CODE="$HOME/code"
+export GIT="$HOME/git"
+export SHARE="$HOME/share"
+export BIN="$HOME/bin"
 # Config files directory.
 export XDG_CONFIG_HOME="$HOME/.config"
 
