@@ -1,14 +1,10 @@
-# No recursion at first.
-#if [ $(expr $PROFILE_IS_SOURCED + 1 ) = 2 ] ; then
-#	return
-#fi ; export PROFILE_IS_SOURCED=1
-
 # Main varibles for my workflow.
 export ETC="$HOME/etc"
 export CODE="$HOME/code"
 export GIT="$HOME/git"
 export SHARE="$HOME/share"
 export BIN="$HOME/bin"
+export TMPS="$HOME/tmps"
 # Config files directory.
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -98,7 +94,7 @@ done
 if [ "$TERM" == "linux" ] ; then
 	# No display.
 	export BROWSER=$(which lynx)
-	for browser in elinks links2 links ; do
+	for browser in elinks links2 links w3m ; do
 		if hasprog "$browser" ; then
 			export BROWSER="$(which $browser)"
 			break;
@@ -106,7 +102,7 @@ if [ "$TERM" == "linux" ] ; then
 	done
 else
 	# Have X.
-	for browser in firefox chromium opera vimb luakit ; do
+	for browser in firefox chromium opera jsurf vimb luakit surf ; do
 		if hasprog "$browser" ; then
 			export BROWSER="$(which $browser)"
 			break;
