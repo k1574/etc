@@ -1,23 +1,26 @@
 -- user vars.
-local xresources             = os.getenv("HOME").."/.Xresources"
-local xkbdelay = 300
-local xkbrate  = 60
+local xresources            = os.getenv("HOME").."/.Xresources"
+local xkbdelay              = 300
+local xkbrate               = 60
 local xkbcmd                = "setxkbmap -layout us,ru -option grp:alt_space_toogle"
 local dvorakcmd             = "setxkbmap -layout us,ru -variant dvorak,  -option grp:alt_space_toggle"
 local conf                  = (os.getenv("xdg_config_home") or os.getenv("HOME").."/.config").."/awesome/rc.lua"
-local sh                    = os.getenv("shell")-- or "/usr/bin/zsh"
+local sh                    = os.getenv("SHELL")-- or "/usr/bin/zsh"
 local nwcmd                 = "wicd-client -n"
 local termcmd               = "termite"
-local syscmd                = termcmd .. " -e htop"
+local syscmd                = termcmd.." -e \"tmux new-session \'Sys. stats\' \'htop\'\""
 local fmcmd                 = "xfe"
 local ibcmd                 = "firefox"
 local edcmd                 = "gvim"
 local mpcmd                 = "vlc"
 local vecmd                 = "openshot-qt"
-local sndcmd                = "pavucontrol"
+local sndcmd                = termcmd.." -e \"tmux new-session -A -s \'Sound control\' \'alsamixer\'\""
 local hwcmd                 = "hardinfo"
+local jackcmd               = "cadence"
+local pavucmd               = "pavucontrol"
 local dawcmd                = "lmms"
-local toggledvorakcmd  = 
+local gedcmd                = "gimp"
+local toggledvorakcmd       = 
                 "if setxkbmap -print | grep dvorak ; then\n"..
                     xkbcmd.."\n"..
                 "else\n"..
@@ -542,14 +545,42 @@ globalkeys = awful.util.table.join(
 			function()
 				awful.util.spawn_with_shell(vecmd)
 			end,
-			{description = " - Launch video editor.", group="launcher"}
+			{description = " - Open video editor.", group="launcher"}
 		),
 		awful.key(
 			{ modkey, "Shift"}, "o",
 			function()
 				awful.util.spawn_with_shell(syscmd)
 			end,
-			{ description = " - Launch sys. stat. program.", group="launcher"}
+			{ description = " - Open sys. stat. program.", group="launcher"}
+		),
+		awful.key(
+			{ modkey, "Shift"}, "d",
+			function()
+				awful.util.spawn_with_shell(dawcmd)
+			end,
+			{ description = " - Open DAW program.", group="launcher"}
+		),
+		awful.key(
+			{modkey, "Shift"}, "j",
+			function()
+				awful.util.spawn_with_shell(jackcmd)
+			end,
+				{ description = " - Open JACK control program.", group="launcher"}
+		),
+		awful.key(
+			{ modkey, "Shift"}, "u",
+			function()
+				awful.util.spawn_with_shell(pavucmd)
+			end,
+			{ description = " - Open pavUcontrol program.", group="launcher"}
+		),
+		awful.key(
+			{ mokdey, "Shift"}, "g",
+			function()
+				awful.util.spawn_with_shell(gedcmd)
+			end,
+			{ description = " - Open graphics editor program.", group="launcher"}
 		),
 		awful.key(
 			{ modkey, "Control", "Shift" }, "r", awesome.restart,

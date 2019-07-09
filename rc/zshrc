@@ -54,13 +54,15 @@ zstyle ':completion:*' menu select
 setopt correct
 # History configuration.
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
-HISTFILE="~/.zhistory"
-HISTSIZE=SAVEHIST="10000"
-setopt MENU_COMPLETE
+HISTFILE="$HOME/.zhistory"
+HISTSIZE="10000"
+SAVEHIST="$HISTSIZE"
+setopt menu_complete
 setopt append_history
 setopt extended_history
 setopt histignorealldups
 setopt histignorespace
+setopt no_hist_beep
 
 setopt auto_cd
 #setopt extended_glob
