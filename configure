@@ -8,7 +8,6 @@ lns(){
 	rm $arg ${@:2}
 	for i in ${@:2} ; do
 		ln -s $arg "$1" "$i"
-		echo "'$i'->'$1'"
 	done
 }
 
