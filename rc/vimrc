@@ -80,13 +80,15 @@ syntax on
 	nmap \nl :if &cursorline==1<enter>set nocursorline<enter>else<enter>set cursorline<enter>endif<enter><enter>
 	nmap \nh :nohlsearch<enter>
 	nmap <Return> o<Esc>
+	nmap <S-Return> O<Esc>
+	nmap <Tab> >>
+	nmap <S-Tab> <<
 	nmap <Space> i<Space><Esc>
 	nmap <Backspace> i<Backspace><Esc>l
 	nmap <C-l> <C-w>l
 	nmap <C-h> <C-w>h
 	nmap <C-j> <C-w>j
 	nmap <C-k> <C-w>k
-
 	imap <M-a> <Esc>
 	imap <C-Space> <Esc>
 	" Emacs-like keys.
