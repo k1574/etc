@@ -15,7 +15,7 @@ export SHMODS="$CODE/sh/modules"
 export PATH="$PATH:$HOME/bin"
 
 # Shell chore functions.
-source $SHMODS/chores/hasprog.sh
+. $SHMODS/chores/hasprog.sh
 
 # Default console editor.
 export EDITOR="$(which cat)" # Not found any editor.
