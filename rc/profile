@@ -15,7 +15,7 @@ export SHMODS="$CODE/sh/modules"
 export PATH="$PATH:$HOME/bin"
 
 # Shell chore functions.
-source $SHMODS/chores/hasprog.sh
+. $SHMODS/chores/hasprog.sh
 
 # Default console editor.
 export EDITOR="$(which cat)" # Not found any editor.
@@ -91,7 +91,7 @@ for shell in zsh bash dash ; do
 done
 
 # Browser.
-if [ "$TERM" == "linux" ] ; then
+if [ "$TERM" = "linux" ] ; then
 	# No display.
 	export BROWSER=$(which lynx)
 	for browser in elinks links2 links w3m ; do

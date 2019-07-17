@@ -34,12 +34,9 @@ if [ "$TERM" = "linux" ] ; then
 	keys="dvorak"
 	echo
 	print -P "Handling %F{cyan}'virtual console'%f..."
-	if hasprog kbdrate ; then
-		print -P "\tSetting %F{cyan}'kbdrate'%f:\n\t\t%F{red}rate%f=%F{cyan}'$r'%f;\n\t\t%F{red}delay%f=%F{cyan}'$d'%f;"
-		echo "(" $(kbdrate -d $d -r $r) ")"
-	fi
 	print -Pn "\tSetting %F{red}font%f=%F{green}'$font'%f(";echo -n $(setfont $font) ")"
-	print -Pn "\tSetting %F{red}keys%f=%F{green}'$keys'%f(";echo -n $(loadkeys $keys) ")"
+	echo
+	#print -Pn "\tSetting %F{red}keys%f=%F{green}'$keys'%f(";echo -n $(loadkeys $keys) ")"
 fi
 
 autoload -Uz compinit promptinit
@@ -221,10 +218,12 @@ if hasprog lf ; then
 	fi
 fi
 
-print -P "\n%F{red}F%f%F{green}A%f%F{blue}K%f::%F{red}Freedom%f:%F{green}Anarchy%f:%F{blue}Knowledge%f::%F{red}F%f%F{green}A%f%F{blue}K%f"
-print -P " %F{red}#--------------------------------------------------#%f"
+
 if hasprog screenfetch ; then
-	screenfetch
+	print -P "\n%F{red}F%f%F{green}A%f%F{blue}K%f::%F{red}Freedom%f:%F{green}Anarchy%f:%F{blue}Knowledge%f::%F{red}F%f%F{green}A%f%F{blue}K%f"
+	print -P " %F{red}#--------------------------------------------------#%f"
+		screenfetch
+	print -P " %F{red}#--------------------------------------------------#%f"
 fi
-print -P " %F{red}#--------------------------------------------------#%f"
+
 print -P '%F{red}F%f%F{green}A%f%F{blue}K%f%F{yellow}YOU%f... why are you using zsh? Fish is better.'

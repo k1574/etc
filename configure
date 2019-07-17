@@ -1,16 +1,17 @@
 #!/bin/sh
 
 rpath="$(dirname `realpath $0`)"
-source "$rpath/rc/profile"
+. "$rpath/rc/profile"
 
 arg="$@"
-lns(){
+lns () {
 	rm $arg ${@:2}
 	for i in ${@:2} ; do
 		ln -s $arg "$1" "$i"
 	done
 }
 
+mkdir -p "$XDG_CONFIG_HOME"
 # Config dir.
 for i in $ETC/config/* ; do
 	lns "$i" "$XDG_CONFIG_HOME/`basename $i`"
