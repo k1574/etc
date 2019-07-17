@@ -1,2 +1,3 @@
 # startx at login in first screen.
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && echo I suck!>~/file && exec startx
+[[ -z "$DISPLAY" ]]  && [[ "$(tty)" = "/dev/tty1" ]] && exec startx
+#[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && echo I suck!>~/file && exec startx
