@@ -145,7 +145,7 @@ done
 
 ZSH_AUTOSUGGEST_STRATEGY="history"
 bindkey '^ ' autosuggest-accept
-bindkey "^o" lfcd
+bindkey -s "^o" 'lfcd\n'
 
 #vi_mode_plugin="~/code/scripts/sh/zsh/plugins/vi-mode.plugin.zsh"
 #if [ -f $vi_mode_plugin ] ; then

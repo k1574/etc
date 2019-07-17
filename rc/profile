@@ -91,7 +91,7 @@ for shell in zsh bash dash ; do
 done
 
 # Browser.
-if [ "$TERM" == "linux" ] ; then
+if [ "$TERM" = "linux" ] ; then
 	# No display.
 	export BROWSER=$(which lynx)
 	for browser in elinks links2 links w3m ; do
