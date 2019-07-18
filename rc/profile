@@ -82,7 +82,7 @@ for visual in gvim notepadqq leafpad mousepad adie ; do
 done
 
 # Shell.
-export SHELL=$(which sh) # Not found any.
+export SHELL="$(which sh)" # Not found any.
 for shell in zsh bash dash ; do
 	if hasprog $shell ; then
 		export SHELL="$(which $shell)"
@@ -91,24 +91,14 @@ for shell in zsh bash dash ; do
 done
 
 # Browser.
-if [ "$TERM" = "linux" ] ; then
-	# No display.
-	export BROWSER=$(which lynx)
-	for browser in elinks links2 links w3m ; do
-		if hasprog "$browser" ; then
-			export BROWSER="$(which $browser)"
-			break;
-		fi
-	done
-else
-	# Have X.
-	for browser in firefox chromium opera jsurf vimb luakit surf ; do
-		if hasprog "$browser" ; then
-			export BROWSER="$(which $browser)"
-			break;
-		fi
-	done
-fi
+export BROWSER="No any fucking browser here!"
+for browser in  links2 links lynx w3m elinks ; do
+	if hasprog "$browser" ; then
+		export BROWSER="$(which $browser)"
+		break;
+	fi
+done
+
 
 # GCC.
 export C_INCLUDE_PATH="$S/c/modules"

@@ -1,13 +1,16 @@
 #!/bin/sh
 
 rpath="$(dirname `realpath $0`)"
-. "$rpath/rc/profile"
+. $rpath/rc/profile
 
 arg="$@"
 lns () {
-	rm $arg ${@:2}
-	for i in ${@:2} ; do
-		ln -s $arg "$1" "$i"
+	to="$1"
+	shift
+	from="$@"
+	rm $arg $from
+	for i in $from ; do
+		ln -s $arg "$to" "$i"
 	done
 }
 
