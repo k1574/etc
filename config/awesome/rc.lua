@@ -13,12 +13,12 @@ local fmcmd                 = "xfe"
 local ibcmd                 = "firefox"
 local edcmd                 = "gvim"
 local mpcmd                 = "vlc"
-local vecmd                 = "openshot-qt"
+local vecmd                 = termcmd.." -e sudo sh -c 'nohup cin &'"
 local sndcmd                = termcmd.." -e \"tmux new-session -A -s \'Sound control\' \'alsamixer\'\""
 local hwcmd                 = "hardinfo"
 local jackcmd               = "cadence"
 local pavucmd               = "pavucontrol"
-local dawcmd                = "lmms"
+local dawcmd                = "ardour5"
 local gedcmd                = "gimp"
 local toggledvorakcmd       = 
                 "if setxkbmap -print | grep dvorak ; then\n"..
@@ -510,7 +510,7 @@ globalkeys = awful.util.table.join(
 		),
 		-- Editor.
 		awful.key(
-			{modkey, "Shift"}, "i",
+			{modkey, "Shift"}, "e",
 			function()
 				awful.spawn(edcmd)
 			end,
@@ -576,7 +576,7 @@ globalkeys = awful.util.table.join(
 			{ description = " - Open pavUcontrol program.", group="launcher"}
 		),
 		awful.key(
-			{ mokdey, "Shift"}, "g",
+			{ modkey, "Shift", }, "g",
 			function()
 				awful.util.spawn_with_shell(gedcmd)
 			end,
