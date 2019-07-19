@@ -28,5 +28,7 @@ lns "$HOME/.profile" "$HOME/.zprofile" "$HOME/.bash_profile"
 # Make neovim the same as vim.
 lns "$HOME/.vim" "$XDG_CONFIG_HOME/nvim"
 lns "$HOME/.vimrc" "$XDG_CONFIG_HOME/nvim/init.vim"
+# Make Xresources as Xdefaults
+lns "$HOME/.Xresources" "$HOME/.Xdefaults"
 # Dirs.
 mkdir -p $HOME/mnt /$HOME/drv $HOME/tmp

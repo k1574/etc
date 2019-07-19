@@ -8,6 +8,9 @@ export TMPS="$HOME/tmps"
 # Config files directory.
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export WLC_REPEAT_RATE=60
+export WLC_REPEAT_DELAY=300
+
 # Module directories.
 export SHMODS="$CODE/sh/modules"
 
