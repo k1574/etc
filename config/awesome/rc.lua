@@ -15,6 +15,7 @@ local edcmd                 = "gvim"
 local mpcmd                 = "vlc"
 local vecmd                 = termcmd.." -e sudo sh -c 'nohup cin &'"
 local sndcmd                = termcmd.." -e \"tmux new-session -A -s \'Sound control\' \'alsamixer\'\""
+local dmcmd                 = "/usr/bin/dm-tool switch-to-greeter"
 local hwcmd                 = "hardinfo"
 local jackcmd               = "cadence"
 local pavucmd               = "pavucontrol"
@@ -192,7 +193,7 @@ awesomemenu = {
 		},
 		{
 			"Switch user",
-			"/usr/bin/dm-tool switch-to-greeter"
+			dmcmd
 		}
 	}
 ;
@@ -438,6 +439,13 @@ globalkeys = awful.util.table.join(
 		awful.key({ modkey, }, "Escape", awful.tag.history.restore,
 				{description = " - Go back.", group = "tag"}),
 		--]]
+		awful.key(
+			{modkey, "Shift", "Control"}, "l",
+			function()
+				awful.util.spawn_with_shell(dmcmd)
+			end,
+			{ description = " - Switch user or lock.", group="awesome"}
+		),
 		awful.key(
 			{ modkey, }, "j",
 			function()
@@ -918,7 +926,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.util.spawn_with_shell("xset r rate "..xkbdelay.." "..xkbrate)
 awful.util.spawn_with_shell("xrdb -load "..xresources)
 awful.util.spawn_with_shell(dvorakcmd)
-awful.util.spawn_with_shell("[ -s ~/.Xmodmap ] && xmodmap ~/.Xmodmap")
+awful.util.spawn_with_shell("[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap")
 runOnce({"yeahconsole"})
 runOnce({"megasync"})
 runOnce({"wicd-client -t"})

@@ -159,21 +159,6 @@ alias edsu="sudo $EDITOR"
 alias l="ls      --color=always"
 alias ll="ls -l  --color=always"
 alias la="ls -la --color=always"
-asdf(){
-	if [ -z $DISPLAY ] ; then
-		loadkeys dvorak
-	else
-		echo Use your X-skills, Idiot!
-	fi
-}
-
-aoeu(){
-	if [ -z $DISPLAY ] ; then
-		loadkeys us
-	else
-		echo Use your X-ability, $USER!
-	fi
-}
 
 alias "mnt"="sudo mount"
 alias "umnt"="sudo umount"
@@ -223,7 +208,7 @@ if hasprog screenfetch ; then
 	print -P "\n%F{red}F%f%F{green}A%f%F{blue}K%f::%F{red}Freedom%f:%F{green}Anarchy%f:%F{blue}Knowledge%f::%F{red}F%f%F{green}A%f%F{blue}K%f"
 	print -P " %F{red}#--------------------------------------------------#%f"
 		screenfetch
-	print -P " %F{red}#--------------------------------------------------#%f"
+	print -P " %F{red}#--------------------------------------------------#%f\n"
 fi
 
 print -P '%F{red}F%f%F{green}A%f%F{blue}K%f%F{yellow}YOU%f... why are you using zsh? Fish is better.'
