@@ -31,6 +31,3 @@ lns "$HOME/.vim" "$XDG_CONFIG_HOME/nvim"
 lns "$HOME/.vimrc" "$XDG_CONFIG_HOME/nvim/init.vim"
 # Dirs.
 mkdir -p $HOME/mnt /$HOME/drv $HOME/tmp
-lns "$HOME/MEGA/neij/imgs"  "$HOME/imgs"
-lns "$HOME/MEGA/neij/audio" "$HOME/audio"
-lns "$HOME/MEGA/neij/video" "$HOME/video"

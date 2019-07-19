@@ -926,7 +926,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.util.spawn_with_shell("xset r rate "..xkbdelay.." "..xkbrate)
 awful.util.spawn_with_shell("xrdb -load "..xresources)
 awful.util.spawn_with_shell(dvorakcmd)
-awful.util.spawn_with_shell("[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap")
+awful.util.spawn_with_shell("[ -f $HOME/.Xmodmap ] && xmodmap ~/.Xmodmap")
 runOnce({"yeahconsole"})
 runOnce({"megasync"})
 runOnce({"wicd-client -t"})
