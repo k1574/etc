@@ -1,0 +1,16 @@
+#!/bin/sh
+
+arg="$@"
+mkdir -p $HOME/.helm/{ ,patches/}
+rm -r $arg "$HOME/.helm/patches/User Patches"
+ln -s $arg "$HOME/audio/my/presets/helm" "$HOME/.helm/patches/User Patches"
+
+mkdir -p $HOME/.amsynth/
+rm -r $arg $HOME/.amsynth/banks
+ln -s $arg $HOME/audio/my/presets/amsynth $HOME/.amsynth/banks
+
+
+rm -r $HOME/.hydrogen
+ln -s $HOME/audio/hydrogen/ $HOME/.hydrogen
+
+sudo ln -s $arg $HOME/audio/my/presets/zynaddsubfx/* /usr/share/zynaddsubfx/banks/

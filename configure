@@ -20,7 +20,6 @@ for i in $ETC/config/* ; do
 	lns "$i" "$XDG_CONFIG_HOME/`basename $i`"
 done
 # Run commands dir.
-
 for i in $ETC/rc/*  ; do
 	lns "$i" "$HOME/.`basename $i`"
 done
