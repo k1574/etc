@@ -88,13 +88,9 @@ input * {
     bindsym $mod+a exec sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
     # Start a terminal.
     bindsym $mod+Shift+Return exec   $termcmd
-    bindsym $mod+Shift+b      exec    $ibcmd
-    bindsym $mod+Shift+g    exec  $gedcmd
-    #bindsym $mod+Shift+g+s    exec "inkscape"
 
     # Kill focused window.
-    bindsym $mod+x kill
-
+ 
     # Start your launcher
     bindsym $mod+Shift+p exec $menu
 
@@ -114,11 +110,11 @@ input * {
 #
 # Moving around:
 #
-    # Move your focus around
     bindsym $mod+$left  focus left
     bindsym $mod+$down  focus down
     bindsym $mod+$up    focus up
     bindsym $mod+$right focus right
+    # Move your focus around
     # Or use $mod+[up|down|left|right]
     #bindsym $mod+Left  focus left
     #bindsym $mod+Down  focus down
@@ -139,19 +135,6 @@ input * {
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
-
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    #bindsym $mod+t layout tabbed
-    bindsym $mod+g layout toggle split
-
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+space floating toggle
@@ -159,22 +142,7 @@ input * {
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+p focus parent
-    # Move focus to the child.
-    bindsym $mod+c focus child
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
 
 # Client colors.
 # Class                 Border                Background          Text         Indicator
@@ -182,54 +150,70 @@ client.focused          #ff0000               $focused_bg_color   $text_color  $
 #
 # Resizing containers:
 #
-mode "resize" {
+mode "window" {
     # left will shrink the containers width
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left  resize shrink width   $resize_speed
-    bindsym $down  resize grow   height  $resize_speed
-    bindsym $up    resize shrink height  $resize_speed
-    bindsym $right resize grow   width   $resize_speed
+    #
+    # Move focus to the parent container
+    #
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym b splith
+    bindsym v splitv
+    #
+    # Scratchpad:
+    #
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width $resize_speed
-    bindsym Down resize grow height $resize_speed
-    bindsym Up resize shrink height $resize_speed
-    bindsym Right resize grow width $resize_speed
+    # Move the currently focused window to the scratchpad
+    bindsym  minus move scratchpad
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym Shift+minus scratchpad show
 
-mode "execute" {
-	bindsym Shift+g       exec gimp     ; sleep    1
-	bindsym c             exec chromium ; sleep 1
-	bindsym Ctrl+c        exec "cadence"
-	bindsym Shift+c       exec "catia"
-	bindsym Ctrl+Shift+c  exec "carla"
-	bindsym x             exec "xfe"
-	bindsym f             exec "firefox"
+    # Switch the current container between different layout styles
+    bindsym s layout stacking
+    #bindsym $mod+t layout tabbed
+    bindsym g layout toggle split
 
-	bindsym Escape mode "default"
-	bindsym Space  mode "default"
-}
-bindsym $mod+e mode "execute"
+    # Make the current focus fullscreen
+    bindsym f fullscreen
+    bindsym p focus parent
+    # Move focus to the child.
+    bindsym c focus child
 
-mode "move" {
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
+    bindsym $mod+$right focus right
+
+    bindsym Shift+$left  resize shrink width   $resize_speed
+    bindsym Shift+$down  resize grow   height  $resize_speed
+    bindsym Shift+$up    resize shrink height  $resize_speed
+    bindsym Shift+$right resize grow   width   $resize_speed
+
     bindsym $left  move left
     bindsym $down  move down
     bindsym $up    move up
     bindsym $right move right
 
-    bindsym Escape mode "default"
+    # Return to default mode
+    #
     bindsym Space  mode "default"
+    bindsym Escape mode "default"
 }
-bindsym $mod+m mode "move"
+bindsym $mod+w mode "window"
 
 mode "tag" {
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
+    bindsym $mod+$right focus right
     # Switch to workspace
     bindsym 1 workspace 1
     bindsym 2 workspace 2
@@ -242,6 +226,12 @@ mode "tag" {
     bindsym 9 workspace 9
     bindsym 0 workspace 10
     bindsym q workspace q
+
+    bindsym w workspace w
+    bindsym e workspace e
+    bindsym r workspace r
+    bindsym t workspace t
+    bindsym y workspace y
     # Move focused container to workspace
     bindsym Shift+1 move container to workspace 1
     bindsym Shift+2 move container to workspace 2
@@ -253,7 +243,12 @@ mode "tag" {
     bindsym Shift+8 move container to workspace 8
     bindsym Shift+9 move container to workspace 9
     bindsym Shift+0 move container to workspace 10
-    bindsym SHift+ q move container to workspace q
+    bindsym Shift+q move container to workspace q
+    bindsym Shift+w move container to workspace w
+    bindsym Shift+e move container to workspace e
+    bindsym Shift+r move container to workspace r
+    bindsym Shift+t move container to workspace t
+    bindsym Shift+y move container to workspace y
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
     bindsym Escape mode "default"
