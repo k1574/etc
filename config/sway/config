@@ -186,6 +186,8 @@ input * {
 
     # Move focus to the parent container
     bindsym $mod+p focus parent
+    # Move focus to the child.
+    bindsym $mod+c focus child
 #
 # Scratchpad:
 #
