@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sudo ln -s /home/jien/code/scripts/other/opt/jien_locale /etc/default/locale

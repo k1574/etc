@@ -6,6 +6,12 @@
 
 ### Variables
 #
+
+set $text_color          #ffffff
+set $inactive_bg_color   #22aabb 
+set $focused_bg_color     #cc2222
+
+set $indicator           #00ff00
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -14,7 +20,13 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term termite
+set $termcmd termite
+set $edcmd  "eval $EDITOR"
+set $gedcmd "gimp"
+set $ibcmd  "firefox"
+set $oscmd  "htop"
+set $jackcmd "cadence"
+set $pavucmd "pavucontrol"
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu bemenu-run -p '&' -i | xargs swaymsg exec --
@@ -23,6 +35,7 @@ set $menu bemenu-run -p '&' -i | xargs swaymsg exec --
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 #output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg #000000 solid_color
 #
 # Example configuration:
 #
@@ -70,11 +83,16 @@ input * {
 #
 # Basics:
 #
-    # Start a terminal
-    bindsym $mod+Shift+Return exec $term
+    # Toggle dvorak.
+    bindsym $mod+a exec sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
+    # Start a terminal.
+    bindsym $mod+Shift+Return exec   $termcmd
+    bindsym $mod+Shift+b      exec    $ibcmd
+    bindsym $mod+Shift+g    exec  $gedcmd
+    #bindsym $mod+Shift+g+s    exec "inkscape"
 
-    # Kill focused window
-    bindsym $mod+c kill
+    # Kill focused window.
+    bindsym $mod+x kill
 
     # Start your launcher
     bindsym $mod+Shift+p exec $menu
@@ -86,35 +104,36 @@ input * {
     # mouse button for dragging.
     floating_modifier $mod normal
 
-    # Reload the configuration file
+    # Reload the configuration file.
     bindsym $mod+Control+Shift+r reload
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Control+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    # Exit sway (logs you out of your Wayland session).
+    #bindsym $mod+Control+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Control+Shift+q exec swaymsg exit
 #
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
     bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    #bindsym $mod+Left  focus left
+    #bindsym $mod+Down  focus down
+    #bindsym $mod+Up    focus up
+    #bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$left  move left
+    bindsym $mod+Shift+$down  move down
+    bindsym $mod+Shift+$up    move up
     bindsym $mod+Shift+$right move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    #bindsym $mod+Shift+Left move left
+    #bindsym $mod+Shift+Down move down
+    #bindsym $mod+Shift+Up move up
+    #bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
@@ -154,7 +173,7 @@ input * {
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+t layout tabbed
-    bindsym $mod+p layout toggle split
+    bindsym $mod+g layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -166,7 +185,7 @@ input * {
     bindsym $mod+shift+space focus mode_toggle
 
     # Move focus to the parent container
-    #bindsym $mod+a focus parent
+    bindsym $mod+p focus parent
 #
 # Scratchpad:
 #
@@ -179,6 +198,10 @@ input * {
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+# Client colors.
+# Class                 Border                Background          Text         Indicator
+client.focused          #ff0000               $focused_bg_color   $text_color  $indicator      #ffffff
 #
 # Resizing containers:
 #
@@ -217,8 +240,10 @@ bar {
 
     colors {
         statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        background #000000
+        inactive_workspace  #22aabb #115577 $text_color
+        active_workspace    #cc2222 #990000 #ffffff
+        focused_workspace   #cc2222 #990000 #ffffff
     }
 }
 
