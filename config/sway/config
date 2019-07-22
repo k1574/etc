@@ -4,31 +4,77 @@
 #
 set $resize_speed 25px
 
-set $text_color           #ffffff
-set $inactive_bg_color    #22aabb 
-set $bg_color             #000000
-set $focused_bg_color     #cc2222
-set $focused_bb_color     $focused_bg_color
-
-set $indicator           #00ffff
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
+
+# Your preferred terminal emulator
+set $termcmd termite
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $termcmd termite
+
 # Your preferred application launcher.
 # Note: it's recommended that you pass the final command to sway.
-set $menu bemenu-run -p '&' -i | xargs swaymsg exec --
+set $menu dmenu-wl_run -p '&' -i | xargs swaymsg exec --
+
+# Default.
+set $fg_c      #ffffff
+set $bg_c      #000000
+set $tb_c      #ffffff
+set $wb_c      $tb_c
+# Inactive.
+set $ifg_c     $fg_c
+set $ibg_c     #881111
+set $itb_c     #660000
+set $iwb_c     $itb_c
+# Focused.
+set $ffg_c     $fg_c
+set $fbg_c     #CC2222
+set $ftb_c     #FF0000
+set $fwb_c     $ftb_c
+# Unfocused.
+set $ufg_c     #bbbbbb
+set $ubg_c     #787878
+set $utb_c     #101010
+set $uwb_c     $utb_c
+
+# Indicator color.
+set $i_c           #00ffff
+
+
+# Client colors.
+# Class                 TBorder    Background    Text     Indicator    WBorder
+client.focused          $ftb_c     $fbg_c        $ffg_c   $i_c         $fwb_c
+client.focused_inactive $itb_c     $ibg_c        $ifg_c   $i_c         $iwb_c
+client.unfocused        $utb_c     $ubg_c        $ufg_c   $i_c         $uwb_c
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 #output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * bg #000000 solid_color
+
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command i3blocks
+
+    colors {
+        statusline #ffffff
+        background $bg_c
+        inactive_workspace  $itb_c  $ibg_c $ifg_c
+        active_workspace    $ftb_c  $fbg_c $ffg_c
+        focused_workspace   #cc2222 #990000 #ffffff
+    }
+}
+#
+### Output configuration.
 #
 # Example configuration:
 #
@@ -50,7 +96,7 @@ output * bg #000000 solid_color
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration
+### Input configuration.
 #
 # Example configuration:
 #
@@ -62,28 +108,24 @@ output * bg #000000 solid_color
 #   }
 #
 input * {
-	repeat_delay 300
-	repeat_rate 60
+	repeat_delay "300"
+	repeat_rate "60"
 	xkb_layout "us,ru"
 	xkb_variant "dvorak,"
-	xkb_options grp:alt_space_toggle,caps:swapescape
-	#xkb_options caps:swapescape"
+	xkb_options "grp:alt_space_toggle,caps:swapescape"
 }
-
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
-#
-# Basics:
-#
-    # Toggle dvorak.
-    bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
-    # Start a terminal.
-    bindsym $mod+Shift+Return exec   $termcmd
+floating_modifier $mod normal
+mode default {
+    # Defaults.
+    #
 
- 
-    # Start your launcher.
+    # Start a terminal.
+    bindsym $mod+Shift+Return exec   $termcmd 
+    # Start launcher.
     bindsym $mod+Shift+p exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -91,33 +133,32 @@ input * {
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
 
     # Reload the configuration file.
-    bindsym $mod+Control+Shift+r reload
+    bindsym $mod+Ctrl+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session).
-    bindsym $mod+Control+Shift+q exec swaymsg exit
-#
-# Defaults.
-    # Move focus to the parent container
-    bindsym $mod+p focus parent
-    # Move focus to the child.
-    bindsym $mod+c focus child
+    bindsym $mod+Ctrl+Shift+q exec swaymsg exit
 
-    bindsym $mod+$left  focus left
-    bindsym $mod+$down  focus down
-    bindsym $mod+$up    focus up
-    bindsym $mod+$right focus right
+    # Move focus to the parent container
+    bindsym $mod+p focus     parent
+    # Move focus to the child.
+    bindsym $mod+c focus     child
+
+    bindsym $mod+comma       focus left
+    bindsym $mod+$left       focus left
+    bindsym $mod+$down       focus down
+    bindsym $mod+$up         focus up
+    bindsym $mod+$right      focus right
+    bindsym $mod+period      focus right
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+space floating toggle
+    bindsym $mod+space       floating toggle
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
+    # Toggle dvorak.
+    bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
+}
 
-# Client colors.
-# Class                 Border                Background          Text         Indicator       BBorder
-client.focused          $focused_bb_color     $focused_bg_color   $text_color  $indicator      $focused_bb_color
-#client.inactive         #
 mode "window" {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
@@ -147,16 +188,16 @@ mode "window" {
 
 
     # Resize.
-    bindsym Shift+$left  resize shrink width   $resize_speed
-    bindsym Shift+$down  resize grow   height  $resize_speed
-    bindsym Shift+$up    resize shrink height  $resize_speed
-    bindsym Shift+$right resize grow   width   $resize_speed
+    bindsym Ctrl+$left  resize shrink width   $resize_speed
+    bindsym Ctrl+$down  resize grow   height  $resize_speed
+    bindsym Ctrl+$up    resize shrink height  $resize_speed
+    bindsym Ctrl+$right resize grow   width   $resize_speed
 
     # Move.
-    bindsym $left  move left
-    bindsym $down  move down
-    bindsym $up    move up
-    bindsym $right move right
+    bindsym Shift+$left  move left
+    bindsym Shift+$down  move down
+    bindsym Shift+$up    move up
+    bindsym Shift+$right move right
 
     # Kill focused window.
     bindsym x     kill
@@ -168,12 +209,14 @@ mode "window" {
     # Move focus to the child.
     bindsym $mod+c focus child
     bindsym $mod+space floating toggle
-    bindsym $mod+$left  focus left
-    bindsym $mod+$down  focus down
-    bindsym $mod+$up    focus up
-    bindsym $mod+$right focus right
+    bindsym $mod+shift+space focus mode_toggle
+    bindsym $left  focus left
+    bindsym $down  focus down
+    bindsym $up    focus up
+    bindsym $right focus right
     bindsym Space  mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
 }
 bindsym $mod+w mode "window"
 
@@ -240,12 +283,14 @@ mode "tag" {
     # Move focus to the child.
     bindsym $mod+c focus child
     bindsym $mod+space floating toggle
+    bindsym $mod+shift+space focus mode_toggle
     bindsym $mod+$left  focus left
     bindsym $mod+$down  focus down
     bindsym $mod+$up    focus up
     bindsym $mod+$right focus right
     bindsym Space  mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
 }
 bindsym $mod+t mode "tag"
 
@@ -262,11 +307,15 @@ mode "execute" {
     bindsym n       exec 'non-session-manager'
     bindsym a       exec 'ardour5'
     bindsym Shift+a exec 'amsynth'
-    bindsym l       exec 'lmms'
+    bindsym Shift+l exec 'lmms'
+    bindsym l       exec $termcmd' -e lf'
+    bindsym x       exec 'xfe'
+    bindsym Ctrl+h  exec $termcmd' -e htop'
+    bindsym Ctrl+t  exec $termcmd' -e top'
+
 
     # Default.
     #
-
     # Move focus to the parent container
     bindsym $mod+p focus parent
     # Move focus to the child.
@@ -285,20 +334,6 @@ bindsym $mod+e mode "execute"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command i3status
-
-    colors {
-        statusline #ffffff
-        background #000000
-        inactive_workspace  #22aabb #115577 $text_color
-        active_workspace    #cc2222 #990000 #ffffff
-        focused_workspace   #cc2222 #990000 #ffffff
-    }
-}
 
 include @sysconfdir@/sway/config.d/*
