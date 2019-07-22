@@ -122,6 +122,12 @@ floating_modifier $mod normal
 mode default {
     # Defaults.
     #
+    # Start mode for any other mode.
+    # Other modes:
+
+    bindsym $mod+w mode "window"
+    bindsym $mod+t mode "tag"
+    bindsym $mod+e mode "execute"
 
     # Start a terminal.
     bindsym $mod+Shift+Return exec   $termcmd 
@@ -139,6 +145,9 @@ mode default {
 
     # Exit sway (logs you out of your Wayland session).
     bindsym $mod+Ctrl+Shift+q exec swaymsg exit
+
+    # Lock the screen.
+    bindsym $mod+Ctrl+Shift+l exec swaylock
 
     # Move focus to the parent container
     bindsym $mod+p focus     parent
@@ -218,10 +227,8 @@ mode "window" {
     bindsym Escape mode "default"
     bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
 }
-bindsym $mod+w mode "window"
 
 mode "tag" {
-
     # Switch to workspace.
     bindsym 1 workspace 1
     bindsym 2 workspace 2
@@ -292,7 +299,6 @@ mode "tag" {
     bindsym Escape mode "default"
     bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
 }
-bindsym $mod+t mode "tag"
 
 mode "execute" {
     bindsym f       exec 'firefox'
@@ -328,7 +334,6 @@ mode "execute" {
     bindsym Space  mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+e mode "execute"
 
 #
 # Status Bar:

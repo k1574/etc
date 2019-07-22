@@ -26,6 +26,10 @@ export WLC_REPEAT_DELAY=300
 	export XMENU="dmenu"
 	export TMENU="fzf"
 
+# Lock.
+	export XLOCK="slock"
+	export WLOCK="swaylock"
+
 # Shell chore functions to get preferencable programs.
 . $SHMODS/chores/progpref.sh
 
