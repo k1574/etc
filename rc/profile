@@ -30,7 +30,7 @@
 	export TMENU="fzf"
 
 # Lock.
-	export XLOCK="`profpref slock`"
+	export XLOCK="`progpref slock`"
 	export WLOCK="`progpref swaylock`"
 
 # Editor.
