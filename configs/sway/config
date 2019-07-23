@@ -353,6 +353,7 @@ mode "execute" {
     bindsym g       exec 'gimp'
     bindsym i       exec 'inkscape'
     bindsym t       exec  $termcmd
+    bindsym Shift+t exec "cool-retro-term"
     bindsym n       exec 'non-session-manager'
     bindsym a       exec 'ardour5'
     bindsym Shift+a exec 'amsynth'
