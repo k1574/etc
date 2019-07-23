@@ -7,50 +7,52 @@ set $resize_speed 25px
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
+# Menu.
+set $menucmd "dmenu-wl"
+set $rmenucmd $menucmd"_run"
+set $runcmd   $rmenucmd" -p '&' -i | xargs swaymsg exec --"
+# Terminal.
+set $termcmd "termite"
 
-# Your preferred terminal emulator
-set $termcmd termite
-
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
+# Home row direction keys, like vim.
+set $left  h
+set $down  j
+set $up    k
 set $right l
 
-# Your preferred application launcher.
-# Note: it's recommended that you pass the final command to sway.
-set $menu dmenu-wl_run -p '&' -i | xargs swaymsg exec --
-
 # Default.
-set $fg_c      #ffffff
-set $bg_c      #000000
-set $tb_c      #ffffff
+set $fg_c      "#ffffff"
+set $bg_c      "#000000"
+set $tb_c      "#ffffff"
 set $wb_c      $tb_c
+set $i_c       "#00ffff"
 # Inactive.
 set $ifg_c     $fg_c
-set $ibg_c     #881111
-set $itb_c     #660000
-set $iwb_c     $itb_c
+set $ibg_c     "#881111"
+set $itb_c     "#660000"
+set $iwb_c     "$itb_c"
+set $ii_c      $i_c
 # Focused.
 set $ffg_c     $fg_c
-set $fbg_c     #CC2222
-set $ftb_c     #FF0000
+set $fbg_c     "#CC2222"
+set $ftb_c     "#FF0000"
 set $fwb_c     $ftb_c
+set $fi_c      $i_c
 # Unfocused.
-set $ufg_c     #bbbbbb
-set $ubg_c     #787878
-set $utb_c     #101010
+set $ufg_c     "#bbbbbb"
+set $ubg_c     "#484848"
+set $utb_c     "#303030"
 set $uwb_c     $utb_c
+set $ui_c      $i_c
 
 # Indicator color.
-set $i_c           #00ffff
 
 
 # Client colors.
 # Class                 TBorder    Background    Text     Indicator    WBorder
-client.focused          $ftb_c     $fbg_c        $ffg_c   $i_c         $fwb_c
-client.focused_inactive $itb_c     $ibg_c        $ifg_c   $i_c         $iwb_c
-client.unfocused        $utb_c     $ubg_c        $ufg_c   $i_c         $uwb_c
+client.focused          $ftb_c     $fbg_c        $ffg_c   $fi_c         $fwb_c
+client.focused_inactive $itb_c     $ibg_c        $ifg_c   $ii_c         $iwb_c
+client.unfocused        $utb_c     $ubg_c        $ufg_c   $ui_c         $uwb_c
 
 ### Output configuration
 #
@@ -119,7 +121,7 @@ input * {
 
 ### Key bindings
 floating_modifier $mod normal
-mode default {
+mode "default" {
     # Defaults.
     #
     # Start mode for any other mode.
@@ -132,7 +134,7 @@ mode default {
     # Start a terminal.
     bindsym $mod+Shift+Return exec   $termcmd 
     # Start launcher.
-    bindsym $mod+Shift+p exec $menu
+    bindsym $mod+Shift+p exec $runcmd
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -153,6 +155,31 @@ mode default {
     bindsym $mod+p focus     parent
     # Move focus to the child.
     bindsym $mod+c focus     child
+    # Kill focused window.
+    bindsym $mod+x           kill
+
+    # The most usable workspace bindings.
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 0
+
+    bindsym $mod+Shift+1     move container to workspace 1
+    bindsym $mod+Shift+2     move container to workspace 2
+    bindsym $mod+Shift+3     move container to workspace 3
+    bindsym $mod+Shift+4     move container to workspace 4
+    bindsym $mod+Shift+5     move container to workspace 5
+    bindsym $mod+Shift+6     move container to workspace 6
+    bindsym $mod+Shift+7     move container to workspace 7
+    bindsym $mod+Shift+8     move container to workspace 8
+    bindsym $mod+Shift+9     move container to workspace 9
+    bindsym $mod+Shift+0     move container to workspace 0
 
     bindsym $mod+comma       focus left
     bindsym $mod+$left       focus left
@@ -160,12 +187,17 @@ mode default {
     bindsym $mod+$up         focus up
     bindsym $mod+$right      focus right
     bindsym $mod+period      focus right
+
+    bindsym $mod+Shift+$left  move left
+    bindsym $mod+Shift+$down  move down
+    bindsym $mod+Shift+$up    move up
+    bindsym $mod+Shift+$right move right
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+space       floating toggle
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
     # Toggle dvorak.
-    bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
+    bindsym $mod+a            exec $XDG_CONFIG_HOME/sway/toggle_dvorak
 }
 
 mode "window" {
@@ -214,18 +246,18 @@ mode "window" {
     # Standard.
 
     # Move focus to the parent container
-    bindsym $mod+p focus parent
+    bindsym p focus parent
     # Move focus to the child.
-    bindsym $mod+c focus child
-    bindsym $mod+space floating toggle
-    bindsym $mod+shift+space focus mode_toggle
+    bindsym c focus child
+    bindsym space floating toggle
+    bindsym shift+space focus mode_toggle
     bindsym $left  focus left
     bindsym $down  focus down
     bindsym $up    focus up
     bindsym $right focus right
-    bindsym Space  mode "default"
+    #bindsym Space  mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
+    bindsym $mod+a exec $XDG_CONFIG_HOME/sway/toggle_dvorak
 }
 
 mode "tag" {
@@ -282,6 +314,10 @@ mode "tag" {
     bindsym Shift+d     move container to workspace d
     bindsym Shift+f     move container to workspace f
     bindsym Shift+g     move container to workspace g
+
+    # Any workspace name.
+    bindsym Return       exec $XDG_CONFIG_HOME/sway/workspace_by_menu                   $menucmd
+    bindsym Shift+Return exec $XDG_CONFIG_HOME/sway/move_container_to_workspace_by_menu $menucmd
     #
     # Default.
 
@@ -297,7 +333,7 @@ mode "tag" {
     bindsym $mod+$right focus right
     bindsym Space  mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+a            exec   sh -c "$XDG_CONFIG_HOME/sway/toggle_dvorak"
+    bindsym $mod+a exec $XDG_CONFIG_HOME/sway/toggle_dvorak
 }
 
 mode "execute" {
@@ -333,6 +369,11 @@ mode "execute" {
     bindsym $mod+$right focus right
     bindsym Space  mode "default"
     bindsym Escape mode "default"
+}
+
+mode "empty" {
+    bindsym $mod+Space mode "default"
+    bindsym $mod+a     exec $XDG_CONFIG_HOME/sway/toggle_dvorak
 }
 
 #

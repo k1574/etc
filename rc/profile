@@ -1,3 +1,6 @@
+# Shell chore functions to get preferencable programs.
+. $SHMODS/chores/progpref.sh
+
 # Main varibles for my workflow.
 	export ETC="$HOME/etc"
 	export CODE="$HOME/code"
@@ -9,15 +12,15 @@
 	export SHMODS="$CODE/sh/modules"
 
 # XDG.
-export XDG_CONFIG_HOME="$HOME/.config"
+	export XDG_CONFIG_HOME="$HOME/.config"
 
 # Locale.
 	export LANG="C"
 	export LC_CTYPE="ru_RU.UTF-8"
 
 # Wayland.
-export WLC_REPEAT_RATE=60
-export WLC_REPEAT_DELAY=300
+	export WLC_REPEAT_RATE=60
+	export WLC_REPEAT_DELAY=300
 
 # Xorg.
 
@@ -27,11 +30,8 @@ export WLC_REPEAT_DELAY=300
 	export TMENU="fzf"
 
 # Lock.
-	export XLOCK="slock"
-	export WLOCK="swaylock"
-
-# Shell chore functions to get preferencable programs.
-. $SHMODS/chores/progpref.sh
+	export XLOCK="`profpref slock`"
+	export WLOCK="`progpref swaylock`"
 
 # Editor.
 	export EDITOR="`progpref nvim vim vi nano ex`"
@@ -59,7 +59,8 @@ export WLC_REPEAT_DELAY=300
 
 
 # Browser.
-export XBROWSER="`progpref firefox chromium opera`"
+export XBROWSER="`progpref firefox chromium opera midori epiphany jsurf luakit vimb surf`"
+export WBROWSER="`progpref firefox midori epiphany`"
 export TBROWSER="`progpref links2 links elinks w3m`"
 
 # GCC.
