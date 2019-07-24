@@ -349,6 +349,8 @@ mode "tag" {
 
 mode "execute" {
     bindsym f       exec 'firefox'
+    bindsym Shift+f exec 'falkon'
+    bindsym w       exec 'waterfox'
     bindsym c       exec 'chromium'
     bindsym Ctrl+c  exec 'cadence'
     bindsym Ctrl+p  exec 'pavucontrol'
