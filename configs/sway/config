@@ -114,9 +114,9 @@ bar {
 input * {
 	repeat_delay "300"
 	repeat_rate "60"
-	xkb_layout "us,ru"
-	xkb_variant "dvp,"
-	xkb_options "grp:alt_space_toggle,caps:swapescape"
+	xkb_layout "us"
+	xkb_variant "dvp"
+	xkb_options "caps:swapescape"
 }
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -204,11 +204,10 @@ mode "default" {
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
     # Toggle dvorak.
-    bindsym $mod+a            exec swaymsg 'input * xkb_variant "dvorak,"'
-    bindsym $mod+m            exec swaymsg 'input * xkb_variant "dvp,"'
-    bindsym $mod+Tab          exec swaymsg 'input * xkb_variant ","'
-    bindsym Alt_R+Space       exec swaymsg 'input * xkb_layout  "ru,us"'
-    bindsym Alt_L+Space       exec swaymsg 'input * xkb_layout  "us,ru"'
+    bindsym $mod+a            exec swaymsg 'input * xkb_variant "dvorak";input * xkb_layout "us"'
+    bindsym $mod+m            exec swaymsg 'input * xkb_variant "dvp"   ;input * xkb_layout "us"'
+    bindsym $mod+Tab          exec swaymsg 'input * xkb_variant ""      ;input * xkb_layout "us"'
+    bindsym $mod+Backspace    exec swaymsg 'input * xkb_variant ""      ;input * xkb_layout "ru"'
 }
 
 mode "window" {
