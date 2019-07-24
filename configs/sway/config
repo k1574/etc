@@ -115,7 +115,7 @@ input * {
 	repeat_delay "300"
 	repeat_rate "60"
 	xkb_layout "us,ru"
-	xkb_variant "dvorak,"
+	xkb_variant "dvp,"
 	xkb_options "grp:alt_space_toggle,caps:swapescape"
 }
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -204,7 +204,11 @@ mode "default" {
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
     # Toggle dvorak.
-    bindsym $mod+a            exec $XDG_CONFIG_HOME/sway/toggle_dvorak
+    bindsym $mod+a            exec swaymsg 'input * xkb_variant "dvorak,"'
+    bindsym $mod+m            exec swaymsg 'input * xkb_variant "dvp,"'
+    bindsym $mod+Tab          exec swaymsg 'input * xkb_variant ","'
+    bindsym Alt_R+Space       exec swaymsg 'input * xkb_layout  "ru,us"'
+    bindsym Alt_L+Space       exec swaymsg 'input * xkb_layout  "us,ru"'
 }
 
 mode "window" {

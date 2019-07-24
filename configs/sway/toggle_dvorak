@@ -1,7 +1,0 @@
-#!/bin/sh
-# Simple dvorak toggling script for sway.
-if swaymsg -t get_inputs | grep -i 'dvorak' ; then
-	swaymsg 'input * xkb_variant ","'
-else
-	swaymsg 'input * xkb_variant "dvorak,"'
-fi
