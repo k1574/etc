@@ -115,7 +115,7 @@ input * {
 	repeat_delay "300"
 	repeat_rate "60"
 	xkb_layout "us"
-	xkb_variant "dvp"
+	xkb_variant "dvorak"
 	xkb_options "caps:swapescape"
 }
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -204,9 +204,9 @@ mode "default" {
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
     # Toggle dvorak.
-    bindsym $mod+a            exec swaymsg 'input * xkb_variant "dvorak";input * xkb_layout "us"'
+    bindsym $mod+Tab          exec swaymsg 'input * xkb_layout "us";input * xkb_variant "dvorak"'
     bindsym $mod+m            exec swaymsg 'input * xkb_variant "dvp"   ;input * xkb_layout "us"'
-    bindsym $mod+Tab          exec swaymsg 'input * xkb_variant ""      ;input * xkb_layout "us"'
+    bindsym $mod+a            exec swaymsg 'input * xkb_variant ""      ;input * xkb_layout "us"'
     bindsym $mod+Backspace    exec swaymsg 'input * xkb_variant ""      ;input * xkb_layout "ru"'
 }
 
