@@ -205,9 +205,18 @@ mode "default" {
     bindsym $mod+shift+space focus mode_toggle
     # Toggle dvorak.
     bindsym $mod+Tab          exec swaymsg 'input * xkb_layout "us";input * xkb_variant "dvorak"'
-    bindsym $mod+m            exec swaymsg 'input * xkb_variant "dvp"   ;input * xkb_layout "us"'
+    bindsym $mod+Return       exec swaymsg 'input * xkb_layout "us";input * xkb_variant "dvp"   '
     bindsym $mod+a            exec swaymsg 'input * xkb_variant ""      ;input * xkb_layout "us"'
     bindsym $mod+Backspace    exec swaymsg 'input * xkb_variant ""      ;input * xkb_layout "ru"'
+
+    bindsym $mod+Shift+b     splith
+    bindsym $mod+Shift+v     splitv
+    bindsym $mod+minus move scratchpad
+    bindsym $mod+Shift+minus scratchpad show
+    bindsym $mod+Shift+s     layout stacking
+    bindsym $mod+Shift+t     layout tabbed
+    bindsym $mod+Shift+g     layout toggle split
+    bindsym $mod+Shift+f     fullscreen
 }
 
 mode "window" {
