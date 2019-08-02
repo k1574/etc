@@ -1,10 +1,9 @@
 [OPTIONS]
-height=796
+height=1030
 toolstoolbar=1
 folder_warn=1
 panel_view=3
-width=1012
-confirm_drag_and_drop=1
+width=636
 use_startup_notification=1
 preserve_date_warn=1
 confirm_delete=1
@@ -14,31 +13,37 @@ auto_save_layout=1
 use_trash_bypass=0
 mount_warn=1
 root_mode=1
-treetwopanels_lpanel_pct=0.396
+xfv_replaced=1
 confirm_overwrite=1
 paneltoolbar=1
 confirm_delete_emptydir=1
 startdir_mode=0
 ask_before_copy=1
 mount_messages=1
+confirm_execute=1
 confirm_properties=1
 twopanels_lpanel_pct=0.5
 vert_panels=1
 root_warn=0
 confirm_trash=1
-confirm_execute=1
+treetwopanels_lpanel_pct=0.396
 status=1
 treetwopanels_tree_pct=0.202
 generaltoolbar=1
 locationbar=1
-xfv_replaced=1
+confirm_drag_and_drop=1
 
 [HISTORY]
 open=vlc:gvim:
 filter=*:
 
-[bookmarks]
-BOOKMARK1=/home/jien
+[PROGS]
+imgviewer=vimiv
+txtviewer=gvim -R
+txteditor=gvim
+audioplayer=vlc
+xterm=xterm
+videoplayer=vlc
 
 [KEYBINDINGS]
 search_prev=Shift-Ctrl-G
@@ -115,66 +120,62 @@ empty_trash_can=Ctrl-Del
 rotate_left=Ctrl-L
 
 [RIGHT PANEL]
-type_size=1218
+type_size=2213
 deldate_size=150
 origpath_size=200
 liststyle=0
-attr_size=1218
-size_size=728
-user_size=609
+attr_size=2213
+user_size=1107
+hiddenfiles=0
 dirs_first=1
-ext_size=1218
-grou_size=609
-modd_size=1827
+ext_size=2213
+grou_size=1107
+modd_size=3320
 ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
-name_size=2448
+name_size=4449
 lastdir=/home/jien
-hiddenfiles=0
+size_size=1323
 
-[PROGS]
-imgviewer=vimiv
-txtviewer=gvim -R
-txteditor=gvim
-audioplayer=vlc
-xterm=xterm
-videoplayer=vlc
+[DIR PANEL]
+hidden_dir=0
+sort_func=ascendingCase
 
 [LEFT PANEL]
-type_size=1218
+type_size=2213
 deldate_size=150
 origpath_size=200
 liststyle=0
-attr_size=1218
-size_size=728
-user_size=609
+attr_size=2213
+user_size=1107
+hiddenfiles=0
 dirs_first=1
-ext_size=1218
-grou_size=609
-modd_size=1827
+ext_size=2213
+grou_size=1107
+modd_size=3320
 ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
-name_size=2448
-lastdir=/home/jien/Audio
-hiddenfiles=0
+name_size=4449
+lastdir=/home/jien
+size_size=1323
 
 [SETTINGS]
-file_tooltips=1
-show_pathlinker=1
 iconpath=/usr/share/xfe/icons/gnomeblue-theme
-basecolor=#ede9e3
+scrollbarsize=15
 time_format=%x %X
 single_click=0
+show_pathlinker=1
 wheellines=5
 smooth_scroll=1
 use_clearlooks=1
-scrollbarsize=15
+basecolor=#ede9e3
 tiptime=10000
 relative_resize=1
-save_win_pos=0
 tippause=500
+save_win_pos=0
+file_tooltips=1
 
 [FILETYPES]
 sdw=lowriter,lowriter,lowriter;Starwriter 5.0 Document;sxw_32x32.png;sxw_16x16.png;;
@@ -402,7 +403,6 @@ showthumbnails=0
 name_size=200
 size_size=60
 
-[DIR PANEL]
-hidden_dir=0
-sort_func=ascendingCase
+[bookmarks]
+BOOKMARK1=/home/jien
 

@@ -361,6 +361,7 @@ mode "execute" {
     bindsym Shift+f exec 'falkon'
     bindsym w       exec 'waterfox'
     bindsym Ctrl+w  exec 'wicd-gtk'
+    bindsym Ctrl+Shift+w exec $termcmd' -e wicd-curses'
     bindsym c       exec 'chromium'
     bindsym Ctrl+c  exec 'cadence'
     bindsym Ctrl+p  exec 'pavucontrol'
@@ -371,14 +372,15 @@ mode "execute" {
     bindsym t       exec  $termcmd
     bindsym Shift+t exec "cool-retro-term"
     bindsym n       exec 'non-session-manager'
-    bindsym a       exec 'ardour5'
-    bindsym Shift+a exec 'amsynth'
+    bindsym a       exec "audacity"
+    bindsym Shift+a exec 'ardour5'
+    bindsym $mod+a  exec 'amsynth'
     bindsym Shift+l exec 'lmms'
     bindsym l       exec $termcmd' -e lf'
     bindsym x       exec 'xfe'
     bindsym Ctrl+h  exec $termcmd' -e htop'
     bindsym Ctrl+t  exec $termcmd' -e top'
-
+    bindsym Ctrl+s  exec $termcmd' -e alsamixer'
 
     # Default.
     #
