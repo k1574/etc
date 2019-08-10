@@ -3,6 +3,8 @@
 source $SHMODS/chores/hasprog.sh
 source $SHMODS/chores/loseall.sh
 
+. "$HOME/.login"
+
 G="$GIT"
 C="$CODE"
 E="$ETC"

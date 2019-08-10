@@ -8,9 +8,10 @@ set $resize_speed 25px
 set $mod Mod4
 
 # Menu.
-set $menucmd "dmenu-wl"
+set $menucmd "wmenu"
 set $rmenucmd $menucmd"_run"
-set $runcmd   $rmenucmd" -p '&' -i | xargs swaymsg exec --"
+set $runcmd   "$rmenucmd"
+for_window [app_id="launcher"] floating enable, resize set width 1000 px height 250 px
 # Bar.
 set $barcmd "i3blocks"
 # Terminal.
@@ -50,12 +51,13 @@ set $ui_c      $i_c
 # Indicator color.
 
 
-# Client colors.
-# Class                 TBorder    Background    Text     Indicator    WBorder
+
+# Class             TBorder    Background    Text     Indicator    WBorder
 client.focused          $ftb_c     $fbg_c        $ffg_c   $fi_c         $fwb_c
 client.focused_inactive $itb_c     $ibg_c        $ifg_c   $ii_c         $iwb_c
 client.unfocused        $utb_c     $ubg_c        $ufg_c   $ui_c         $uwb_c
 
+font  pango:Consolas Mono 10
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
@@ -68,6 +70,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command $barcmd
+    font pango:Consolas Mono 10
 
     colors {
         statusline #ffffff

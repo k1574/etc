@@ -1,28 +1,22 @@
 #!/bin/sh
 
-arg="$@"
-rcs="rcs"
-configs="configs"
 
 rpath="$(dirname `realpath $0`)"
-. $rpath/$rcs/profile
+
+rcs="$ETC/rcs"
+configs="$ETC/configs"
+arg="$@"
+. $rcs/profile
 
 mkdir -p "$XDG_CONFIG_HOME"
 # Config dir.
-for i in $ETC/$configs/* ; do
+for i in $configs/* ; do
 	ln -sT $arg "$i" "$XDG_CONFIG_HOME/`basename $i`"
 done
 # Run commands dir.
-for i in $ETC/$rcs/*  ; do
+for i in $rcs/*  ; do
 	ln -sT $arg "$i" "$HOME/.`basename $i`"
 done
-# Bash and zsh profiles have to be just profile.
-ln -sT $arg "$HOME/.profile" "$HOME/.zprofile"
-ln -sT $arg "$HOME/.profile" "$HOME/.bash_profile"
-# Make neovim the same as vim.
-ln -sT $arg "$HOME/.vim" "$XDG_CONFIG_HOME/nvim"
-ln -sT $arg "$HOME/.vimrc" "$XDG_CONFIG_HOME/nvim/init.vim"
-# Make Xresources as Xdefaults
-ln -sT $arg "$HOME/.Xresources" "$HOME/.Xdefaults"
-# Dirs.
-mkdir -p $HOME/mnt /$HOME/drv $HOME/tmp
+
+mkdirs=$(eval "echo $HOME/{mnt,drv,tmp}")
+mkdir -p $mkdirs

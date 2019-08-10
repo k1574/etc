@@ -1,10 +1,14 @@
-session=${1:-dwm}
-
-case $session in
-	awesome           ) exec awesome;;
-	bspwm             ) exec bspwm;;
-	catwm             ) exec catwm;;
-	cinnamon          ) exec cinnamon-session;;
+session="${1:-i3}"
+shift
+arg="$@"
+# Here a can add specific options for ever WM, DE and
+# any other program I want start with Xorg.
+case "$session" in
+	#session{{{
+	awesome           ) exec awesome $arg ;;
+	bspwm             ) exec bspwm $arg ;;
+	catwm             ) exec catwm $arg ;;
+	cinnamon          ) exec cinnamon-session $arg ;;
 	dwm               )
 		setxkbmap -layout us,ru -variant dvorak, -option grp:alt_space_toggle
 		xrdb -load ~/.Xresources
@@ -13,23 +17,25 @@ case $session in
 		if [ -s ~/.Xmodmap ] ; then
 			xmodmap ~/.Xmodmap
 		fi
-		exec dwm;;
+		exec dwm $arg ;;
 	rio               ) exet rio;;
 	enlightenment     ) exec enlightenment_start;;
-	ede               ) exec startede;;
-	fluxbox           ) exec startfluxbox;;
-	gnome             ) exec gnome-session;;
-	gnome-classic     ) exec gnome-session --session=gnome-classic;;
-	i3|i3wm           ) exec i3;;
-	icewm             ) exec icewm-session;;
-	jwm               ) exec jwm;;
-	kde               ) exec startkde;;
-	mate              ) exec mate-session;;
-	monster|monsterwm ) exec monsterwm;;
-	notion            ) exec notion;;
-	openbox           ) exec openbox-session;;
-	unity             ) exec unity;;
-	xfce|xfce4        ) exec startxfce4;;
-	xmonad            ) exec xmonad;;
-	*) exec $1;;
+	ede               ) exec startede $arg ;;
+	fluxbox           ) exec startfluxbox $arg ;;
+	gnome             ) exec gnome-session $arg ;;
+	gnome-classic     ) exec gnome-session --session=gnome-classic $arg ;;
+	i3|i3wm           ) exec i3 $arg ;;
+	icewm             ) exec icewm-session $arg ;;
+	jwm               ) exec jwm $arg ;;
+	kde               ) exec startkde $arg ;;
+	mate              ) exec mate-session $arg ;;
+	monster|monsterwm ) exec monsterwm $arg ;;
+	notion            ) exec notion $arg ;;
+	openbox           ) exec openbox-session $arg ;;
+	unity             ) exec unity $arg ;;
+	xfce|xfce4        ) exec startxfce4 $arg ;;
+	xmonad            ) exec xmonad $arg ;;
+	# Not found any specific options case.
+	*) exec $session $arg ;;
+	#session}}}
 esac

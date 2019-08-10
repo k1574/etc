@@ -1,9 +1,0 @@
-# startx at login in first screen.
-if [[ -z "$DISPLAY" ]]  && [[ "$(tty)" = "/dev/tty1" ]] ; then
-	if [ -f "$HOME/.startx" ] ; then
-		exec `cat "$HOME/.startx"`
-	else
-		exec startx
-	fi
-fi
-#[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && echo I suck!>~/file && exec startx

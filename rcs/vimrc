@@ -79,8 +79,7 @@ syntax on
 	" Disable highlight.
 	nmap \nl :if &cursorline==1<enter>set nocursorline<enter>else<enter>set cursorline<enter>endif<enter><enter>
 	nmap \nh :nohlsearch<enter>
-	nmap <Return> o<Esc>
-	nmap <S-Return> O<Esc>
+	nmap <Return> i<Return><Esc>
 	nmap <Tab> >>
 	nmap <S-Tab> <<
 	nmap <Space> i<Space><Esc>

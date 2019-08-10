@@ -1,0 +1,27 @@
+# startx or startw at login on different screens.
+if [ -z $DISPLAY ] ; then
+	tty="`tty`"
+	echo tty > $HOME/log
+	case "$tty" in
+		/dev/tty1 )
+			# Start Wayland on the first TTY.
+			startwf="$HOME/.startw"
+			startw="`cat $startwf`"
+			[ -f "$HOME/.startw"] && exec sw $startw
+			# Not found file to start.
+			exec sw
+		;;
+		/dev/tty2 )
+			# Start X on the second TTY.
+			startxf="$HOME/.startx"
+			startx="`cat $startxf`"
+			[ -f "$HOME/.startx" ] && exec sx $startx
+			# Not found file to start.
+			exec sx
+		;;
+		* )
+		# Not a special case so no exec.
+		;;
+	esac
+fi
+#[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && echo I suck!>~/file && exec startx

@@ -1,15 +1,17 @@
-# Shell chore functions to get preferencable programs.
-. $SHMODS/chores/progpref.sh
-
-# Main varibles for my workflow.
+# Main varibles for my workflow. All the paths depends on this.
 	export ETC="$HOME/etc"
 	export CODE="$HOME/code"
 	export GIT="$HOME/git"
 	export SHARE="$HOME/share"
 	export BIN="$HOME/bin"
 	export TMPS="$HOME/tmps"
-	export PATH="$PATH:$HOME/bin"
+	export TMP="$HOME/tmp"
+	export PATH="$PATH:$BIN"
+	export MANPAPH="$PATH:$SHARE/man"
 	export SHMODS="$CODE/sh/modules"
+
+# Shell chore functions to get preferencable programs.
+. $SHMODS/chores/progpref.sh
 
 # XDG.
 	export XDG_CONFIG_HOME="$HOME/.config"
@@ -38,6 +40,9 @@
 	export GIT_EDITOR="$EDITOR"
 	export VISUAL="`progpref gvim notepadqq leafpad mousepad adie gedi`"
 
+# Terminal.
+	export WTERMINAL="`progpref termite`"
+	export XTERMINAL="`progpref st termite`"
 # Pager.
 	export PAGER="`progpref most less more`"
 	export MANPAGER="$PAGER"
@@ -56,12 +61,10 @@
 	export LESS_TERMCAP_mb=$'\E[1;34m'
 	export LESS_TERMCAP_me=$'\E[0m'
 
-
-
 # Browser.
-export XBROWSER="`progpref firefox chromium opera midori epiphany jsurf luakit vimb surf`"
-export WBROWSER="`progpref firefox midori epiphany`"
-export TBROWSER="`progpref links2 links elinks w3m`"
+	export XBROWSER="`progpref waterfox firefox chromium opera midori epiphany jsurf luakit vimb surf`"
+	export WBROWSER="`progpref waterfox firefox midori epiphany`"
+	export TBROWSER="`progpref links2 links elinks w3m`"
 
 # GCC.
 	export C_INCLUDE_PATH="$S/c/modules"
