@@ -7,7 +7,7 @@ if [ -z $DISPLAY ] ; then
 			# Start Wayland on the first TTY.
 			startwf="$HOME/.startw"
 			startw="`cat $startwf`"
-			[ -f "$HOME/.startw"] && exec sw $startw
+			[ -f "$HOME/.startw" ] && exec sw $startw
 			# Not found file to start.
 			exec sw
 		;;
