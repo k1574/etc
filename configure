@@ -1,6 +1,5 @@
 #!/bin/sh
-
-
+# Automatic user configuration installation and updating script.
 rpath="$(dirname `realpath $0`)"
 
 rcs="$ETC/rcs"

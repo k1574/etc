@@ -10,8 +10,14 @@
 	export MANPAPH="$PATH:$SHARE/man"
 	export SHMODS="$CODE/sh/modules"
 
+# Man.
+	export MANSECT="1:n:l:8:3:0:2:5:4:9:6:7"
+	# My man sections which I'll maybe use later.
+	export MANSECT="$MANSECT:m"
+
 # Shell chore functions to get preferencable programs.
 . $SHMODS/chores/progpref.sh
+
 
 # XDG.
 	export XDG_CONFIG_HOME="$HOME/.config"
