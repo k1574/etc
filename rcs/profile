@@ -18,6 +18,9 @@
 # Shell chore functions to get preferencable programs.
 . $SHMODS/chores/progpref.sh
 
+# General.
+	export KEYBOARD_REPEAT_RATE=60
+	export KEYBOARD_REPEAT_DELAY=300
 
 # XDG.
 	export XDG_CONFIG_HOME="$HOME/.config"
@@ -27,15 +30,15 @@
 	export LC_CTYPE="ru_RU.UTF-8"
 
 # Wayland.
-	export WLC_REPEAT_RATE=60
-	export WLC_REPEAT_DELAY=300
+	export WLC_REPEAT_RATE="$KEYBOARD_REPEAT_RATE"
+	export WLC_REPEAT_DELAY="$KEYBOARD_REPEAT_DELAY"
 
 # Xorg.
 
 # Menu.
-	export WMENU="dmenu-wl"
-	export XMENU="dmenu"
-	export TMENU="fzf"
+	export WMENU="`progpref dmenu-wl`"
+	export XMENU="`progpref dmenu`"
+	export TMENU="`progpref fzf`"
 
 # Lock.
 	export XLOCK="`progpref slock`"
