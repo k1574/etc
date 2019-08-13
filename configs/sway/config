@@ -8,7 +8,7 @@ set $resize_speed 25px
 set $mod Mod4
 
 # Menu.
-set $menucmd "wmenu"
+set $menucmd "sway_menu"
 set $rmenucmd $menucmd"_run"
 set $runcmd   "$rmenucmd"
 for_window [app_id="launcher"] floating enable, resize set width 1000 px height 250 px

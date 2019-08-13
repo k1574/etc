@@ -2,6 +2,7 @@
 
 ### Variables
 #
+set $kbd_options "grp:alt_space_toggle"
 set $resize_speed 25px
 
 # Logo key. Use Mod1 for Alt.
@@ -82,7 +83,7 @@ bar {
 }
 #
 ### Key bindings
-floating_modifier $mod normal
+floating_modifier $mod
 #mode "default" {
     # Defaults.
     #
@@ -164,12 +165,10 @@ floating_modifier $mod normal
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
     # Toggle dvorak.
-    set $empty_layout 'input * xkb_variant "," ; input * xkb_layout "us" ; '
-    bindsym $mod+Tab          exec swaymsg $empty_layout' input * xkb_layout "us,ru"     ; input * xkb_variant "dvorak,"  '
-    bindsym $mod+Return       exec swaymsg $empty_layout' input * xkb_layout "us,ru"     ; input * xkb_variant "dvp,"     '
-    bindsym $mod+a            exec swaymsg $empty_layout' input * xkb_layout "us,ru"     ; input * xkb_variant ","        '
-    bindsym $mod+Backspace    exec swaymsg $empty_layout' input * xkb_layout "ru,us"     ; input * xkb_variant ",dvorak"   '
-
+    bindsym $mod+Tab          exec 'setxkbmap -layout "us,ru" -variant "dvorak,"  -option $kbd_options ; xmodmap ~/.Xmodmap'
+    bindsym $mod+Return       exec 'setxkbmap -layout "us,ru" -variant "dvp,"     -option $kbd_options ; xmodmap ~/.Xmodmap'
+    bindsym $mod+a            exec 'setxkbmap -layout "us,ru" -variant ","        -option $kbd_options ; xmodmap ~/.Xmodmap'
+    bindsym $mod+BackSpace    exec 'setxkbmap -layout "ru,us" -variant ",dvorak"  -option $kbd_options ; xmodmap ~/.Xmodmap'
     bindsym $mod+Shift+b     splith
     bindsym $mod+Shift+v     splitv
     bindsym $mod+minus move scratchpad

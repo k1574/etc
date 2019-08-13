@@ -8,7 +8,7 @@
 	export TMP="$HOME/tmp"
 	export PATH="$PATH:$BIN"
 	export MANPAPH="$PATH:$SHARE/man"
-	export SHMODS="$CODE/sh/modules"
+	export SHMODS="$CODE/modules/sh"
 
 # Man.
 	export MANSECT="1:n:l:8:3:0:2:5:4:9:6:7"

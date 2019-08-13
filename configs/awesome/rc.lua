@@ -29,7 +29,7 @@ local toggledvorakcmd       =
                 "fi\n"
 
 -- My library.
-package.path = package.path..";"..os.getenv("CODE").."/lua/modules/?.lua" ;
+package.path = package.path..";"..os.getenv("CODE").."/modules/lua/?.lua" ;
 
 -- Blackarch.
 local addbamenu = true -- Should I add menu.
