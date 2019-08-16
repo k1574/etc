@@ -1,11 +1,14 @@
 #!/bin/sh
 # Automatic user configuration installation and updating script.
+
+# Getting profile file to get start variables.
 rpath="$(dirname `realpath $0`)"
+profile="$rpath/profile"
+. $profile
 
 rcs="$ETC/rcs"
 configs="$ETC/configs"
 arg="$@"
-. $rcs/profile
 
 mkdir -p "$XDG_CONFIG_HOME"
 # Config dir.
