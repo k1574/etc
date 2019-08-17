@@ -2,21 +2,21 @@
 
 ### Variables
 #
-set $kbd_options "grp:alt_space_toggle"
+set $kbd_options grp:alt_space_toggle
 set $resize_speed 25px
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
 # Menu.
-set $menucmd "xmenu"
-set $rmenucmd $menucmd"_run"
-set $runcmd   "$rmenucmd"
+set $menucmd xmenu
+set $rmenucmd i3-dmenu-desktop
+set $runcmd   $rmenucmd
 #for_window [app_id="launcher"] floating enable, resize set width 1000 px height 250 px
 # Bar.
-set $barcmd "i3status"
+set $barcmd i3status
 # Terminal.
-set $termcmd "st"
+set $termcmd st
 
 # Home row direction keys, like vim.
 set $left  h
@@ -70,7 +70,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command $barcmd
+    status_command "$barcmd"
     font pango:Consolas Mono 10
 
     colors {
@@ -95,9 +95,9 @@ floating_modifier $mod
     bindsym $mod+e mode "execute"
 
     # Start a terminal.
-    bindsym $mod+Shift+Return exec   $termcmd 
+    bindsym $mod+Shift+Return exec   " $termcmd "
     # Start launcher.
-    bindsym $mod+Shift+p exec $runcmd
+    bindsym $mod+Shift+p exec " $rmenucmd "
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -165,10 +165,10 @@ floating_modifier $mod
     # Swap focus between the tiling area and the floating area
     bindsym $mod+shift+space focus mode_toggle
     # Toggle dvorak.
-    bindsym $mod+Tab          exec 'setxkbmap -layout "us,ru" -variant "dvorak,"  -option $kbd_options ; xmodmap ~/.Xmodmap'
-    bindsym $mod+Return       exec 'setxkbmap -layout "us,ru" -variant "dvp,"     -option $kbd_options ; xmodmap ~/.Xmodmap'
-    bindsym $mod+a            exec 'setxkbmap -layout "us,ru" -variant ","        -option $kbd_options ; xmodmap ~/.Xmodmap'
-    bindsym $mod+BackSpace    exec 'setxkbmap -layout "ru,us" -variant ",dvorak"  -option $kbd_options ; xmodmap ~/.Xmodmap'
+    bindsym $mod+Tab          exec "setxkbmap -layout 'us,ru' -variant 'dvorak,'  -option $kbd_options ; xmodmap $HOME/.Xmodmap"
+    bindsym $mod+Return       exec "setxkbmap -layout 'us,ru' -variant 'dvp,'     -option $kbd_options ; xmodmap $HOME/.Xmodmap"
+    bindsym $mod+a            exec "setxkbmap -layout 'us,ru' -variant ','        -option $kbd_options ; xmodmap $HOME/.Xmodmap"
+    bindsym $mod+BackSpace    exec "setxkbmap -layout 'ru,us' -variant ,dvorak    -option $kbd_options ; xmodmap $HOME/.Xmodmap"
     bindsym $mod+Shift+b     splith
     bindsym $mod+Shift+v     splitv
     bindsym $mod+minus move scratchpad
