@@ -54,6 +54,7 @@
 	export XTERMINAL="`progpref st termite`"
 # Pager.
 	export PAGER="`progpref most less more`"
+	export LESS="-R"
 	export MANPAGER="$PAGER"
 	export HELPPAGER="$PAGER -R"
 
@@ -76,13 +77,16 @@
 	export TBROWSER="`progpref links2 links elinks w3m`"
 
 # GCC.
-	export C_INCLUDE_PATH="$S/c/modules"
+	export C_INCLUDE_PATH="$S/modules/c"
 
 # Perl.
-	export PERL5LIB="$S/pl/5/modules"
+	export PERL5LIB="$S/modules/pl/5"
 
 # Python.
-	export PYTHONPATH="$S/py/modules"
+	export PYTHONPATH="$CODE/modules/py"
 
 # Nethack.
 	export NETHACKOPTIONS="boulder:0, color, autodig"
+
+# Irrlicht(For my make files).
+	export IRRLICHT_CORE_ROOT_DIRECTORY="$GIT/irrlicht"
