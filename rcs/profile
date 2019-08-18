@@ -21,9 +21,8 @@
 	export MANSECT="$MANSECT:m"
 
 # pkgsrc.
-	export PKG_VERSIONS="8.KERNEL_RELEASE"
-	PKG_PATH="$PKG_PATH;http://cdn.NetBS
-	D.org/pub/pkgsrc/packages/$OPSYS/$ARCH/$KERNEL_RELEASE/All"
+	export PKG_VERSIONS="$KERNEL_RELEASE"
+	PKG_PATH="$PKG_PATH;http://cdn.NetBSD.org/pub/pkgsrc/packages/$OPSYS/$ARCH/$KERNEL_RELEASE/All"
 	export PKG_PATH
 
 # Shell chore functions to get preferencable programs.
