@@ -7,16 +7,27 @@
 	export TMPS="$HOME/tmps"
 	export TMP="$HOME/tmp"
 	export PATH="$PATH:$BIN"
-	export MANPAPH="$PATH:$SHARE/man"
 	export SHMODS="$CODE/modules/sh"
 
+# Lazy to type uname every fucking time.
+	export ARCH="`uname -p`"
+	export OPSYS="`uname -s`"
+	exoprt KERNEL_RELEASE="`uname -r`"
+
 # Man.
+	export MANPAPH="$SHARE/man:$MANPATH"
 	export MANSECT="1:n:l:8:3:0:2:5:4:9:6:7"
 	# My man sections which I'll maybe use later.
 	export MANSECT="$MANSECT:m"
 
+# pkgsrc.
+	export PKG_VERSIONS="8.KERNEL_RELEASE"
+	PKG_PATH="$PKG_PATH;http://cdn.NetBS
+	D.org/pub/pkgsrc/packages/$OPSYS/$ARCH/$KERNEL_RELEASE/All"
+	export PKG_PATH
+
 # Shell chore functions to get preferencable programs.
-. $SHMODS/chores/progpref.sh
+	. $SHMODS/chores/progpref.sh
 
 # General.
 	export KEYBOARD_REPEAT_RATE=60
