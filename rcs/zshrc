@@ -1,35 +1,32 @@
 # Jien's zshrc.
 # Modules.
-source $SHMODS/chores/hasprog.sh
-source $SHMODS/chores/loseall.sh
-
+. $SHMODS/chores/hasprog.sh
+. $SHMODS/chores/loseall.sh
 . "$HOME/.login"
-
 G="$GIT"
 C="$CODE"
 E="$ETC"
 S="$SHARE"
 B="$BIN"
-
-if [ "$TERM" = "linux" ] ; then
+if [ "$TERM" = linux ] ; then
 	# Running from virtual console.
-	echo -en "\e]P0000000" #black
-	echo -en "\e]P8666666" #darkgrey
-	echo -en "\e]P1DD2222" #darkred
-	echo -en "\e]P9FF0000" #red
-	echo -en "\e]P267E300" #darkgreen
-	echo -en "\e]PAA9F16C" #green
-	echo -en "\e]P3F7FF00" #brown
-	echo -en "\e]PBEBF22C" #yellow
-	echo -en "\e]P45190D0" #darkblue
-	echo -en "\e]PC346AA1" #blue
-	echo -en "\e]P5FF6E00" #darkmagenta
-	echo -en "\e]PDDE6000" #magenta
-	echo -en "\e]P600CFCF" #darkcyan
-	echo -en "\e]PE00FFFF" #cyan
-	echo -en "\e]P7DDDDDD" #lightgrey
-	echo -en "\e]PFFFFFFF" #white
-	clear #for background artifacting
+	echo -en "\e]P0000000" # Black.
+	echo -en "\e]P8666666" # Darkgrey.
+	echo -en "\e]P1DD2222" # Darkred.
+	echo -en "\e]P9FF0000" # Red.
+	echo -en "\e]P267E300" # Darkgreen.
+	echo -en "\e]PAA9F16C" # Green.
+	echo -en "\e]P3F7FF00" # Brown.
+	echo -en "\e]PBEBF22C" # Yellow..
+	echo -en "\e]P45190D0" # Darkblue.
+	echo -en "\e]PC346AA1" # Blue.
+	echo -en "\e]P5FF6E00" # Darkmagenta.
+	echo -en "\e]PDDE6000" # Magenta.
+	echo -en "\e]P600CFCF" # Darkcyan.
+	echo -en "\e]PE00FFFF" # Cyan.
+	echo -en "\e]P7DDDDDD" # Lightgrey.
+	echo -en "\e]PFFFFFFF" # White.
+	clear # For background artifacting.
 	r="300"
 	d="60"
 	font="drdos8x16"
@@ -40,10 +37,8 @@ if [ "$TERM" = "linux" ] ; then
 	echo
 	#print -Pn "\tSetting %F{red}keys%f=%F{green}'$keys'%f(";echo -n $(loadkeys $keys) ")"
 fi
-
 autoload -Uz compinit promptinit
 bindkey "<Shift-Tab>" undo
-
 compinit
 promptinit
 zstyle ':completion:*' menu select
@@ -59,10 +54,12 @@ SAVEHIST="$HISTSIZE"
 setopt menu_complete
 setopt append_history
 setopt extended_history
-setopt histignorealldups
-setopt histignorespace
+setopt inc_append_history
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
 setopt no_hist_beep
-
 setopt auto_cd
 #setopt extended_glob
 setopt nonomatch
@@ -72,30 +69,21 @@ setopt nohup
 setopt nobeep
 setopt noglobdots
 setopt noshwordsplit
-
-
-
 shpwd() {
-  echo ${${:-/${(j:/:)${(M)${(s:/:)${(D)PWD:h}}#(|.)[^.]}}/${PWD:t}}//\/~/\~}
+  echo -n ${${:-/${(j:/:)${(M)${(s:/:)${(D)PWD:h}}#(|.)[^.]}}/${PWD:t}}//\/~/\~}
 }
-
 setopt PROMPT_SUBST
-PROMPT="%F{yellow}%f%F{red}%n%f@%F{blue}%m%f:%F{yellow}%~%f%(!.#.$)"
-RPROMPT="%F{red}[%f%F{brgreen}%T%f%F{red}]%f[%F{yellow}%?%f%F{blue}%L%f]"
-
+PROMPT='%F{yellow}%f%F{red}%n%f@%F{blue}%m%f:%F{yellow}$(shpwd)%f%(!.#.$)'
+RPROMPT='%F{red}[%f%F{brgreen}%T%f%F{red}]%f[%F{yellow}%?%f%F{blue}%L%f]'
 my-backward-delete-word() {
     local WORDCHARS=${WORDCHARS/\//}
     zle backward-delete-word
 }
-
-
 # Git status.
 git_custom_status(){
 }
-
 # Vi Mode.
 bindkey -v
-
 #bindkey '^P' up-history
 #bindkey '^N' down-history
 bindkey '^P' history-beginning-search-backward
@@ -106,29 +94,22 @@ bindkey '^h' backward-delete-char
 zle -N my-backward-delete-word
 bindkey '^W' my-backward-delete-word
 bindkey '^r' history-incremental-search-backward
-
 EPS1=$RPROMPT
 function zle-line-init zle-keymap-select {
 	VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
 	RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}($(git_custom_status))$EPS1"
 	zle reset-prompt
 }
-
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
-
-
 # Plugins.
-
 set -A plugin_dirs \
 	"/usr/share/" \
 	"/usr/share/zsh/plugins"
-
 set -A plugins \
 	syntax-highlighting \
 	autosuggestions
-
 for plugin in $plugins ; do
 	for dir in $plugin_dirs ; do
 		file=$dir/zsh-$plugin/zsh-$plugin.zsh
@@ -139,38 +120,25 @@ for plugin in $plugins ; do
 		fi
 	done
 done
-
-
-
 ZSH_AUTOSUGGEST_STRATEGY="history"
 bindkey '^ ' autosuggest-accept
 bindkey -s "^o" 'lfcd\n'
-
-#vi_mode_plugin="~/code/scripts/sh/zsh/plugins/vi-mode.plugin.zsh"
-#if [ -f $vi_mode_plugin ] ; then
-#	source $vi_mode_plugin
-#fi
-
 # Aliases.
-#
 print "Alias section. Aliasing..."
-alias edg="$VISUAL"
-alias edgsu="$VISUAL"
-alias ed="$EDITOR"
-alias edsu="sudo $EDITOR"
+alias egui="$VISUAL"
+alias suegui="sudo $VISUAL"
+alias e="$EDITOR"
+alias sue="sudo $EDITOR"
 alias l="ls      --color=always"
 alias ll="ls -l  --color=always"
 alias la="ls -la --color=always"
-
-alias "mnt"="sudo mount"
-alias "umnt"="sudo umount"
-
+alias "m"="sudo mount"
+alias "um"="sudo umount"
 alias "sudo"='sudo -p "\$->#_"'
 alias "info"='info --vi-keys'
 alias "ipython"="ipython --TerminlInteractiveShell.editing_mode=vi"
 alias "ipython2"="ipython2 --TerminalInteractiveShell.editing_mode=vi"
 alias "ipython3"="ipython3 --TerminalInteractiveShell.editing_mode=vi"
-
 set -A grc_progs \
 	cat cvs df digg gcc g++ ls ifconfig \
 	make mount mtr netstat ping ps tail \
@@ -180,21 +148,17 @@ set -A grc_progs \
 	getsebool ulimit uptime nmap fdisk findmnt\
 	free semanage sar ss sysctl systemctl stat showmount\
 	tune2fs tcpdump
-
 if hasprog grc ; then
 	print -P "We have %F{cyan}'grc'%f here! Aliasing colors..."
 	for prog in $grc_progs ; do
-		
 		alias $prog="grc --colour=auto $prog"
 	done
 	alias ll="grc --colour=auto ls -l  --color=always"
 	alias la="grc --colour=auto ls -al --color=always"
 	print -Pn "%F{yellow}$grc_progs%f"
 fi
-
 # Functions.
 source $SHMODS/auto/helpa.sh # Automatic help getter.
-
 # LF.
 #
 if hasprog lf ; then
@@ -204,13 +168,10 @@ if hasprog lf ; then
 		source $LFCD
 	fi
 fi
-
-
 if hasprog screenfetch ; then
 	print -P "\n%F{red}F%f%F{green}A%f%F{blue}K%f::%F{red}Freedom%f:%F{green}Anarchy%f:%F{blue}Knowledge%f::%F{red}F%f%F{green}A%f%F{blue}K%f"
 	print -P " %F{red}#--------------------------------------------------#%f"
 		screenfetch
 	print -P " %F{red}#--------------------------------------------------#%f\n"
 fi
-
 print -P '%F{red}F%f%F{green}A%f%F{blue}K%f%F{yellow}YOU%f... why are you using zsh? Fish is better.'
