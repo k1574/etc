@@ -13,11 +13,15 @@ arg="$@"
 mkdir -p "$XDG_CONFIG_HOME"
 # Config dir.
 for i in $configs/* ; do
-	ln -s $arg "$i" "$XDG_CONFIG_HOME/`basename $i`"
+	ln="$XDG_CONFIG_HOME/`basename $i`"
+	rm "$ln"
+	ln -s $arg "$i" "$ln"
 done
 # Run commands dir.
 for i in $rcs/*  ; do
-	ln -s $arg "$i" "$HOME/.`basename $i`"
+	ln="$HOME/.`basename $i`"
+	rm "$ln"
+	ln -s $arg "$i" "$ln"
 done
 
 mkdirs="echo $HOME/mnt $HOME/drv $HOME/tmp"
