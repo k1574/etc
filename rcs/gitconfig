@@ -1,0 +1,16 @@
+[user]
+	name = jienfak
+	email = jienfak@protonmail.com
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	ad = add
+	br = branch
+	df = diff
+	sm = submodule
+	rt = remote
+	rs = reset
+	sh = stash
+	type = cat-file -t
+	dump = cat-file -p
