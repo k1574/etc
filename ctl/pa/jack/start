@@ -1,0 +1,5 @@
+#!/bin/sh
+pactl load-module module-jack-sink   channels="$PACHANNELSNUM"
+pactl load-module module-jack-source channels="$PACHANNELSNUM"
+pacmd set-default-sink   jack_out
+pacmd set-default-source jack_in

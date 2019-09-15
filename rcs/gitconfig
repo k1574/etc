@@ -4,6 +4,7 @@
 [alias]
 	co = checkout
 	ci = commit
+	cl = clone
 	st = status
 	ad = add
 	br = branch
@@ -15,5 +16,6 @@
 	ps = push
 	pl = pull
 	fc = fetch
+	lg = log
 	type = cat-file -t
 	dump = cat-file -p

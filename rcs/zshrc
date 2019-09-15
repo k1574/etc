@@ -2,6 +2,7 @@
 # Modules.
 . $SHMODS/chores/hasprog.sh
 . $SHMODS/chores/loseall.sh
+. $SHMODS/chores/aliasv.sh
 . "$HOME/.login"
 G="$GIT"
 C="$CODE"
@@ -124,22 +125,24 @@ ZSH_AUTOSUGGEST_STRATEGY="history"
 bindkey '^ ' autosuggest-accept
 bindkey -s "^o" 'lfcd\n'
 # Aliases.
-print "Alias section. Aliasing..."
-alias egui="$VISUAL"
-alias suegui="sudo $VISUAL"
-alias e="$EDITOR"
-alias sue="sudo $EDITOR"
-alias g="git"
-alias l="ls      --color=always"
-alias ll="ls -l  --color=always"
-alias la="ls -la --color=always"
-alias "m"="sudo mount"
-alias "um"="sudo umount"
-alias "sudo"='sudo -p "\$->#_"'
-alias "info"='info --vi-keys'
-alias "ipython"="ipython --TerminlInteractiveShell.editing_mode=vi"
-alias "ipython2"="ipython2 --TerminalInteractiveShell.editing_mode=vi"
-alias "ipython3"="ipython3 --TerminalInteractiveShell.editing_mode=vi"
+print "Alias section. aliasing..."
+aliasv_zsh egui "$VISUAL"
+aliasv_zsh suegui "sudo $VISUAL"
+aliasv_zsh e "$EDITOR"
+aliasv_zsh sue "sudo $EDITOR"
+aliasv_zsh g "git"
+aliasv_zsh q "exit"
+aliasv_zsh l "ls      --color=always"
+aliasv_zsh ll "ls -l  --color=always"
+aliasv_zsh la "ls -la --color=always"
+aliasv_zsh "m" "sudo mount"
+aliasv_zsh "um" "sudo umount"
+aliasv_zsh "sudo" 'sudo -p "#"'
+aliasv_zsh "info" 'info --vi-keys'
+aliasv_zsh "ipython" "ipython --TerminlInteractiveShell.editing_mode=$EDITMODE"
+aliasv_zsh "ipython2" "ipython2 --TerminalInteractiveShell.editing_mode=$EDITMODE"
+aliasv_zsh "ipython3" "ipython3 --TerminalInteractiveShell.editing_mode=$EDITMODE"
+aliasv_zsh "jack_control" "jackctl"
 set -A grc_progs \
 	cat cvs df digg gcc g++ ls ifconfig \
 	make mount mtr netstat ping ps tail \
@@ -150,13 +153,15 @@ set -A grc_progs \
 	free semanage sar ss sysctl systemctl stat showmount\
 	tune2fs tcpdump
 if hasprog grc ; then
-	print -P "We have %F{cyan}'grc'%f here! Aliasing colors..."
+	print -P "We have %F{cyan}'grc'%f here! aliasing colors..."
 	for prog in $grc_progs ; do
-		alias $prog="grc --colour=auto $prog"
+		if hasprog "$prog" ; then
+			al="grc --colour=auto $prog"
+			aliasv_zsh "$prog" "$al"
+		fi
 	done
-	alias ll="grc --colour=auto ls -l  --color=always"
-	alias la="grc --colour=auto ls -al --color=always"
-	print -Pn "%F{yellow}$grc_progs%f"
+	aliasv_zsh ll "grc --colour=auto ls -l  --color=always"
+	aliasv_zsh la "grc --colour=auto ls -al --color=always"
 fi
 # Functions.
 source $SHMODS/auto/helpa.sh # Automatic help getter.

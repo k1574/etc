@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Start if not started already.
+jack_control start
+# Set sound driver.
+jack_control ds "$JACKSNDDRIVE"
+
+jack_control dps rate "$JACKDPSRATE"
+jack_control dps nperiods "JACKNPERIODS"
+jack_control dps period "$JACKDPSPERIOD"
