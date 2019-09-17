@@ -79,12 +79,15 @@
 	expvar XBROWSER "`progpref waterfox firefox chromium opera midori epiphany jsurf luakit vimb surf`"
 	expvar WBROWSER "`progpref waterfox firefox midori epiphany`"
 	expvar TBROWSER "`progpref links2 links elinks w3m`"
+# Sudo.
+	expvar SUDO_PROMPT "#"
 # Sound.
 	expvar JACKSNDDRIVE "alsa"
 	expvar JACKDPSRATE "48000"
 	expvar JACKSNDDEVICE "hw:0"
 	expvar JACKNPERIODS "2"
 	expvar JACKDPSPERIOD "64"
+	expvar PACHANNELSNUM "2"
 # GCC.
 	expvar C_INCLUDE_PATH "$S/modules/c"
 # Perl.

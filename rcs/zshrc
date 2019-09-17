@@ -137,7 +137,6 @@ aliasv_zsh ll "ls -l  --color=always"
 aliasv_zsh la "ls -la --color=always"
 aliasv_zsh "m" "sudo mount"
 aliasv_zsh "um" "sudo umount"
-aliasv_zsh "sudo" 'sudo -p "#"'
 aliasv_zsh "info" 'info --vi-keys'
 aliasv_zsh "ipython" "ipython --TerminlInteractiveShell.editing_mode=$EDITMODE"
 aliasv_zsh "ipython2" "ipython2 --TerminalInteractiveShell.editing_mode=$EDITMODE"

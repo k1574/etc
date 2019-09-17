@@ -26,16 +26,24 @@ twopanels_lpanel_pct=0.5
 vert_panels=1
 root_warn=0
 confirm_trash=1
-treetwopanels_lpanel_pct=0.396
+treetwopanels_lpanel_pct=0.398
 status=1
-treetwopanels_tree_pct=0.198
+treetwopanels_tree_pct=0.196
 generaltoolbar=1
 locationbar=1
 confirm_drag_and_drop=1
 
 [HISTORY]
-open=vlc:gvim:
+open=vimiv:vlc:gvim:
 filter=*:
+
+[PROGS]
+imgviewer=vimiv
+txtviewer=gvim -R
+txteditor=gvim
+audioplayer=vlc
+xterm=xterm
+videoplayer=vlc
 
 [KEYBINDINGS]
 search_prev=Shift-Ctrl-G
@@ -134,14 +142,6 @@ size_size=1323
 hidden_dir=0
 sort_func=ascendingCase
 
-[PROGS]
-imgviewer=vimiv
-txtviewer=gvim -R
-txteditor=gvim
-audioplayer=vlc
-xterm=xterm
-videoplayer=vlc
-
 [LEFT PANEL]
 type_size=2213
 deldate_size=150
@@ -158,7 +158,7 @@ ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
 name_size=4449
-lastdir=/home/jien/downloads
+lastdir=/home/jien/imgs/buf
 size_size=1323
 
 [SETTINGS]
