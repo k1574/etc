@@ -1,0 +1,16 @@
+# jien's rc configuration file.
+prompt = ';'
+git = $GIT
+etc = $ETC
+code = $CODE
+share = $SHARE
+tmp = $TMP
+tmps = $TMPS
+
+g = $git
+e = $etc
+c = $code
+s = $share
+t = $tmp
+ts = $tmps
+

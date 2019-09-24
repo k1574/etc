@@ -24,5 +24,8 @@ for i in $rcs/*  ; do
 	ln -s $arg "$i" "$ln"
 done
 
+rm "$HOME/lib"
+ln -s $arg "$ETC/lib" "$HOME/lib"
+
 mkdirs="echo $HOME/mnt $HOME/drv $HOME/tmp"
 mkdir -p $mkdirs

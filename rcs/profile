@@ -11,6 +11,7 @@
 	. $SHMODS/chores/expvar.sh
 # Main varibles for my workflow. All the paths depends on this.
 	expvar ETC "$HOME/etc"
+	expvar LIB "$HOME/lib"
 	expvar GIT "$HOME/git"
 	expvar SHARE "$HOME/share"
 	expvar BIN "$HOME/bin"
@@ -51,6 +52,11 @@
 # Lock.
 	expvar XLOCK "`progpref slock`"
 	expvar WLOCK "`progpref swaylock`"
+# Shell.
+	expvar RCPROMPT ";"
+	expvar SHPROMPT "%"
+	expvar EDPROMPT ":"
+	expvar SHELL "`progpref rc nash ksh csh dash ash bash sh`"
 # Editor.
 	expvar EDITOR "`progpref nvim vim vi nano ex`"
 	expvar GIT_EDITOR "$EDITOR"
