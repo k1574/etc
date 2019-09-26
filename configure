@@ -26,6 +26,5 @@ done
 
 rm "$HOME/lib"
 ln -s $arg "$ETC/lib" "$HOME/lib"
-
-mkdirs="echo $HOME/mnt $HOME/drv $HOME/tmp"
+mkdirs="$HOME/bin $HOME/mnt $HOME/drv $HOME/tmp $HOME/cbin"
 mkdir -p $mkdirs

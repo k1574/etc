@@ -15,9 +15,10 @@
 	expvar GIT "$HOME/git"
 	expvar SHARE "$HOME/share"
 	expvar BIN "$HOME/bin"
+	expvar CBIN "$HOME/cbin"
 	expvar TMPS "$HOME/tmps"
 	expvar TMP "$HOME/tmp"
-	expvar PATH "$PATH:$BIN"
+	expvar PATH "$CBIN:$BIN:$PATH"
 # Lazy to type uname every fucking time.
 	#export ARCH="'`uname -p`'"
 	expvar ARCH "`uname -p`"
@@ -53,9 +54,10 @@
 	expvar XLOCK "`progpref slock`"
 	expvar WLOCK "`progpref swaylock`"
 # Shell.
+	expvar ENV "$HOME/.shrc"
 	expvar RCPROMPT ";"
-	expvar SHPROMPT "%"
-	expvar EDPROMPT ":"
+	expvar SHPROMPT ">"
+	expvar EDPROMPT "*"
 	expvar SHELL "`progpref rc nash ksh csh dash ash bash sh`"
 # Editor.
 	expvar EDITOR "`progpref nvim vim vi nano ex`"
@@ -69,16 +71,16 @@
 	expvar LESS "-R"
 	expvar MANPAGER "$PAGER"
 	expvar HELPPAGER "$PAGER"
-# Less colors
+# Less colors.
 	expvar LESS_TERMCAP_md $'\E[01;31m'
 	expvar LESS_TERMCAP_me $'\E[0m'
-	# Underlined
+	# Underlined.
 	expvar LESS_TERMCAP_us $'\E[01;32m'
 	expvar LESS_TERMCAP_ue $'\E[0m'
-	# Service info
+	# Service info.
 	expvar LESS_TERMCAP_so $'\E[01;33m'
 	expvar LESS_TERMCAP_se $'\E[0m'
-	# Blinking color
+	# Blinking color.
 	expvar LESS_TERMCAP_mb $'\E[1;34m'
 	expvar LESS_TERMCAP_me $'\E[0m'
 # Browser.
@@ -106,3 +108,5 @@
 	expvar PATHTO_IRRLICHT "$GIT/irrlicht"
 # NTK.
 	expvar PATHTO_NTK="$GIT/ntk"
+# zsh.
+	expvar ZSH_VERBOSE_MODE "false"

@@ -3,41 +3,13 @@
 . $SHMODS/chores/hasprog.sh
 . $SHMODS/chores/loseall.sh
 . $SHMODS/chores/aliasv.sh
+. $SHMODS/chores/printv.sh
 . "$HOME/.login"
 G="$GIT"
 C="$CODE"
 E="$ETC"
 S="$SHARE"
 B="$BIN"
-if [ "$TERM" = linux ] ; then
-	# Running from virtual console.
-	echo -en "\e]P0000000" # Black.
-	echo -en "\e]P8666666" # Darkgrey.
-	echo -en "\e]P1DD2222" # Darkred.
-	echo -en "\e]P9FF0000" # Red.
-	echo -en "\e]P267E300" # Darkgreen.
-	echo -en "\e]PAA9F16C" # Green.
-	echo -en "\e]P3F7FF00" # Brown.
-	echo -en "\e]PBEBF22C" # Yellow..
-	echo -en "\e]P45190D0" # Darkblue.
-	echo -en "\e]PC346AA1" # Blue.
-	echo -en "\e]P5FF6E00" # Darkmagenta.
-	echo -en "\e]PDDE6000" # Magenta.
-	echo -en "\e]P600CFCF" # Darkcyan.
-	echo -en "\e]PE00FFFF" # Cyan.
-	echo -en "\e]P7DDDDDD" # Lightgrey.
-	echo -en "\e]PFFFFFFF" # White.
-	clear # For background artifacting.
-	r="300"
-	d="60"
-	font="drdos8x16"
-	keys="dvorak"
-	echo
-	print -P "Handling %F{cyan}'virtual console'%f..."
-	print -Pn "\tSetting %F{red}font%f=%F{green}'$font'%f(";echo -n $(setfont $font) ")"
-	echo
-	#print -Pn "\tSetting %F{red}keys%f=%F{green}'$keys'%f(";echo -n $(loadkeys $keys) ")"
-fi
 autoload -Uz compinit promptinit
 bindkey "<Shift-Tab>" undo
 compinit
@@ -73,9 +45,11 @@ setopt noshwordsplit
 shpwd() {
   echo -n ${${:-/${(j:/:)${(M)${(s:/:)${(D)PWD:h}}#(|.)[^.]}}/${PWD:t}}//\/~/\~}
 }
-setopt PROMPT_SUBST
-PROMPT='%F{yellow}%f%F{red}%n%f@%F{blue}%m%f:%F{yellow}$(shpwd)%f%(!.#.$)'
-RPROMPT='%F{red}[%f%F{brgreen}%T%f%F{red}]%f[%F{yellow}%?%f%F{blue}%L%f]'
+#setopt PROMPT_SUBST
+#export PROMPT='%F{yellow}%f%F{red}%n%f@%F{blue}%m%f:%F{yellow}$(shpwd)%f%(!.#.$)'
+#RPROMPT='%F{red}[%f%F{brgreen}%T%f%F{red}]%f[%F{yellow}%?%f%F{blue}%L%f]'
+#PROMPT="$SHPROMPT"
+PROMPT="$SHPROMPT"
 my-backward-delete-word() {
     local WORDCHARS=${WORDCHARS/\//}
     zle backward-delete-word
@@ -84,7 +58,9 @@ my-backward-delete-word() {
 git_custom_status(){
 }
 # Vi Mode.
-bindkey -v
+if [ "$ZSH_VI_MODE" == 'true' ] ; then
+	bindkey -v
+fi
 #bindkey '^P' up-history
 #bindkey '^N' down-history
 bindkey '^P' history-beginning-search-backward
@@ -95,7 +71,7 @@ bindkey '^h' backward-delete-char
 zle -N my-backward-delete-word
 bindkey '^W' my-backward-delete-word
 bindkey '^r' history-incremental-search-backward
-EPS1=$RPROMPT
+#EPS1=$RPROMPT
 function zle-line-init zle-keymap-select {
 	VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
 	RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}($(git_custom_status))$EPS1"
@@ -115,7 +91,7 @@ for plugin in $plugins ; do
 	for dir in $plugin_dirs ; do
 		file=$dir/zsh-$plugin/zsh-$plugin.zsh
 		if [ -f $file ] ; then
-			print -P "[%F{green}+%f]Got %F{cyan}'$plugin'%f plugin from %F{red}'$file'%f;"
+			printv_zsh -P "[%F{green}+%f]Got %F{cyan}'$plugin'%f plugin from %F{red}'$file'%f;"
 			source $file
 			break
 		fi
@@ -125,7 +101,7 @@ ZSH_AUTOSUGGEST_STRATEGY="history"
 bindkey '^ ' autosuggest-accept
 bindkey -s "^o" 'lfcd\n'
 # Aliases.
-print "Alias section. aliasing..."
+printv_zsh "Alias section. aliasing..."
 aliasv_zsh egui "$VISUAL"
 aliasv_zsh suegui "sudo $VISUAL"
 aliasv_zsh e "$EDITOR"
@@ -152,7 +128,7 @@ set -A grc_progs \
 	free semanage sar ss sysctl systemctl stat showmount\
 	tune2fs tcpdump
 if hasprog grc ; then
-	print -P "We have %F{cyan}'grc'%f here! aliasing colors..."
+	printv_zsh -P "We have %F{cyan}'grc'%f here! aliasing colors..."
 	for prog in $grc_progs ; do
 		if hasprog "$prog" ; then
 			al="grc --colour=auto $prog"
@@ -174,9 +150,11 @@ if hasprog lf ; then
 	fi
 fi
 if hasprog screenfetch ; then
-	print -P "\n%F{red}F%f%F{green}A%f%F{blue}K%f::%F{red}Freedom%f:%F{green}Anarchy%f:%F{blue}Knowledge%f::%F{red}F%f%F{green}A%f%F{blue}K%f"
-	print -P " %F{red}#--------------------------------------------------#%f"
+	printv_zsh -P "\n%F{red}F%f%F{green}A%f%F{blue}K%f::%F{red}Freedom%f:%F{green}Anarchy%f:%F{blue}Knowledge%f::%F{red}F%f%F{green}A%f%F{blue}K%f"
+	printv_zsh -P " %F{red}#--------------------------------------------------#%f"
+	if [ "$ZSH_VERBOSE_MODE" == 'true' ] ; then
 		screenfetch
-	print -P " %F{red}#--------------------------------------------------#%f\n"
+	fi
+	printv_zsh -P " %F{red}#--------------------------------------------------#%f\n"
 fi
-print -P '%F{red}F%f%F{green}A%f%F{blue}K%f%F{yellow}YOU%f... why are you using zsh? Fish is better.'
+printv_zsh -P '%F{red}F%f%F{green}A%f%F{blue}K%f%F{yellow}YOU%f... why are you using zsh? Fish is better.'
