@@ -7,17 +7,17 @@ if [ -z $DISPLAY ] ; then
 			# Start Wayland on the first TTY.
 			startwf="$HOME/.startw"
 			startw="`cat $startwf`"
-			[ -f "$HOME/.startw" ] && exec sw $startw
+			[ -f "$HOME/.startw" ] && exec sh_wayland_start_program $startw
 			# Not found file to start.
-			exec sw
+			exec sh_wayland_start_program
 		;;
 		/dev/tty2 )
 			# Start X on the second TTY.
 			startxf="$HOME/.startx"
 			startx="`cat $startxf`"
-			[ -f "$HOME/.startx" ] && exec sx $startx
+			[ -f "$HOME/.startx" ] && exec sh_xorg_start_program $startx
 			# Not found file to start.
-			exec sx
+			exec sh_xorg_start_program
 		;;
 		* )
 		# Not a special case so no exec.

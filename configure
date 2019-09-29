@@ -14,17 +14,17 @@ mkdir -p "$XDG_CONFIG_HOME"
 # Config dir.
 for i in $configs/* ; do
 	ln="$XDG_CONFIG_HOME/`basename $i`"
-	rm "$ln"
+	rm -f "$ln"
 	ln -s $arg "$i" "$ln"
 done
 # Run commands dir.
 for i in $rcs/*  ; do
 	ln="$HOME/.`basename $i`"
-	rm "$ln"
+	rm -f "$ln"
 	ln -s $arg "$i" "$ln"
 done
 
-rm "$HOME/lib"
+rm -f "$HOME/lib"
 ln -s $arg "$ETC/lib" "$HOME/lib"
 mkdirs="$HOME/bin $HOME/mnt $HOME/drv $HOME/tmp $HOME/cbin"
 mkdir -p $mkdirs
