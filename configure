@@ -25,6 +25,7 @@ for i in $rcs/*  ; do
 done
 
 rm -f "$HOME/lib"
-ln -s $arg "$ETC/lib" "$HOME/lib"
-mkdirs="$HOME/bin $HOME/mnt $HOME/drv $HOME/tmp $HOME/cbin"
-mkdir -p $mkdirs
+# Plan9 stuff.
+ln -s $arg "$ETC/lib" "$LIB"
+# Dirs.
+mkdir -p $arg $HOMEDIRS

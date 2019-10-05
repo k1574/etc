@@ -9,7 +9,7 @@ case "$session" in
 	bspwm             ) exec bspwm $arg ;;
 	catwm             ) exec catwm $arg ;;
 	cinnamon          ) exec cinnamon-session $arg ;;
-	dwm               )
+	jdwm | dwm         )
 		setxkbmap -layout us,ru -variant dvorak, -option grp:alt_space_toggle
 		xrdb -load ~/.Xresources
 		xset r rate 300 60
@@ -17,7 +17,7 @@ case "$session" in
 		if [ -s ~/.Xmodmap ] ; then
 			xmodmap ~/.Xmodmap
 		fi
-		exec dwm $arg ;;
+		exec $session $arg ;;
 	rio               ) exet rio;;
 	enlightenment     ) exec enlightenment_start;;
 	ede               ) exec startede $arg ;;

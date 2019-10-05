@@ -18,12 +18,22 @@
 	expvar CBIN "$HOME/cbin"
 	expvar TMPS "$HOME/tmps"
 	expvar TMP "$HOME/tmp"
+	expvar MNT  "$HOME/mnt"
+	expvar DRV  "$HOME/drv"
 	expvar PATH "$CBIN:$BIN:$PATH"
+# Home.
+	# Not linked to anything, with temporary files exact
+	# for every system.
+	expvar HOMEDIRS "$MNT $TMP $BIN $CBIN"
 # Lazy to type uname every fucking time.
 	#export ARCH="'`uname -p`'"
 	expvar ARCH "`uname -p`"
 	expvar OPSYS "`uname -s`"
 	expvar KERNEL_RELEASE "`uname -r`"
+# Acme.
+	expvar ACMEUTILS "$HOME/acme"
+	expvar ACMEMNT "$MNT/acme"
+	expvar PATH "$PATH:$ACMEUTILS"
 # Man.
 	expvar MANPATH "$SHARE/man:$MANPATH"
 	MANSECT="1:n:l:8:3:0:2:5:4:9:6:7"
@@ -41,6 +51,8 @@
 	expvar XDG_CONFIG_HOME "$HOME/.config"
 # Locale.
 	expvar LANG "C"
+	expvar LANGUAGE "C"
+	expvar LC_ALL "C"
 	expvar LC_CTYPE "ru_RU.UTF-8"
 # Wayland.
 	expvar WLC_REPEAT_RATE "$KEYBOARD_REPEAT_RATE"
@@ -51,7 +63,7 @@
 	expvar XMENU "`progpref dmenu`"
 	expvar TMENU "`progpref fzf`"
 # Lock.
-	expvar XLOCK "`progpref slock`"
+	expvar XLOCK "`progpref jlock slock`"
 	expvar WLOCK "`progpref swaylock`"
 # Shell.
 	expvar ENV "$HOME/.shrc"
@@ -65,7 +77,7 @@
 	expvar VISUAL "`progpref gvim notepadqq leafpad mousepad adie gedi`"
 # Terminal.
 	expvar WTERMINAL "`progpref termite`"
-	expvar XTERMINAL "`progpref st termite`"
+	expvar XTERMINAL "`progpref jst st termite urxvt uxterm`"
 # Pager.
 	expvar PAGER "`progpref most less more`"
 	expvar LESS "-R"
@@ -86,7 +98,8 @@
 # Browser.
 	expvar XBROWSER "`progpref waterfox firefox chromium opera midori epiphany jsurf luakit vimb surf`"
 	expvar WBROWSER "`progpref waterfox firefox midori epiphany`"
-	expvar TBROWSER "`progpref links2 links elinks w3m`"
+	expvar TBROWSER "`progpref w3m links2 links lynx elinks`"
+	expvar BROWSER  "$TBROWSER"
 # Sudo.
 	expvar SUDO_PROMPT "#"
 # Sound.
