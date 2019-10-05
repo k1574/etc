@@ -24,7 +24,7 @@
 # Home.
 	# Not linked to anything, with temporary files exact
 	# for every system.
-	expvar HOMEDIRS "$MNT $TMP $BIN $CBIN"
+	expvar HOMEDIRS "$MNT $TMP $BIN $CBIN $DRV"
 # Lazy to type uname every fucking time.
 	#export ARCH="'`uname -p`'"
 	expvar ARCH "`uname -p`"
