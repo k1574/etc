@@ -1,0 +1,11 @@
+# Packages on my 'voidlinux' installation.
+bluez
+jack
+pulseaudio
+jack
+cadence
+plan9port
+go
+tcc
+yoshimi
+git
