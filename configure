@@ -8,6 +8,7 @@ profile="$rpath/profile"
 
 rcs="$ETC/rcs"
 configs="$ETC/configs"
+alias="$ETC/alias"
 arg="$@"
 
 mkdir -p "$XDG_CONFIG_HOME"
@@ -24,8 +25,14 @@ for i in $rcs/*  ; do
 	ln -s $arg "$i" "$ln"
 done
 
+# Aliases.
+for i in $alias/* ; do
+	ln="$BIN/`basename $i`"
+	rm -f "$ln"
+	ln -s $arg "$i" "$ln"
+done
 rm -f "$HOME/lib"
 # Plan9 stuff.
 ln -s $arg "$ETC/lib" "$LIB"
 # Dirs.
-mkdir -p $arg $HOMEDIRS
+mkdir -p $arg $HOMEMKDIRS

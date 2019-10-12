@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case "`basename $XMENU`" in
+	dmenu )
+		exec "` path | menu -p '$RUNMENUPROMPT'`"
+	;;
+	jdmenu )
+		exec "` path | menu -p '$RUNMENUPROMPT'`"
+	* )
+		exec "` path | menu `"
+	;;
+esac
