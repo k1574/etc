@@ -153,3 +153,5 @@
 	expvar PATHTO_NTK="$GIT/ntk"
 # zsh.
 	expvar ZSH_VERBOSE_MODE "false"
+
+sleep 2
