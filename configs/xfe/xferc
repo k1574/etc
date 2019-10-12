@@ -1,9 +1,9 @@
 [OPTIONS]
-height=743
+height=679
 toolstoolbar=1
 folder_warn=1
 panel_view=3
-width=745
+width=795
 confirm_drag_and_drop=1
 use_startup_notification=1
 preserve_date_warn=1
@@ -28,7 +28,7 @@ root_warn=0
 confirm_trash=1
 confirm_execute=1
 status=1
-treetwopanels_tree_pct=0.195
+treetwopanels_tree_pct=0.194
 generaltoolbar=1
 locationbar=1
 xfv_replaced=1
@@ -36,9 +36,6 @@ xfv_replaced=1
 [HISTORY]
 open=vimiv:vlc:gvim:
 filter=*:
-
-[bookmarks]
-BOOKMARK1=/home/jien
 
 [KEYBINDINGS]
 search_prev=Shift-Ctrl-G
@@ -115,22 +112,45 @@ empty_trash_can=Ctrl-Del
 rotate_left=Ctrl-L
 
 [RIGHT PANEL]
-type_size=2213
+type_size=1294
 deldate_size=150
 origpath_size=200
 liststyle=0
-attr_size=2213
-size_size=1323
-user_size=1107
+attr_size=1294
+size_size=773
+user_size=647
 dirs_first=1
-ext_size=2213
-grou_size=1107
-modd_size=3320
+ext_size=1294
+grou_size=647
+modd_size=1941
 ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
-name_size=4449
+name_size=2601
 lastdir=/home/jien
+hiddenfiles=0
+
+[DIR PANEL]
+hidden_dir=0
+sort_func=ascendingCase
+
+[LEFT PANEL]
+type_size=1294
+deldate_size=150
+origpath_size=200
+liststyle=0
+attr_size=1294
+size_size=773
+user_size=647
+dirs_first=1
+ext_size=1294
+grou_size=647
+modd_size=1941
+ignore_case=1
+sort_func=ascendingCase
+showthumbnails=0
+name_size=2601
+lastdir=/home/jien/downloads
 hiddenfiles=0
 
 [PROGS]
@@ -140,25 +160,6 @@ txteditor=gvim
 audioplayer=vlc
 xterm=xterm
 videoplayer=vlc
-
-[LEFT PANEL]
-type_size=2213
-deldate_size=150
-origpath_size=200
-liststyle=0
-attr_size=2213
-size_size=1323
-user_size=1107
-dirs_first=1
-ext_size=2213
-grou_size=1107
-modd_size=3320
-ignore_case=1
-sort_func=ascendingCase
-showthumbnails=0
-name_size=4449
-lastdir=/home/jien
-hiddenfiles=0
 
 [SETTINGS]
 file_tooltips=1
@@ -402,7 +403,6 @@ showthumbnails=0
 name_size=200
 size_size=60
 
-[DIR PANEL]
-hidden_dir=0
-sort_func=ascendingCase
+[bookmarks]
+BOOKMARK1=/home/jien
 

@@ -20,13 +20,13 @@
 	expvar TMP "$HOME/tmp"
 	expvar MNT  "$HOME/mnt"
 	expvar DRV  "$HOME/drv"
+	expvar ATK  "$HOME/atk"
 	expvar PATH "$CBIN:$BIN:$PATH"
 # Home.
 	# Not linked to anything, with temporary files exact
 	# for every system.
-	expvar HOMEDIRS "$MNT $TMP $BIN $CBIN $DRV"
+	expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN"
 # Lazy to type uname every fucking time.
-	#export ARCH="'`uname -p`'"
 	expvar ARCH "`uname -p`"
 	expvar OPSYS "`uname -s`"
 	expvar KERNEL_RELEASE "`uname -r`"
@@ -48,8 +48,20 @@
 	PKG_PATH="$PKG_PATH;http://cdn.NetBSD.org/pub/pkgsrc/packages/$OPSYS/$ARCH/$KERNEL_RELEASE/All"
 	expvar PKG_PATH "$PKG_PATH"
 # General.
+	expvar NATIVE_KEYBOARD_MAP "ru"
+	expvar KEYBOARD_OPTION "grp:alt_space_toggle"
+	expvar NATIVE_KEYBOARD_LAYOUT "-layout $NATIVE_KEYBOARD_MAP,us -variant ,dvorak -option $KEYBOARD_OPTION"
+	expvar QWERTY_KEYBOARD_LAYOUT "-layout us,$NATIVE_KEYBOARD_MAP -option $KEYBOARD_OPTION"
+	expvar DVP_KEYBOARD_LAYOUT "-layout us,$NATIVE_KEYBOARD_MAP -variant dvp, -option $KEYBOARD_OPTION"
+	expvar DVORAK_KEYBOARD_LAYOUT "-layout us,$NATIVE_KEYBOARD_MAP -variant dvorak, -option $KEYBOARD_OPTION"
 	expvar KEYBOARD_REPEAT_RATE  60
 	expvar KEYBOARD_REPEAT_DELAY 300
+# Xmodmap.
+	expvar XMODMAP "$HOME/.Xmodmap"
+	expvar XRESOURCES "$HOME/.Xresources"
+# WM.
+	expvar XWM "`progpref rio jdwm dwm i3`"
+	expvar WWM "`progpref sway`"
 # XDG.
 	expvar XDG_CONFIG_HOME "$HOME/.config"
 # Locale.
@@ -57,52 +69,67 @@
 	expvar LANGUAGE "C"
 	expvar LC_ALL "C"
 	expvar LC_CTYPE "ru_RU.UTF-8"
+# DWM/JDWM.
+	expvar XSTATUS "`progpref jstatus slstatus`"
 # Wayland.
 	expvar WLC_REPEAT_RATE "$KEYBOARD_REPEAT_RATE"
 	expvar WLC_REPEAT_DELAY "$KEYBOARD_REPEAT_DELAY"
-# Xorg.
+# Path getting executables.
+	expvar XPATH "`progpref dmenu_path `"
 # Menu.
 	expvar WMENU "`progpref dmenu-wl`"
 	expvar XMENU "`progpref dmenu`"
 	expvar TMENU "`progpref fzf`"
+	expvar XFALLMENU "`progpref 9menu`"
+	expvar WFALLMENU "`progpref 9menu`"
 # Lock.
 	expvar XLOCK "`progpref jlock slock`"
 	expvar WLOCK "`progpref swaylock`"
+# Tabs manager.
+	expvar XTABS_MANAGER "`progpref jtabbed tabbed`"
 # Shell.
 	expvar ENV "$HOME/.shrc"
+	expvar RUNMENUPROMPT "&"
+	expvar TEMENUPROMPT "!"
 	expvar RCPROMPT ";"
 	expvar SHPROMPT ">"
 	expvar EDPROMPT "*"
+	expvar VIPROMPT ":"
 	expvar SHELL "`progpref rc nash ksh csh dash ash bash sh`"
 # Editor.
-	expvar EDITOR "`progpref nvim vim vi nano ex`"
+	expvar EDITOR "`progpref ed nvim vim vi nano ex cat`"
 	expvar GIT_EDITOR "$EDITOR"
-	expvar VISUAL "`progpref gvim notepadqq leafpad mousepad adie gedi`"
+	expvar VISUAL "`progpref edwood sam acme gvim notepadqq leafpad mousepad adie gedi`"
 # Terminal.
 	expvar WTERMINAL "`progpref termite`"
-	expvar XTERMINAL "`progpref jst st termite urxvt uxterm`"
+	expvar XTERMINAL "`progpref 9term jst st termite urxvt uxterm`"
+	expvar IXTERMINAL "`progpref jst st termite urxvt uxterm`"
+	expvar IWTERMINAL "`progpref termite`"
+	expvar TERMINAL_SESSION_MANAGER "`progpref tmux screen`"
 # Pager.
 	expvar PAGER "`progpref most less more`"
 	expvar LESS "-R"
 	expvar MANPAGER "$PAGER"
 	expvar HELPPAGER "$PAGER"
 # Less colors.
-	expvar LESS_TERMCAP_md $'\E[01;31m'
-	expvar LESS_TERMCAP_me $'\E[0m'
+	expvar LESS_TERMCAP_md  `perl -e 'print "\033[1;31m" ;'`
+	expvar LESS_TERMCAP_me  `perl -e 'print "\033[0m"    ;'`
 	# Underlined.
-	expvar LESS_TERMCAP_us $'\E[01;32m'
-	expvar LESS_TERMCAP_ue $'\E[0m'
+	expvar LESS_TERMCAP_us  `perl -e 'print "\033[1;32m" ;'`
+	expvar LESS_TERMCAP_ue  `perl -e 'print "\033[0m"    ;'`
 	# Service info.
-	expvar LESS_TERMCAP_so $'\E[01;33m'
-	expvar LESS_TERMCAP_se $'\E[0m'
+	expvar LESS_TERMCAP_so  `perl -e 'print "\033[1;33m" ;'`
+	expvar LESS_TERMCAP_se  `perl -e 'print "\033[0m"    ;'`
 	# Blinking color.
-	expvar LESS_TERMCAP_mb $'\E[1;34m'
-	expvar LESS_TERMCAP_me $'\E[0m'
+	expvar LESS_TERMCAP_mb  `perl -e 'print "\033[1;34m" ;'`
+	expvar LESS_TERMCAP_me  `perl -e 'print "\033[0m"    ;'`
 # Browser.
 	expvar XBROWSER "`progpref waterfox firefox chromium opera midori epiphany jsurf luakit vimb surf`"
 	expvar WBROWSER "`progpref waterfox firefox midori epiphany`"
 	expvar TBROWSER "`progpref w3m links2 links lynx elinks`"
 	expvar BROWSER  "$TBROWSER"
+# Documents.
+	expvar DOCVIEWER "`progpref mupdf`"
 # Sudo.
 	expvar SUDO_PROMPT "#"
 # Sound.
