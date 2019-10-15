@@ -1,20 +1,17 @@
 #!/bin/sh
 # Wrapper for terminal calls to be easy to use any terminal.
 # Yeap, I love hacks.
-
+term="$XTERMINAL"
 # If X is running, now I don't know how to diverse Wayland and Xorg.
 # I should resolve it later.
-case "`basename $XTERMINAL`" in
+case "`basename $term`" in
 	9term )
-		exec "$XTERMINAL" $@
+		exec t $@
 	;;
-	st )
-		exec "$XTERMINAL" -e $@
-	;;
-	jst )
-		exec "$XTERMINAL"  -e $@
+	st | jst )
+		exec t -e $@
 	;;
 	* )
-		exec "XTERMINAL" -e "$@"
+		exec t -e "$@"
 	;;
 esac

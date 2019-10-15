@@ -91,6 +91,7 @@
 	expvar ENV "$HOME/.shrc"
 	expvar RUNMENUPROMPT "&"
 	expvar TEMENUPROMPT "!"
+	expvar ITEMENUPROMPT "i!"
 	expvar RCPROMPT ";"
 	expvar SHPROMPT ">"
 	expvar EDPROMPT "*"

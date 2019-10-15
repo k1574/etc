@@ -1,0 +1,11 @@
+#!/bin/sh
+# Wrapper for interactive terminal.
+# I use the most 9term, so there's big difference.
+
+term="$(basename $IXTERMINAL)"
+
+case "$term" in
+	* )
+		exec "$IXTERMINAL" $@
+	;;
+esac

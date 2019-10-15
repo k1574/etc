@@ -1,14 +1,15 @@
 #!/bin/sh
+
 menu="$XMENU"
 case "`basename $menu`" in
 	dmenu | jdmenu )
-		cmd=" ` path | menu -p '$RUNMENUPROMPT' -m '$1'  ` "
+		cmd=" ` path | menu -p '$ITEMENUPROMPT' -m '$1'  ` "
 		[ -z $cmd ] && exit
-		exec $cmd
+		exec ite $cmd
 	;;
 	* )
 		cmd=" ` path | menu ` "
 		[ -z $cmd ] && exit
-		exec $cmd
+		exec ite $cmd
 	;;
 esac
