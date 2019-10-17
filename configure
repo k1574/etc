@@ -8,21 +8,31 @@ profile="$rpath/profile"
 
 rcs="$ETC/rcs"
 configs="$ETC/configs"
+alias="$ETC/alias"
 arg="$@"
 
 mkdir -p "$XDG_CONFIG_HOME"
 # Config dir.
 for i in $configs/* ; do
 	ln="$XDG_CONFIG_HOME/`basename $i`"
-	rm "$ln"
+	rm -f "$ln"
 	ln -s $arg "$i" "$ln"
 done
 # Run commands dir.
 for i in $rcs/*  ; do
 	ln="$HOME/.`basename $i`"
-	rm "$ln"
+	rm -f "$ln"
 	ln -s $arg "$i" "$ln"
 done
 
-mkdirs="echo $HOME/mnt $HOME/drv $HOME/tmp"
-mkdir -p $mkdirs
+# Aliases.
+for i in $alias/* ; do
+	ln="$BIN/`basename $i`"
+	rm -f "$ln"
+	ln -s $arg "$i" "$ln"
+done
+rm -f "$HOME/lib"
+# Plan9 stuff.
+ln -s $arg "$ETC/lib" "$LIB"
+# Dirs.
+mkdir -p $arg $HOMEMKDIRS

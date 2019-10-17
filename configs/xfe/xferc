@@ -1,9 +1,10 @@
 [OPTIONS]
-height=1031
+height=679
 toolstoolbar=1
 folder_warn=1
 panel_view=3
-width=1916
+width=795
+confirm_drag_and_drop=1
 use_startup_notification=1
 preserve_date_warn=1
 confirm_delete=1
@@ -13,37 +14,28 @@ auto_save_layout=1
 use_trash_bypass=0
 mount_warn=1
 root_mode=1
-xfv_replaced=1
+treetwopanels_lpanel_pct=0.398
 confirm_overwrite=1
 paneltoolbar=1
 confirm_delete_emptydir=1
 startdir_mode=0
 ask_before_copy=1
 mount_messages=1
-confirm_execute=1
 confirm_properties=1
 twopanels_lpanel_pct=0.5
 vert_panels=1
 root_warn=0
 confirm_trash=1
-treetwopanels_lpanel_pct=0.398
+confirm_execute=1
 status=1
-treetwopanels_tree_pct=0.196
+treetwopanels_tree_pct=0.194
 generaltoolbar=1
 locationbar=1
-confirm_drag_and_drop=1
+xfv_replaced=1
 
 [HISTORY]
 open=vimiv:vlc:gvim:
 filter=*:
-
-[PROGS]
-imgviewer=vimiv
-txtviewer=gvim -R
-txteditor=gvim
-audioplayer=vlc
-xterm=xterm
-videoplayer=vlc
 
 [KEYBINDINGS]
 search_prev=Shift-Ctrl-G
@@ -120,62 +112,70 @@ empty_trash_can=Ctrl-Del
 rotate_left=Ctrl-L
 
 [RIGHT PANEL]
-type_size=2213
+type_size=1294
 deldate_size=150
 origpath_size=200
 liststyle=0
-attr_size=2213
-user_size=1107
-hiddenfiles=0
+attr_size=1294
+size_size=773
+user_size=647
 dirs_first=1
-ext_size=2213
-grou_size=1107
-modd_size=3320
+ext_size=1294
+grou_size=647
+modd_size=1941
 ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
-name_size=4449
+name_size=2601
 lastdir=/home/jien
-size_size=1323
+hiddenfiles=0
 
 [DIR PANEL]
 hidden_dir=0
 sort_func=ascendingCase
 
 [LEFT PANEL]
-type_size=2213
+type_size=1294
 deldate_size=150
 origpath_size=200
 liststyle=0
-attr_size=2213
-user_size=1107
-hiddenfiles=0
+attr_size=1294
+size_size=773
+user_size=647
 dirs_first=1
-ext_size=2213
-grou_size=1107
-modd_size=3320
+ext_size=1294
+grou_size=647
+modd_size=1941
 ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
-name_size=4449
-lastdir=/home/jien/imgs/buf
-size_size=1323
+name_size=2601
+lastdir=/home/jien/downloads
+hiddenfiles=0
+
+[PROGS]
+imgviewer=vimiv
+txtviewer=gvim -R
+txteditor=gvim
+audioplayer=vlc
+xterm=xterm
+videoplayer=vlc
 
 [SETTINGS]
+file_tooltips=1
+show_pathlinker=1
 iconpath=/usr/share/xfe/icons/gnomeblue-theme
-scrollbarsize=15
+basecolor=#ede9e3
 time_format=%x %X
 single_click=0
-show_pathlinker=1
 wheellines=5
 smooth_scroll=1
 use_clearlooks=1
-basecolor=#ede9e3
+scrollbarsize=15
 tiptime=10000
 relative_resize=1
-tippause=500
 save_win_pos=0
-file_tooltips=1
+tippause=500
 
 [FILETYPES]
 sdw=lowriter,lowriter,lowriter;Starwriter 5.0 Document;sxw_32x32.png;sxw_16x16.png;;

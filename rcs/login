@@ -7,21 +7,42 @@ if [ -z $DISPLAY ] ; then
 			# Start Wayland on the first TTY.
 			startwf="$HOME/.startw"
 			startw="`cat $startwf`"
-			[ -f "$HOME/.startw" ] && exec sw $startw
+			[ -f "$HOME/.startw" ] && exec sh_wayland_start_program $startw
 			# Not found file to start.
-			exec sw
+			exec sh_wayland_start_program
 		;;
 		/dev/tty2 )
 			# Start X on the second TTY.
 			startxf="$HOME/.startx"
 			startx="`cat $startxf`"
-			[ -f "$HOME/.startx" ] && exec sx $startx
+			[ -f "$HOME/.startx" ] && exec sh_xorg_start_program $startx
 			# Not found file to start.
-			exec sx
+			exec sh_xorg_start_program
 		;;
 		* )
 		# Not a special case so no exec.
 		;;
 	esac
+fi
+
+if [ "$TERM" = linux ] ; then
+	# Running from Linux virtual console.
+	echo -en "\e]P0000000" # Black.
+	echo -en "\e]P8666666" # Darkgrey.
+	echo -en "\e]P1DD2222" # Darkred.
+	echo -en "\e]P9FF0000" # Red.
+	echo -en "\e]P267E300" # Darkgreen.
+	echo -en "\e]PAA9F16C" # Green.
+	echo -en "\e]P3F7FF00" # Brown.
+	echo -en "\e]PBEBF22C" # Yellow..
+	echo -en "\e]P45190D0" # Darkblue.
+	echo -en "\e]PC346AA1" # Blue.
+	echo -en "\e]P5FF6E00" # Darkmagenta.
+	echo -en "\e]PDDE6000" # Magenta.
+	echo -en "\e]P600CFCF" # Darkcyan.
+	echo -en "\e]PE00FFFF" # Cyan.
+	echo -en "\e]P7DDDDDD" # Lightgrey.
+	echo -en "\e]PFFFFFFF" # White.
+	clear # For background artifacting.
 fi
 #[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && echo I suck!>~/file && exec startx

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case "`basename $XPATH`" in
+	dmenu_path )
+		exec "$XPATH"
+	;;
+	* )
+		exec "$XPATH"
+	;;
+esac

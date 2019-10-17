@@ -1,4 +1,4 @@
-session="${1:-i3}"
+session="${1:-$XWM}"
 shift
 arg="$@"
 # Here a can add specific options for ever WM, DE and
@@ -9,31 +9,18 @@ case "$session" in
 	bspwm             ) exec bspwm $arg ;;
 	catwm             ) exec catwm $arg ;;
 	cinnamon          ) exec cinnamon-session $arg ;;
-	dwm               )
-		setxkbmap -layout us,ru -variant dvorak, -option grp:alt_space_toggle
-		xrdb -load ~/.Xresources
-		xset r rate 300 60
-		slstatus &
-		if [ -s ~/.Xmodmap ] ; then
-			xmodmap ~/.Xmodmap
-		fi
-		exec dwm $arg ;;
-	rio               ) exet rio;;
+	jdwm | dwm        )
+		export CURWM="$session"
+		wmrc "$session"
+		exec $session $arg
+	;;
+	rio               ) wmrc rio ; exec rio ;;
 	enlightenment     ) exec enlightenment_start;;
 	ede               ) exec startede $arg ;;
 	fluxbox           ) exec startfluxbox $arg ;;
 	gnome             ) exec gnome-session $arg ;;
 	gnome-classic     ) exec gnome-session --session=gnome-classic $arg ;;
-	i3|i3wm           )
-		setxkbmap -layout us,ru -variant dvorak, -option grp:alt_space_toggle
-		xrdb -load ~/.Xresources
-		xset r rate 300 60
-		slstatus &
-		if [ -s ~/.Xmodmap ] ; then
-			xmodmap ~/.Xmodmap
-		fi
-		exec i3 $arg 
-	;;
+	i3                ) exec i3 $arg ;;
 	icewm             ) exec icewm-session $arg ;;
 	jwm               ) exec jwm $arg ;;
 	kde               ) exec startkde $arg ;;

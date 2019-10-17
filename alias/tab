@@ -1,0 +1,11 @@
+#!/bin/sh
+# Wrapper for tabs manager.
+
+case "`basename $XTABS_MANAGER`" in
+	tabbed )
+		exec "$XTABS_MANAGER" -c $@ -w
+	;;
+	* )
+		exec "XTABS_MANAGER"	
+	;;
+esac

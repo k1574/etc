@@ -1,0 +1,15 @@
+#!/bin/sh
+
+menu="$XMENU"
+case "`basename $menu`" in
+	dmenu | jdmenu )
+		cmd=" ` path | menu -p '$TEMENUPROMPT' -m '$1' ` "
+		[ -z $cmd ] && exit
+		te $cmd
+	;;
+	* )
+		cmd=" ` path | menu ` "
+		[ -z $cmd ] && exit
+		exec te $cmd
+	;;
+esac
