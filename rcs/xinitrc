@@ -9,7 +9,7 @@ case "$session" in
 	bspwm             ) exec bspwm $arg ;;
 	catwm             ) exec catwm $arg ;;
 	cinnamon          ) exec cinnamon-session $arg ;;
-	jdwm | dwm        )
+	wm | jdwm | dwm        )
 		export CURWM="$session"
 		wmrc "$session"
 		exec $session $arg

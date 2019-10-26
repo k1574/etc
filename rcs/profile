@@ -22,6 +22,7 @@
 	expvar DRV  "$HOME/drv"
 	expvar ATK  "$HOME/atk"
 	expvar PATH "$CBIN:$BIN:$PATH"
+	expvar SCRIPTS "$HOME/.scripts"
 # Home.
 	# Not linked to anything, with temporary files exact
 	# for every system.
@@ -108,7 +109,7 @@
 	expvar IWTERMINAL "`progpref termite`"
 	expvar TERMINAL_SESSION_MANAGER "`progpref tmux screen`"
 # Pager.
-	expvar PAGER "`progpref most less more`"
+	expvar PAGER "`progpref more most less`"
 	expvar LESS "-R"
 	expvar MANPAGER "$PAGER"
 	expvar HELPPAGER "$PAGER"

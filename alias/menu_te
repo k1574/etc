@@ -3,7 +3,7 @@
 menu="$XMENU"
 case "`basename $menu`" in
 	dmenu | jdmenu )
-		cmd=" ` path | menu -p '$TEMENUPROMPT' -m '$1' ` "
+		cmd=" ` path | menu -p $TEMENUPROMPT -m $1 ` "
 		[ -z $cmd ] && exit
 		te $cmd
 	;;

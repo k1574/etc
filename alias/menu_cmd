@@ -1,0 +1,11 @@
+#!/bin/sh
+
+menu="$XMENU"
+sh_base="`basename $SHELL`" 
+case "`basename $menu`" in
+	dmenu | jdmenu )
+		cmd="` path | menu -p $sh_base:  `"
+		[ -z $cmd ] && exit 1
+		exec cmd "$cmd"
+	;;
+esac

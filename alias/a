@@ -1,0 +1,6 @@
+#!/bin/sh
+prog="$1"
+shift
+
+cd $HOME/.acme
+exec ./$prog $@
