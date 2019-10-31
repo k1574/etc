@@ -101,7 +101,7 @@
 # Editor.
 	expvar EDITOR "`progpref ed nvim vim vi nano ex cat`"
 	expvar GIT_EDITOR "$EDITOR"
-	expvar VISUAL "`progpref edwood sam acme gvim notepadqq leafpad mousepad adie gedi`"
+	expvar VISUAL "`progpref edwood acme sam gvim notepadqq leafpad mousepad adie gedi`"
 # Terminal.
 	expvar WTERMINAL "`progpref termite`"
 	expvar XTERMINAL "`progpref 9term jst st termite urxvt uxterm`"
@@ -109,7 +109,7 @@
 	expvar IWTERMINAL "`progpref termite`"
 	expvar TERMINAL_SESSION_MANAGER "`progpref tmux screen`"
 # Pager.
-	expvar PAGER "`progpref more most less`"
+	expvar PAGER "`progpref nobs more most less`"
 	expvar LESS "-R"
 	expvar MANPAGER "$PAGER"
 	expvar HELPPAGER "$PAGER"
@@ -155,5 +155,3 @@
 	expvar PATHTO_NTK="$GIT/ntk"
 # zsh.
 	expvar ZSH_VERBOSE_MODE "false"
-
-sleep 2

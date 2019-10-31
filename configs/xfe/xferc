@@ -14,7 +14,7 @@ auto_save_layout=1
 use_trash_bypass=0
 mount_warn=1
 root_mode=1
-treetwopanels_lpanel_pct=0.398
+treetwopanels_lpanel_pct=0.397
 confirm_overwrite=1
 paneltoolbar=1
 confirm_delete_emptydir=1
@@ -28,7 +28,7 @@ root_warn=0
 confirm_trash=1
 confirm_execute=1
 status=1
-treetwopanels_tree_pct=0.194
+treetwopanels_tree_pct=0.192
 generaltoolbar=1
 locationbar=1
 xfv_replaced=1
@@ -36,6 +36,9 @@ xfv_replaced=1
 [HISTORY]
 open=vimiv:vlc:gvim:
 filter=*:
+
+[bookmarks]
+BOOKMARK1=/home/jien
 
 [KEYBINDINGS]
 search_prev=Shift-Ctrl-G
@@ -130,9 +133,13 @@ name_size=2601
 lastdir=/home/jien
 hiddenfiles=0
 
-[DIR PANEL]
-hidden_dir=0
-sort_func=ascendingCase
+[PROGS]
+imgviewer=vimiv
+txtviewer=gvim -R
+txteditor=gvim
+audioplayer=vlc
+xterm=xterm
+videoplayer=vlc
 
 [LEFT PANEL]
 type_size=1294
@@ -152,14 +159,6 @@ showthumbnails=0
 name_size=2601
 lastdir=/home/jien/downloads
 hiddenfiles=0
-
-[PROGS]
-imgviewer=vimiv
-txtviewer=gvim -R
-txteditor=gvim
-audioplayer=vlc
-xterm=xterm
-videoplayer=vlc
 
 [SETTINGS]
 file_tooltips=1
@@ -403,6 +402,7 @@ showthumbnails=0
 name_size=200
 size_size=60
 
-[bookmarks]
-BOOKMARK1=/home/jien
+[DIR PANEL]
+hidden_dir=0
+sort_func=ascendingCase
 
