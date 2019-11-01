@@ -23,6 +23,7 @@
 	expvar ATK  "$HOME/atk"
 	expvar PATH "$CBIN:$BIN:$PATH"
 	expvar SCRIPTS "$HOME/.scripts"
+	expvar INFERNO "$HOME/inferno"
 # Home.
 	# Not linked to anything, with temporary files exact
 	# for every system.
