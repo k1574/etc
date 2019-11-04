@@ -1,12 +1,15 @@
 # jien's rc configuration file.
-prompt = ';'
-path = `{ echo $CBIN:$BIN:$PATH | tr : ' ' }
-git = $GIT
-etc = $ETC
-code = $CODE
-share = $SHARE
-tmp = $TMP
-tmps = $TMPS
+prompt = '; '
+# To get path from higher SHELL(in UNIX systems: bash, zsh, dash etc).
+path = `{ echo $CBIN:$GOPATH/bin$BIN:$PATH | tr : ' ' }
+git = $home/git
+etc = $home/etc
+code = $home/code
+share = $home/share
+tmp = $home/tmp
+tmps = $home/tmps
+downloads = $home/downloads
+
 
 bin = $BIN
 g = $git

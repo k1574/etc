@@ -1,7 +1,7 @@
 # Jien's profile file.
-# Shell chore functions to get preferencable programs.
+# Shell chore functions to get preferencable programs export variable more flexible way.
 	if [ -f $HOME/.CODE ] ; then
-		CODE="`cat $HOME/code`"
+		CODE="`cat $HOME/.CODE`"
 	else
 		CODE="$HOME/code"
 	fi
@@ -20,14 +20,20 @@
 	expvar TMP "$HOME/tmp"
 	expvar MNT  "$HOME/mnt"
 	expvar DRV  "$HOME/drv"
-	expvar ATK  "$HOME/atk"
+	expvar ATK  "$TMP/atk"
 	expvar PATH "$CBIN:$BIN:$PATH"
 	expvar SCRIPTS "$HOME/.scripts"
 	expvar INFERNO "$HOME/inferno"
+	expvar IMGS "$HOME/imgs"
+	expvar AUDIO "$HOME/audio"
+	expvar DOCS "$HOME/docs"
+	expvar VIDEO "$HOME/video"
+	expvar DOWNLOADS "$HOME/downloads"
 # Home.
 	# Not linked to anything, with temporary files exact
 	# for every system.
-	expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN"
+	expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN \
+		$DOWNLOADS"
 # Lazy to type uname every fucking time.
 	expvar ARCH "`uname -p`"
 	expvar OPSYS "`uname -s`"
@@ -94,10 +100,11 @@
 	expvar RUNMENUPROMPT "&"
 	expvar TEMENUPROMPT "!"
 	expvar ITEMENUPROMPT "i!"
-	expvar RCPROMPT ";"
-	expvar SHPROMPT ">"
-	expvar EDPROMPT "*"
-	expvar VIPROMPT ":"
+	expvar RCPROMPT "; "
+	expvar SHPROMPT "! "
+	expvar EDPROMPT "* "
+	expvar R2PROMPT "@ "
+	expvar VIPROMPT ": "
 	expvar SHELL "`progpref rc nash ksh csh dash ash bash sh`"
 # Editor.
 	expvar EDITOR "`progpref ed nvim vim vi nano ex cat`"
@@ -133,6 +140,8 @@
 	expvar BROWSER  "$TBROWSER"
 # Documents.
 	expvar DOCVIEWER "`progpref mupdf`"
+# Images.
+	expvar IMGVIEWER "`progpref feh`"
 # Sudo.
 	expvar SUDO_PROMPT "#"
 # Sound.
