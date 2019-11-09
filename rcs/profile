@@ -9,7 +9,20 @@
 	export SHMODS="$CODE/modules/sh"
 	. $SHMODS/chores/progpref.sh
 	. $SHMODS/chores/expvar.sh
+get_inferno_arch(){
+	# Function to get the architecture for Inferno OS binaries.
+	realarch="$1"
+	if [ "$realarch" = "x86_64" ] ; then
+		echo "386"
+	else
+		echo "$realarch"
+	fi
+}
 # Main varibles for my workflow. All the paths depends on this.
+# Lazy to type uname every fucking time.
+	expvar ARCH "`uname -m`"
+	expvar OPSYS "`uname -s`"
+	expvar KERNEL_RELEASE "`uname -r`"
 	expvar ETC "$HOME/etc"
 	expvar LIB "$HOME/lib"
 	expvar GIT "$HOME/git"
@@ -21,9 +34,7 @@
 	expvar MNT  "$HOME/mnt"
 	expvar DRV  "$HOME/drv"
 	expvar ATK  "$TMP/atk"
-	expvar PATH "$CBIN:$BIN:$PATH"
 	expvar SCRIPTS "$HOME/.scripts"
-	expvar INFERNO "$HOME/inferno"
 	expvar IMGS "$HOME/imgs"
 	expvar AUDIO "$HOME/audio"
 	expvar DOCS "$HOME/docs"
@@ -34,17 +45,16 @@
 	# for every system.
 	expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN \
 		$DOWNLOADS"
-# Lazy to type uname every fucking time.
-	expvar ARCH "`uname -p`"
-	expvar OPSYS "`uname -s`"
-	expvar KERNEL_RELEASE "`uname -r`"
-# Acme.
-	expvar ACMEUTILS "$HOME/acme"
+# Inferno.
+	expvar INFERNO "$HOME/inferno"
+	expvar INFERNOARCH "`get_inferno_arch $ARCH`"
+	expvar INFERNOBIN "$INFERNO/$OPSYS/$INFERNOARCH/bin"
+# Acme. 
+	expvar ACMEUTILS "$HOME/.acme"
 	expvar ACMEMNT "$MNT/acme"
-	expvar PATH "$PATH:$ACMEUTILS"
 # Go.
 	expvar GOPATH "$HOME/go"
-	expvar PATH "$GOPATH/bin:$PATH"
+	expvar GOBIN "$GOPATH/bin"
 # Man.
 	expvar MANPATH "$SHARE/man:$MANPATH"
 	MANSECT="1:n:l:8:3:0:2:5:4:9:6:7"
@@ -142,6 +152,8 @@
 	expvar DOCVIEWER "`progpref mupdf`"
 # Images.
 	expvar IMGVIEWER "`progpref feh`"
+# Video.
+	expvar VIDEOPLAYER "`progpref mpv ffplay`"
 # Sudo.
 	expvar SUDO_PROMPT "#"
 # Sound.
@@ -165,3 +177,10 @@
 	expvar PATHTO_NTK="$GIT/ntk"
 # zsh.
 	expvar ZSH_VERBOSE_MODE "false"
+# Path.
+	# Inferno programs.
+	expvar PATH "$PATH:$INFERNOBIN"
+	# Make possible to use programs installed by go.
+	expvar PATH "$GOBIN:$PATH"
+	# Users programs.
+	expvar PATH "$CBIN:$BIN:$PATH"

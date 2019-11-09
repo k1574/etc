@@ -9,9 +9,8 @@ share = $home/share
 tmp = $home/tmp
 tmps = $home/tmps
 downloads = $home/downloads
+bin = $home/bin
 
-
-bin = $BIN
 g = $git
 e = $etc
 c = $code

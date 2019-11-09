@@ -1,4 +1,6 @@
 #!/bin/sh
+# Interactive terminal command execution
+# wrapper.
 term="$IXTERMINAL"
 
 case "`basename $term`" in

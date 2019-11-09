@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+sh="$SHELL"
+
+case "`basename $sh`" in
+	rc )
+		exec "$sh" -l $@
+	;;
+	* )
+		exec "$sh" $@
+	;;
+esac
