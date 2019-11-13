@@ -43,7 +43,7 @@ get_inferno_arch(){
 # Home.
 	# Not linked to anything, with temporary files exact
 	# for every system.
-	expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN \
+expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 		$DOWNLOADS"
 # Inferno.
 	expvar INFERNO "$HOME/inferno"
@@ -77,8 +77,16 @@ get_inferno_arch(){
 # Xmodmap.
 	expvar XMODMAP "$HOME/.Xmodmap"
 	expvar XRESOURCES "$HOME/.Xresources"
+# Path.
+	# Inferno programs.
+	expvar PATH "$PATH:$INFERNOBIN"
+	# Make possible to use programs installed by go.
+	expvar PATH "$GOBIN:$PATH"
+	# Users programs.
+	expvar PATH "$CBIN:$BIN:$PATH"
+# Program preferences now.
 # WM.
-	expvar XWM "`progpref rio jdwm dwm i3`"
+	expvar XWM "`progpref wm rio jdwm dwm i3`"
 	expvar WWM "`progpref sway`"
 # XDG.
 	expvar XDG_CONFIG_HOME "$HOME/.config"
@@ -115,6 +123,7 @@ get_inferno_arch(){
 	expvar EDPROMPT "* "
 	expvar R2PROMPT "@ "
 	expvar VIPROMPT ": "
+	expvar TCLPROMPT "% "
 	expvar SHELL "`progpref rc nash ksh csh dash ash bash sh`"
 # Editor.
 	expvar EDITOR "`progpref ed nvim vim vi nano ex cat`"
@@ -122,7 +131,7 @@ get_inferno_arch(){
 	expvar VISUAL "`progpref edwood acme sam gvim notepadqq leafpad mousepad adie gedi`"
 # Terminal.
 	expvar WTERMINAL "`progpref termite`"
-	expvar XTERMINAL "`progpref 9term jst st termite urxvt uxterm`"
+	expvar XTERMINAL "`progpref cli_dumb 9term jst st termite urxvt uxterm`"
 	expvar IXTERMINAL "`progpref jst st termite urxvt uxterm`"
 	expvar IWTERMINAL "`progpref termite`"
 	expvar TERMINAL_SESSION_MANAGER "`progpref tmux screen`"
@@ -177,10 +186,3 @@ get_inferno_arch(){
 	expvar PATHTO_NTK="$GIT/ntk"
 # zsh.
 	expvar ZSH_VERBOSE_MODE "false"
-# Path.
-	# Inferno programs.
-	expvar PATH "$PATH:$INFERNOBIN"
-	# Make possible to use programs installed by go.
-	expvar PATH "$GOBIN:$PATH"
-	# Users programs.
-	expvar PATH "$CBIN:$BIN:$PATH"
