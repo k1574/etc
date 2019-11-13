@@ -3,6 +3,9 @@
 term="$XTERMINAL"
 
 case "`basename $term`" in
+	cli_dumb )
+		exec "$term" shell
+	;;
 	st | jst )
 		exec "$term" $@
 	;;

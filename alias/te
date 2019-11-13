@@ -5,6 +5,9 @@ term="$XTERMINAL"
 # If X is running, now I don't know how to diverse Wayland and Xorg.
 # I should resolve it later.
 case "`basename $term`" in
+	cli_dumb )
+		exec t $@
+	;;
 	9term )
 		exec t $@
 	;;
