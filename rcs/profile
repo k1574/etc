@@ -23,6 +23,7 @@ get_inferno_arch(){
 	expvar ARCH "`uname -m`"
 	expvar OPSYS "`uname -s`"
 	expvar KERNEL_RELEASE "`uname -r`"
+	expvar PROFILE "$HOME/.profile"
 	expvar ETC "$HOME/etc"
 	expvar LIB "$HOME/lib"
 	expvar GIT "$HOME/git"
@@ -181,7 +182,7 @@ expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 # Nethack.
 	expvar NETHACKOPTIONS "boulder:0, color, autodig"
 # Irrlicht.
-	expvar PATHTO_IRRLICHT "$GIT/irrlicht"
+	expvar IRRLICHT "$HOME/irrlicht"
 # NTK.
 	expvar PATHTO_NTK="$GIT/ntk"
 # zsh.
