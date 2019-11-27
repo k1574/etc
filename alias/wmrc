@@ -5,12 +5,20 @@ wm="${1:-$CURWM}"
 
 echo $wm
 case "$wm" in
-	wm | jdwm | dwm )
+	 jdwm | dwm )
 		setxkbmap $DVORAK_KEYBOARD_LAYOUT
 		xrdb -merge "$XRESOURCES"
 		xset r rate "$KEYBOARD_REPEAT_DELAY" "$KEYBOARD_REPEAT_RATE"
 		killall "$XSTATUS"
 		eval "$XSTATUS" &
+		if [ -s "$XMODMAP" ] ; then
+			xmodmap "$XMODMAP" 
+		fi
+	;;
+	 wm )
+		setxkbmap $DVORAK_KEYBOARD_LAYOUT
+		xrdb -merge "$XRESOURCES"
+		xset r rate "$KEYBOARD_REPEAT_DELAY" "$KEYBOARD_REPEAT_RATE"
 		if [ -s "$XMODMAP" ] ; then
 			xmodmap "$XMODMAP" 
 		fi

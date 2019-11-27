@@ -59,3 +59,6 @@ https://github.com/jienfak/note
 https://github.com/wryun/es-shell
 https://github.com/zevv/bucklespring
 https://github.com/jienfak/cli
+https://git.suckless.org/sic
+https://git.suckless.org/surf
+https://github.com/PurpleI2P/i2pd.git

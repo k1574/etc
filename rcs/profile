@@ -50,8 +50,9 @@ expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 	expvar INFERNO "$HOME/inferno"
 	expvar INFERNOARCH "`get_inferno_arch $ARCH`"
 	expvar INFERNOBIN "$INFERNO/$OPSYS/$INFERNOARCH/bin"
-# Acme. 
-	expvar ACMEUTILS "$HOME/.acme"
+# Stream edit commands. In general are used for acme, edwood, and sam.
+	expvar SEUTILS "$HOME/.se"
+# Acme.
 	expvar ACMEMNT "$MNT/acme"
 # Go.
 	expvar GOPATH "$HOME/go"
