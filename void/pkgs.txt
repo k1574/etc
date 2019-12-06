@@ -12,3 +12,4 @@ git
 wicd
 wicd-gtk
 mupdf
+abiword

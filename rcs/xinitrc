@@ -5,19 +5,18 @@ arg="$@"
 # any other program I want start with Xorg.
 case "$session" in
 	#session{{{
-	awesome           ) exec awesome $arg ;;
-	bspwm             ) exec bspwm $arg ;;
-	catwm             ) exec catwm $arg ;;
-	cinnamon          ) exec cinnamon-session $arg ;;
-	wm | jdwm | dwm        )
+	awesome ) exec awesome $arg ;;
+	bspwm ) exec bspwm $arg ;;
+	catwm ) exec catwm $arg ;;
+	cinnamon ) exec cinnamon-session $arg ;;
+	vvm | wm | flwm| jdwm | dwm | rio )
 		export CURWM="$session"
 		wmrc "$session"
 		exec $session $arg
 	;;
-	rio               ) wmrc rio ; exec rio ;;
-	enlightenment     ) exec enlightenment_start;;
-	ede               ) exec startede $arg ;;
-	fluxbox           ) exec startfluxbox $arg ;;
+	enlightenment ) exec enlightenment_start;;
+	ede ) exec startede $arg ;;
+	fluxbox ) exec startfluxbox $arg ;;
 	gnome             ) exec gnome-session $arg ;;
 	gnome-classic     ) exec gnome-session --session=gnome-classic $arg ;;
 	i3                ) exec i3 $arg ;;

@@ -88,7 +88,7 @@ expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 	expvar PATH "$CBIN:$BIN:$PATH"
 # Program preferences now.
 # WM.
-	expvar XWM "`progpref wm rio jdwm dwm i3`"
+	expvar XWM "`progpref vvm jdwm wm rio dwm i3`"
 	expvar WWM "`progpref sway`"
 # XDG.
 	expvar XDG_CONFIG_HOME "$HOME/.config"
