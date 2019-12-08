@@ -45,4 +45,3 @@ if [ "$TERM" = linux ] ; then
 	echo -en "\e]PFFFFFFF" # White.
 	clear # For background artifacting.
 fi
-#[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && echo I suck!>~/file && exec startx

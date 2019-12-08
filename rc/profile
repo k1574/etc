@@ -32,9 +32,9 @@ get_inferno_arch(){
 	expvar CBIN "$HOME/cbin"
 	expvar TMPS "$HOME/tmps"
 	expvar TMP "$HOME/tmp"
-	expvar MNT  "$HOME/mnt"
-	expvar DRV  "$HOME/drv"
-	expvar ATK  "$TMP/atk"
+	expvar MNT "$HOME/mnt"
+	expvar DRV "$HOME/drv"
+	expvar ATK "$TMP/atk"
 	expvar SCRIPTS "$HOME/.scripts"
 	expvar IMGS "$HOME/imgs"
 	expvar AUDIO "$HOME/audio"
@@ -88,8 +88,8 @@ expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 	expvar PATH "$CBIN:$BIN:$PATH"
 # Program preferences now.
 # WM.
-	expvar XWM "`progpref vvm jdwm wm rio dwm i3`"
-	expvar WWM "`progpref sway`"
+	expvar XWM "`progpref vvm  wm rio dwm i3 9wm awesome startxfce4 `"
+	expvar WWM "`progpref sway weston`"
 # XDG.
 	expvar XDG_CONFIG_HOME "$HOME/.config"
 # Locale.
@@ -117,31 +117,36 @@ expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 	expvar XTABS_MANAGER "`progpref jtabbed tabbed`"
 # Shell.
 	expvar ENV "$HOME/.shrc"
-	expvar RUNMENUPROMPT "&"
-	expvar TEMENUPROMPT "!"
-	expvar ITEMENUPROMPT "i!"
+	expvar RUNMENUPROMPT "& "
+	expvar TEMENUPROMPT "! "
+	expvar ITEMENUPROMPT "i! "
 	expvar RCPROMPT "; "
 	expvar SHPROMPT "! "
 	expvar EDPROMPT "* "
 	expvar R2PROMPT "@ "
 	expvar VIPROMPT ": "
 	expvar TCLPROMPT "% "
-	expvar SHELL "`progpref rc nash ksh csh dash ash bash sh`"
+	expvar SHELL "`progpref rc dash nash ash sh`"
+	expvar ISHELL "`progpref zsh csh ksh bash sh`"
 # Editor.
-	expvar EDITOR "`progpref ed nvim vim vi nano ex cat`"
+	expvar EDITOR "`progpref ed ex cat`"
+	expvar IEDITOR "`progpref nvim vim vi nano pico cat`"
 	expvar GIT_EDITOR "$EDITOR"
-	expvar VISUAL "`progpref edwood acme sam gvim notepadqq leafpad mousepad adie gedi`"
-# Terminal.
+	expvar IGIT_EDITOR "$IEDITOR"
+	expvar VISUAL "`progpref edwood acme sam gvim notepadqq leafpad mousepad adie gedi xedit`" # Terminal.
 	expvar WTERMINAL "`progpref termite`"
 	expvar XTERMINAL "`progpref cli_dumb 9term jst st termite urxvt uxterm`"
 	expvar IXTERMINAL "`progpref jst st termite urxvt uxterm`"
 	expvar IWTERMINAL "`progpref termite`"
 	expvar TERMINAL_SESSION_MANAGER "`progpref tmux screen`"
 # Pager.
-	expvar PAGER "`progpref nobs more most less`"
+	expvar PAGER "`progpref nobs more most less cat`"
+	expvar IPAGER "`progpref most less more cat`"
 	expvar LESS "-R"
 	expvar MANPAGER "$PAGER"
+	expvar IMANPAGER "$IPAGER"
 	expvar HELPPAGER "$PAGER"
+	expvar IHELPPAGER "$IMANPAGER"
 # Less colors.
 	expvar LESS_TERMCAP_md  `perl -e 'print "\033[1;31m" ;'`
 	expvar LESS_TERMCAP_me  `perl -e 'print "\033[0m"    ;'`
@@ -155,9 +160,9 @@ expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 	expvar LESS_TERMCAP_mb  `perl -e 'print "\033[1;34m" ;'`
 	expvar LESS_TERMCAP_me  `perl -e 'print "\033[0m"    ;'`
 # Browser.
-	expvar XBROWSER "`progpref waterfox firefox chromium opera midori epiphany jsurf luakit vimb surf`"
+	expvar XBROWSER "`progpref surf waterfox firefox chromium opera midori epiphany  luakit vimb`"
 	expvar WBROWSER "`progpref waterfox firefox midori epiphany`"
-	expvar TBROWSER "`progpref w3m links2 links lynx elinks`"
+	expvar ITBROWSER "`progpref w3m links2 links lynx elinks`"
 	expvar BROWSER  "$TBROWSER"
 # Documents.
 	expvar DOCVIEWER "`progpref mupdf`"
@@ -175,16 +180,16 @@ expvar HOMEMKDIRS "$DRV $MNT $ATK $TMP $BIN $CBIN $GIT \
 	expvar JACKDPSPERIOD "64"
 	expvar PACHANNELSNUM "2"
 # GCC.
-	expvar C_INCLUDE_PATH "$S/modules/c"
+	expvar C_INCLUDE_PATH "$S/modules/c:$C_INCLUDE_PATH"
 # Perl.
-	expvar PERL5LIB "$S/modules/pl/5"
+	expvar PERL5LIB "$S/modules/pl/5:$PERL5LIB"
 # Python.
-	expvar PYTHONPATH "$CODE/modules/py"
+	expvar PYTHONPATH "$CODE/modules/py:$PYTHONPATH"
 # Nethack.
 	expvar NETHACKOPTIONS "boulder:0, color, autodig"
 # Irrlicht.
 	expvar IRRLICHT "$HOME/irrlicht"
 # NTK.
-	expvar PATHTO_NTK="$GIT/ntk"
+	expvar PATHTO_NTK "$GIT/ntk"
 # zsh.
 	expvar ZSH_VERBOSE_MODE "false"

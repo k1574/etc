@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd $BIN
-ln -s ./sh_xorg_start_program sx
-ln -s ./sh_wayland_start_program sw
