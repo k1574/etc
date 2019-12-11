@@ -1,3 +1,3 @@
 #!/bin/sh
 
-mkdir -p $arg $HOMEMKDIRS
+mkdir -p $HOMEMKDIRS

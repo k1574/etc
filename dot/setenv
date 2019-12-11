@@ -1,0 +1,34 @@
+# To include in any rc to set up the environment by files.
+noext(){
+	fullfile="$1"
+	fname="$(basename $fullfile)"
+	fbname="${fname%.*}"
+	echo "$fbname"
+}
+
+setenv(){
+	if [ -d "$ENVDIR" ] ; then
+		# The way to make system more flexible.
+		# Actually I'm really tired of editing one big file.
+		# It is really easier to change specific one with variables
+		#	or modules.
+
+		# Set variables from files.
+		sh="$1"
+		varfiles=$ENVDIR/*."$sh".var
+		for i in $varfiles ; do
+			noext1="`noext $i`"
+			noext2="`noext $noext1`"
+			if [ -r "$i" ] ; then
+				export "$noext2"="`cat \"$i\"`"
+			fi
+		done
+
+		# More modularity.
+		for i in $ENVDIR/*."$sh".sh ; do
+			if [ -r "$i" ] ; then
+				. "$i"
+			fi
+		done
+	fi
+}

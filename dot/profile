@@ -1,13 +1,7 @@
 #!/bin/sh
 # Jien's profile.
-echo "'$0'"
+echo "$0"
 
-noext(){
-	fullfile="$1"
-	fname="$(basename $fullfile)"
-	fbname="${fname%.*}"
-	echo "$fbname"
-}
 export_loop(){
 	# Chore, because I'm lazy to type "export" so many times.
 	# Standard "export" command takes arguments
@@ -24,35 +18,48 @@ export_loop(){
 
 # Standard variables.
 export_loop ENVDIR "$HOME/env" \
-	SHPROMPT '; ' \
+	SETENV "$HOME/.setenv" \
+	SHPROMPT '"; "' \
 	EDITOR 'ed' \
 	GIT_EDITOR '$EDITOR' \
 	PAGER 'more' \
 	MANPAGER '$PAGER' \
-	GOPATH '$HOME/go'
-	# No visual, because I should set it by the hand, depending on system.
+	GOPATH '$HOME/go' \
+	NATIVE_KEYBOARD_MAP 'ru' \
+	KEYBOARD_OPTION 'grp:alt_space_toggle' \
+	NATIVE_KEYBOARD_LAYOUT '-layout $NATIVE_KEYBOARD_MAP,us -variant ,dvorak -option $KEYBOARD_OPTION' \
+	QWERTY_KEYBOARD_LAYOUT '-layout us,$NATIVE_KEYBOARD_MAP -option $KEYBOARD_OPTION' \
+	DVP_KEYBOARD_LAYOUT '-layout us,$NATIVE_KEYBOARD_MAP -variant dvp, -option $KEYBOARD_OPTION' \
+	DVORAK_KEYBOARD_LAYOUT '-layout us,$NATIVE_KEYBOARD_MAP -variant dvorak, -option $KEYBOARD_OPTION' \
+	KEYBOARD_REPEAT_RATE  60 \
+	KEYBOARD_REPEAT_DELAY 300 \
+	PROFILE "$HOME/.profile" \
+	ENV '$HOME/.shrc' \
+	ETC '$HOME/etc' \
+	LIB '$HOME/lib' \
+	GIT '$HOME/git' \
+	SHARE '$HOME/share' \
+	BIN '$HOME/bin' \
+	CBIN '$HOME/cbin' \
+	TMPS '$HOME/tmps' \
+	TMP '$HOME/tmp' \
+	MNT '$HOME/mnt' \
+	ATK '$TMP/atk' \
+	SCRIPTS '$HOME/scripts' \
+	IMGS '$HOME/imgs' \
+	AUDIO '$HOME/audio' \
+	DOCS '$HOME/docs' \
+	VIDEO '$HOME/video' \
+	DOWNLOADS '$HOME/downloads' \
+	INFERNO '$HOME/inferno' \
+	IRRLICHT '$HOME/irrlicht' \
+	XINITRC '$HOME/.xinitrc' \
+	XRESOURCES '$HOME/.Xresources' \
+	XMODMAP '$HOME/.Xmodmap' \
+	LOGIN '$HOME/.login'
 
-if [ -d "$ENVDIR" ] ; then
-	# The way to make system more flexible.
-	# Actually I'm really tired of editing one big file.
-	# It is really easier to change specific one with variables
-	#	or modules.
+	# No visual, because I should set it by the hand, depending on system,
+	#	or not set it at all.
 
-	# Set variables from files.
-	varfiles=$ENVDIR/*.sh.var
-	for i in $varfiles ; do
-		noext1="`noext $i`"
-		noext2="`noext $noext1`"
-		export "$noext2"="`cat \"$i\"`"
-	done
-
-	# More modularity.
-	for i in $ENVDIR/*.sh ; do
-		. "$i"
-	done
-fi
-
-
-
-
-
+. "$SETENV"
+setenv sh

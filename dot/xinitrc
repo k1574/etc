@@ -1,6 +1,10 @@
+exec $@
+
+
 session="${1:-$XWM}"
 shift
 arg="$@"
+
 # Here a can add specific options for ever WM, DE and
 # any other program I want start with Xorg.
 case "$session" in

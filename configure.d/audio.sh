@@ -5,16 +5,16 @@ arg="$@"
 # Presets.
 # Helm.
 mkdir -p $HOME/.helm/patches/
-rm -r $arg "$HOME/.helm/patches/User Patches"
+rm -f  "$HOME/.helm/patches/User Patches"
 ln -s $arg "$AUDIO/my/presets/helm" "$HOME/.helm/patches/User Patches"
 
 # Amsynth.
-mkdir -p $arg $HOME/.amsynth/
-rm -r $arg $HOME/.amsynth/banks
+mkdir -p  $HOME/.amsynth/
+rm -f $arg $HOME/.amsynth/banks
 ln -s $arg $AUDIO/my/presets/amsynth $HOME/.amsynth/banks
 
 # Hydrogen.
-rm -r $arg $HOME/.hydrogen
+rm -f $HOME/.hydrogen
 ln -s $arg $AUDIO/hydrogen/ $HOME/.hydrogen
 
 # Zyn.

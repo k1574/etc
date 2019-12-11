@@ -1,2 +1,3 @@
+#!/bin/sh
 . $HOME/.login
 PS1="$SHPROMPT"

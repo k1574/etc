@@ -1,32 +1,9 @@
-# startx or startw at login on different screens.
-if [ -z $DISPLAY ] ; then
-	tty="`tty`"
-	echo tty > $HOME/log
-	case "$tty" in
-		/dev/tty1 )
-			# Start Wayland on the first TTY.
-			startwf="$HOME/.startw"
-			startw="`cat $startwf`"
-			[ -f "$HOME/.startw" ] && exec sh_wayland_start_program $startw
-			# Not found file to start.
-			exec sh_wayland_start_program
-		;;
-		/dev/tty2 )
-			# Start X on the second TTY.
-			startxf="$HOME/.startx"
-			startx="`cat $startxf`"
-			[ -f "$HOME/.startx" ] && exec sh_xorg_start_program $startx
-			# Not found file to start.
-			exec sh_xorg_start_program
-		;;
-		* )
-		# Not a special case so no exec.
-		;;
-	esac
-fi
+#!/bin/sh
 
 if [ "$TERM" = linux ] ; then
 	# Running from Linux virtual console.
+	
+	# Virtual console colors.
 	echo -en "\e]P0000000" # Black.
 	echo -en "\e]P8666666" # Darkgrey.
 	echo -en "\e]P1DD2222" # Darkred.
@@ -43,5 +20,5 @@ if [ "$TERM" = linux ] ; then
 	echo -en "\e]PE00FFFF" # Cyan.
 	echo -en "\e]P7DDDDDD" # Lightgrey.
 	echo -en "\e]PFFFFFFF" # White.
-	clear # For background artifacting.
+	#clear # For background artifacting.
 fi

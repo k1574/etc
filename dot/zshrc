@@ -1,27 +1,18 @@
+#!/bin/sh
 # Jien's zshrc.
-# Modules.
-. $SHMODS/chores/hasprog.sh
-. $SHMODS/chores/progpref.sh
-. $SHMODS/chores/loseall.sh
-. "$HOME/.login"
-G="$GIT"
-C="$CODE"
-E="$ETC"
-S="$SHARE"
-B="$BIN"
+source "$LOGIN"
 autoload -Uz compinit promptinit
-bindkey "<Shift-Tab>" undo
 compinit
 promptinit
 zstyle ':completion:*' menu select
-zstyle ':completion:*:manuals'   separate-sections true
+zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.*' insert-sections true
-zstyle ':completion:*:man:*'     menu yes select
+zstyle ':completion:*:man:*' menu yes select
 setopt correct
 # History configuration.
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 HISTFILE="$HOME/.zhistory"
-HISTSIZE="10000"
+HISTSIZE=10000
 SAVEHIST="$HISTSIZE"
 setopt menu_complete
 setopt append_history
@@ -41,24 +32,12 @@ setopt nobeep
 setopt noglobdots
 setopt noshwordsplit
 PROMPT="$SHPROMPT"
-my-backward-delete-word() {
+new-backward-delete-word() {
     local WORDCHARS=${WORDCHARS/\//}
     zle backward-delete-word
 }
-# Git status.
-git_custom_status(){
-}
-# Vi Mode.
-if [ "$ZSH_VI_MODE" == 'true' ] ; then
-	bindkey -v
-fi
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-zle -N my-backward-delete-word
-bindkey '^W' my-backward-delete-word
-bindkey '^r' history-incremental-search-backward
+zle -N new-backward-delete-word
+bindkey '^W' new-backward-delete-word
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
 # Plugins.
@@ -79,20 +58,6 @@ for plugin in $plugins ; do
 done
 ZSH_AUTOSUGGEST_STRATEGY="history"
 bindkey '^ ' autosuggest-accept
-bindkey -s "^o" 'lfcd\n'
-# Aliases.
-alias "g"="git"
-alias "q"="exit"
-alias "l"="ls --color=always"
-alias "ll"="ls -l --color=always"
-alias "la"="ls -la --color=always"
-alias "m"="sudo mount"
-alias "um"="sudo umount"
-alias "info"='info --vi-keys'
-alias "ipython"="ipython --TerminlInteractiveShell.editing_mode=$EDITMODE"
-alias "ipython2"="ipython2 --TerminalInteractiveShell.editing_mode=$EDITMODE"
-alias "ipython3"="ipython3 --TerminalInteractiveShell.editing_mode=$EDITMODE"
-alias "jack_control"="jackctl"
 set -A grc_progs \
 	cat cvs df digg gcc g++ ls ifconfig \
 	make mount mtr netstat ping ps tail \
@@ -102,24 +67,6 @@ set -A grc_progs \
 	getsebool ulimit uptime nmap fdisk findmnt\
 	free semanage sar ss sysctl systemctl stat showmount\
 	tune2fs tcpdump
-if hasprog grc ; then
-	for prog in $grc_progs ; do
-		if hasprog "$prog" ; then
-			al="grc --colour=auto $prog"
-			alias "$prog"="$al"
-		fi
-	done
-	alias ll="grc --colour=auto ls -l  --color=always"
-	alias la="grc --colour=auto ls -al --color=always"
-fi
-# Functions.
-source $SHMODS/auto/helpa.sh # Automatic help getter.
-# LF.
-#
-if hasprog lf ; then
-	LFCD="$XDG_CONFIG_HOME/lf/lfrc"
-	#LFCD=""
-	if [ -f $LFCD ]; then
-		source $LFCD
-	fi
-fi
+
+. $SETENV
+setenv zsh
