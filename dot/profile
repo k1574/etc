@@ -1,0 +1,58 @@
+#!/bin/sh
+# Jien's profile.
+echo "'$0'"
+
+noext(){
+	fullfile="$1"
+	fname="$(basename $fullfile)"
+	fbname="${fname%.*}"
+	echo "$fbname"
+}
+export_loop(){
+	# Chore, because I'm lazy to type "export" so many times.
+	# Standard "export" command takes arguments
+	#	from variables from the start, but I want to
+	#	use other variables in definition for next of them.
+	while [  ! -z "$1" ]  ; do
+		# Doing until we have arguments.
+		value="$(eval echo $2)"
+		name="$1"
+		export "$name"="$value"
+		shift 2
+	done
+}
+
+# Standard variables.
+export_loop ENVDIR "$HOME/env" \
+	SHPROMPT '; ' \
+	EDITOR 'ed' \
+	GIT_EDITOR '$EDITOR' \
+	PAGER 'more' \
+	MANPAGER '$PAGER' \
+	GOPATH '$HOME/go'
+	# No visual, because I should set it by the hand, depending on system.
+
+if [ -d "$ENVDIR" ] ; then
+	# The way to make system more flexible.
+	# Actually I'm really tired of editing one big file.
+	# It is really easier to change specific one with variables
+	#	or modules.
+
+	# Set variables from files.
+	varfiles=$ENVDIR/*.sh.var
+	for i in $varfiles ; do
+		noext1="`noext $i`"
+		noext2="`noext $noext1`"
+		export "$noext2"="`cat \"$i\"`"
+	done
+
+	# More modularity.
+	for i in $ENVDIR/*.sh ; do
+		. "$i"
+	done
+fi
+
+
+
+
+

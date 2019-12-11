@@ -2,21 +2,21 @@
 # Visual editor wrapper.
 case "`basename $VISUAL`" in
 	edwood )
-		exec "$VISUAL" -m "$ACMEMNT"
+		exec "$VISUAL" -m "$ACMEMNT" $@
 	;;
 	acme )
-		exec "$VISUAL"
+		exec "$VISUAL" $@
 	;;
 	sam )
-		exec "$VISUAL"
+		exec "$VISUAL" $@
 	;;
 	gvim )
-		exec "$VISUAL"
+		exec "$VISUAL" $@
 	;;
 	adie )
-		exec "$VISUAL"
+		exec "$VISUAL" $@
 	;;
 	* )
-		exec "$VISUAL"
+		exec "$VISUAL" $@
 	;;
 esac

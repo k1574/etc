@@ -6,7 +6,7 @@ term="$XTERMINAL"
 # I should resolve it later.
 case "`basename $term`" in
 	cli_dumb )
-		exec t $@
+		exec t "$@"
 	;;
 	9term )
 		exec t $@
