@@ -14,6 +14,7 @@ zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=10000
 SAVEHIST="$HISTSIZE"
+# Other stuff.
 setopt menu_complete
 setopt append_history
 setopt extended_history
@@ -31,7 +32,9 @@ setopt nohup
 setopt nobeep
 setopt noglobdots
 setopt noshwordsplit
+# Prompt.
 PROMPT="$SHPROMPT"
+# Bindings.
 new-backward-delete-word() {
     local WORDCHARS=${WORDCHARS/\//}
     zle backward-delete-word
@@ -40,6 +43,9 @@ zle -N new-backward-delete-word
 bindkey '^W' new-backward-delete-word
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+
+ZSH_AUTOSUGGEST_STRATEGY="history"
+bindkey '^ ' autosuggest-accept
 # Plugins.
 set -A plugin_dirs \
 	"/usr/share/" \
@@ -56,8 +62,7 @@ for plugin in $plugins ; do
 		fi
 	done
 done
-ZSH_AUTOSUGGEST_STRATEGY="history"
-bindkey '^ ' autosuggest-accept
+# grc
 set -A grc_progs \
 	cat cvs df digg gcc g++ ls ifconfig \
 	make mount mtr netstat ping ps tail \
@@ -67,6 +72,6 @@ set -A grc_progs \
 	getsebool ulimit uptime nmap fdisk findmnt\
 	free semanage sar ss sysctl systemctl stat showmount\
 	tune2fs tcpdump
-
-. $SETENV
+# Set enviroment.
+. "$SETENV.sh"
 setenv zsh

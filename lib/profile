@@ -9,16 +9,13 @@ share = $home/share
 tmp = $home/tmp
 tmps = $home/tmps
 downloads = $home/downloads
+video = $home/video
+audio = $home/audio
+imgs = $home/imgs
 bin = $home/bin
 
-g = $git
-e = $etc
-c = $code
-s = $share
-t = $tmp
-ts = $tmps
-
-b = $bin
+PAGER = nobs
+MANPAGER = $PAGER
 
 # Less colors.
 LESS_TERMCAP_md = `{ perl -e 'print "\033[1;31m" ;' }

@@ -2,7 +2,7 @@
 # Automatic user configuration installation and updating script.
 
 rpath="$(dirname `readlink -f $0`)"
-configure="$rpath//configure.d"
+configure="$rpath/configure.d"
 arg="$@"
 
 if [ -d $configure ] ; then

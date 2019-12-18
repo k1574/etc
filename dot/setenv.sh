@@ -1,4 +1,5 @@
 # To include in any rc to set up the environment by files.
+
 noext(){
 	fullfile="$1"
 	fname="$(basename $fullfile)"
@@ -9,14 +10,14 @@ noext(){
 setenv(){
 	if [ -d "$ENVDIR" ] ; then
 		# The way to make system more flexible.
-		# Actually I'm really tired of editing one big file.
-		# It is really easier to change specific one with variables
-		#	or modules.
+		# 	Actually I'm really tired of editing one big file.
+		# 	It is really easier to change specific one with variables
+		# 	or modules.
 
 		# Set variables from files.
 		sh="$1"
-		varfiles=$ENVDIR/*."$sh".var
-		for i in $varfiles ; do
+		
+		for i in `echo $ENVDIR/*."$sh".var` ; do
 			noext1="`noext $i`"
 			noext2="`noext $noext1`"
 			if [ -r "$i" ] ; then
@@ -24,7 +25,7 @@ setenv(){
 			fi
 		done
 
-		# More modularity.
+		# Modules.
 		for i in $ENVDIR/*."$sh".sh ; do
 			if [ -r "$i" ] ; then
 				. "$i"
@@ -32,3 +33,4 @@ setenv(){
 		done
 	fi
 }
+

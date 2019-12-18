@@ -1,3 +1,3 @@
 #!/bin/sh
 
-mkdir -p $HOMEMKDIRS
+mkdir -p $VIDEO $AUDIO $IMGS $TMP

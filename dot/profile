@@ -1,6 +1,5 @@
 #!/bin/sh
 # Jien's profile.
-echo "$0"
 
 export_loop(){
 	# Chore, because I'm lazy to type "export" so many times.
@@ -54,12 +53,16 @@ export_loop ENVDIR "$HOME/env" \
 	INFERNO '$HOME/inferno' \
 	IRRLICHT '$HOME/irrlicht' \
 	XINITRC '$HOME/.xinitrc' \
-	XRESOURCES '$HOME/.Xresources' \
+	XRESOURCES '$HOME/.xresources' \
 	XMODMAP '$HOME/.Xmodmap' \
-	LOGIN '$HOME/.login'
+	XDG_CONFIG_HOME '$HOME/.config' \
+	LOGIN '$HOME/.login' \
+	ZSHRC '$HOME/.zshrc' \
+	BASHRC '$HOME/.bashrc' \
+	SHRC '$ENV' \
 
 	# No visual, because I should set it by the hand, depending on system,
 	#	or not set it at all.
 
-. "$SETENV"
-setenv sh
+. "$SETENV.sh"
+setenv profile

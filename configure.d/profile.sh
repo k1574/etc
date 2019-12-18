@@ -1,1 +1,1 @@
-../rc/profile
+../dot/profile
