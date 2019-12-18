@@ -45,6 +45,7 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 ZSH_AUTOSUGGEST_STRATEGY="history"
+zle -N autosuggest-accept
 bindkey '^ ' autosuggest-accept
 # Plugins.
 set -A plugin_dirs \
