@@ -2,7 +2,8 @@
 
 arg="$@"
 utils="/usr/lib/`basename $(realpath $0)`"
-
+echo $utils
+exit
 # Link utils.
 if [ -d "$utils" ] ; then
 	for i in $utils/* ; do

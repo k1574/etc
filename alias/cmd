@@ -1,9 +1,0 @@
-#!/bin/sh
-
-sh="$SHELL"
-
-case "`basename $sh`" in
-	* )
-		exec "$SHELL" -c "$@"
-	;;
-esac

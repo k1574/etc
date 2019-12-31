@@ -1,5 +1,0 @@
-#!/bin/sh
-
-str="`xdotool getmouselocation --shell | grep WINDOW`"
-str="`echo $str | sed 's/WINDOW=//'`"
-echo "$str"

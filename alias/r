@@ -1,4 +1,0 @@
-#!/bin/sh
-cd
-nohup $@ 1>/dev/null 2>&1&
-rm -rf nohup.out

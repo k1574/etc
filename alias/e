@@ -1,7 +1,0 @@
-#!/bin/sh
-
-case "`basename $EDITOR`" in
-	* )
-		exec "$EDITOR" $@
-	;;
-esac
