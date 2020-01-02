@@ -1,6 +1,9 @@
 #!/usr/bin/fish
 # Jien's fishrc.
 
+# No greeting when starting an interactive shell.
+function fish_greeting
+end
 # Left prompt.
 function fish_prompt --description "Write out the prompt"
 	echo -n $SHPROMPT
