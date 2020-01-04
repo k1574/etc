@@ -1,7 +1,6 @@
 # jien's rc configuration file.
 prompt = '; '
-# To get path from higher SHELL(in UNIX systems: bash, zsh, dash etc).
-path = `{ echo $CBIN:$GOPATH/bin$BIN:$PATH | tr : ' ' }
+
 git = $home/git
 etc = $home/etc
 code = $home/code
@@ -13,8 +12,9 @@ video = $home/video
 audio = $home/audio
 imgs = $home/imgs
 bin = $home/bin
+pager = nobs
 
-PAGER = nobs
+PAGER = $pager
 MANPAGER = $PAGER
 
 # Less colors.
@@ -30,3 +30,28 @@ LESS_TERMCAP_se = `{ perl -e 'print "\033[0m"    ;' }
 LESS_TERMCAP_mb = `{ perl -e 'print "\033[1;32m" ;' }
 LESS_TERMCAP_me = `{ perl -e 'print "\033[0m"    ;' }
 
+# This part lets me to set variables by files and add functionality
+fn filename {
+	for(i in $*){
+		echo `{basename $i} | awk -F'.' '{print $1}'
+	}
+}
+
+dirs = ($ENVDIR $home/env)
+# Variables.
+for(dir in $dirs){
+	if(test -d $dir){
+		for(file in $dir/*.rc.var ){
+			test -r $file && `{filename $file} = `{cat $file}
+		}
+	}
+}
+# Additional scripts to run on startup.
+for(dir in $dirs){
+	if(test -d $dir){
+		for(file in $dir/*.rc.rc ){
+			test -r $file && . $file
+		}
+	}
+}
+#dirs=''
