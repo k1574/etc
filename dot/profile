@@ -52,6 +52,7 @@ export_loop ENVDIR "$HOME/env" \
 	DOC '$HOME/doc' \
 	VIDEO '$HOME/video' \
 	DOWNLOAD '$HOME/download' \
+	TORRENT '$HOME/torrent' \
 	INFERNO '$HOME/inferno' \
 	IRRLICHT '$HOME/irrlicht' \
 	XINITRC '$HOME/.xinitrc' \
