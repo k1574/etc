@@ -2,6 +2,7 @@
 prompt = '; '
 
 git = $home/git
+lib = $home/lib
 etc = $home/etc
 code = $home/code
 share = $home/share
@@ -14,6 +15,7 @@ imgs = $home/imgs
 bin = $home/bin
 pager = nobs
 
+# *-nixes.
 PAGER = $pager
 MANPAGER = $PAGER
 
@@ -35,6 +37,10 @@ fn filename {
 	for(i in $*){
 		echo `{basename $i} | awk -F'.' '{print $1}'
 	}
+}
+
+fn .. {
+	cd ..
 }
 
 dirs = ($ENVDIR $home/env)
