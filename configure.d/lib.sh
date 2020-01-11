@@ -1,4 +1,9 @@
 #!/bin/sh
 
-rm -f  $LIB
-ln -s $arg $ETC/lib $LIB
+if test -d "$ETC" \
+		-a -d "$ETC/config" \
+		-a -n "$LIB" \
+		; then
+	rm -f "$LIB"
+	ln -s "$ETC/config" "$LIB"
+fi

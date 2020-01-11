@@ -23,7 +23,7 @@ MANPAGER = $PAGER
 # Less colors.
 switch( `{uname} ){
 case ( Linux NetBSD DragonFly OpenBSD FreeBSD )
-	# Sets colors in Unix systems.
+	# Sets colors on Unix systems.
 	# Default color.
 	LESS_TERMCAP_md = `{ perl -e 'print "\033[1;31m" ;' }
 	LESS_TERMCAP_me = `{ perl -e 'print "\033[0m"    ;' }
@@ -68,4 +68,4 @@ for(dir in $dirs){
 		}
 	}
 }
-#dirs=''
+dirs=''

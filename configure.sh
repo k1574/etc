@@ -5,15 +5,13 @@ rpath="$(dirname `readlink -f $0`)"
 configure="$rpath/configure.d"
 arg="$@"
 
-if [ -d $configure ] ; then
+if test -d $configure  ; then
 	for i in $configure/*.sh ; do
-		if [ -r $i ]; then
-			. $i
+		if test -r "$i" ; then
+			echo "$i"
+			. "$i"
 		fi
 	done
 	unset i
 fi
 
-#rm -f "$HOME/lib"
-# Plan9 stuff.
-#ln -s $arg "$ETC/lib" "$LIB"

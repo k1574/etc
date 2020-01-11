@@ -20,14 +20,16 @@ setenv(){
 		for i in `echo $ENVDIR/*."$sh".var` ; do
 			noext1="`noext $i`"
 			noext2="`noext $noext1`"
-			if [ -r "$i" ] ; then
-				export "$noext2"="`cat \"$i\"`"
+			if test -r "$i"  ; then
+				cat="` cat \"$i\" `"
+				export "$noext2"="$cat"
 			fi
 		done
 
 		# Modules.
 		for i in $ENVDIR/*."$sh".sh ; do
 			if [ -r "$i" ] ; then
+
 				. "$i"
 			fi
 		done

@@ -2,7 +2,7 @@
 
 dot="$ETC/dot"
 for i in $dot/*  ; do
-	lnto="$HOME/.`basename $i`"
-	rm -f "$lnto"
-	ln -s $arg "$i" "$lnto"
+	ln="$HOME/.`basename $i`"
+	rm -f "$ln"
+	ln -s "$i" "$ln"
 done
