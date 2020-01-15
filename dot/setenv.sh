@@ -1,4 +1,7 @@
 # To include in any rc to set up the environment by files.
+if test -n "$rpath" ; then
+	export SETENV="$rpath/dot/setenv"
+fi
 
 noext(){
 	fullfile="$1"
