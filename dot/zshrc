@@ -1,6 +1,8 @@
 #!/bin/sh
 # Jien's zshrc.
-source "$LOGIN"
+if test -r"$LOGIN.sh" ; then
+	. "$LOGIN.sh"
+fi
 autoload -Uz compinit promptinit
 compinit
 promptinit
@@ -74,5 +76,7 @@ set -A grc_progs \
 	free semanage sar ss sysctl systemctl stat showmount\
 	tune2fs tcpdump
 # Set enviroment.
-. "$SETENV.sh"
-setenv zsh
+if test -r "$SETENV.sh" ; then
+	. "$SETENV.sh"
+	setenv zsh
+fi

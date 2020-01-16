@@ -1,0 +1,33 @@
+# Setting environment for rc-like shells.
+
+# This part lets me to set variables by files and add functionality
+fn filename {
+	for(i in $*){
+		echo `{basename $i} | awk -F'.' '{print $1}'
+	}
+}
+
+fn setenv {
+	rc=$1
+	dirs = ($ENVDIR $env)
+	# Variables.
+	for(dir in $dirs){
+		if(test -d $dir){
+			for(file in $dir/$rc/*.var ){
+				test -r $file && `{filename $file} = `{cat $file}
+			}
+		}
+	}
+
+	# Additional scripts to run on startup.
+	for(dir in $dirs){
+		if(test -d $dir){
+			for(file in $dir/$rc/*.rc ){
+				test -r $file && . $file
+			}
+		}
+	}
+
+	dirs=''
+	rc=''
+}

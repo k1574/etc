@@ -1,6 +1,7 @@
 # jien's rc configuration file.
 prompt = '; '
 
+env = $home/env
 git = $home/git
 lib = $home/lib
 etc = $home/etc
@@ -15,12 +16,8 @@ audio = $home/audio
 img = $home/img
 bin = $home/bin
 pager = nobs
+profile = $lib/profile
 
-# *-nixes.
-PAGER = $pager
-MANPAGER = $PAGER
-
-# Less colors.
 switch( `{uname} ){
 case ( Linux NetBSD DragonFly OpenBSD FreeBSD )
 	# Sets colors on Unix systems.
@@ -36,36 +33,18 @@ case ( Linux NetBSD DragonFly OpenBSD FreeBSD )
 	# Blinking color.
 	LESS_TERMCAP_mb = `{ perl -e 'print "\033[1;32m" ;' }
 	LESS_TERMCAP_me = `{ perl -e 'print "\033[0m"    ;' }
+	# Pager.
+	PAGER = $pager
+	MANPAGER = $PAGER
 case *
 	# Nothing in non-Unix systems.
-}
-
-# This part lets me to set variables by files and add functionality
-fn filename {
-	for(i in $*){
-		echo `{basename $i} | awk -F'.' '{print $1}'
-	}
 }
 
 fn .. {
 	cd ..
 }
 
-dirs = ($ENVDIR $home/env)
-# Variables.
-for(dir in $dirs){
-	if(test -d $dir){
-		for(file in $dir/*.rc.var ){
-			test -r $file && `{filename $file} = `{cat $file}
-		}
-	}
+if(test -r $SETENV.rc){
+	. $SETENV.rc
+	setenv rc
 }
-# Additional scripts to run on startup.
-for(dir in $dirs){
-	if(test -d $dir){
-		for(file in $dir/*.rc.rc ){
-			test -r $file && . $file
-		}
-	}
-}
-dirs=''
