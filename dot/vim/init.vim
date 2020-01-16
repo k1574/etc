@@ -1,1 +1,1 @@
-/home/jien/.vimrc
+../../dot/vimrc
