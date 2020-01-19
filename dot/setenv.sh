@@ -3,13 +3,6 @@ if test -n "$rpath" ; then
 	export SETENV="$rpath/dot/setenv"
 fi
 
-noext(){
-	fullfile="$1"
-	fname="$(basename $fullfile)"
-	fbname="${fname%.*}"
-	echo "$fbname"
-}
-
 setenv(){
 if [ -d "$ENVDIR" ] ; then
 	# The way to make system more flexible.
@@ -20,11 +13,9 @@ if [ -d "$ENVDIR" ] ; then
 	# Set variables from files.
 	sh="$1"
 	
-	for i in  "$ENVDIR/$sh"/*.var ; do
-		noext="`noext $i`"
+	for i in  "$ENVDIR/$sh/var"/* ; do
 		if test -r "$i"  ; then
-			cat="`cat \"$i\" `"
-			export "$noext"="$cat"
+			export "`basename \"$i\"`"="`cat \"$i\"`"
 		fi
 	done
 

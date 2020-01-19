@@ -1,11 +1,6 @@
 # Setting environment for rc-like shells.
 
 # This part lets me to set variables by files and add functionality
-fn filename {
-	for(i in $*){
-		echo `{basename $i} | awk -F'.' '{print $1}'
-	}
-}
 
 fn setenv {
 	rc=$1
@@ -13,8 +8,8 @@ fn setenv {
 	# Variables.
 	for(dir in $dirs){
 		if(test -d $dir){
-			for(file in $dir/$rc/*.var ){
-				test -r $file && `{filename $file} = `{cat $file}
+			for(file in $dir/$rc/var/* ){
+				test -r $file && `{basename $file} = `{cat $file}
 			}
 		}
 	}
