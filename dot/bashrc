@@ -1,5 +1,5 @@
 test -r "$LOGIN" && . "$LOGIN"
+export PS1="$SHPROMPT"
 test -r "$SETENV.sh" 
 . "$SETENV.sh" 
 setenv bash
-PS1='$SHPROMPT'
