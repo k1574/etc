@@ -57,7 +57,7 @@ export_loop ENVDIR "$HOME/env" \
 	INFERNO '$HOME/inferno' \
 	IRRLICHT '$HOME/irrlicht' \
 	XINITRC '$HOME/.xinitrc' \
-	XRESOURCES '$HOME/.xresources' \
+	XRESOURCES '$HOME/.Xresources' \
 	XMODMAP '$HOME/.Xmodmap' \
 	XDG_CONFIG_HOME '$HOME/.config' \
 	LOGIN '$HOME/.login' \
