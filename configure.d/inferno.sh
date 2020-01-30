@@ -1,7 +1,8 @@
 #!/bin/sh
 if test -d "$INFERNO" ; then
-	mkdir -p "$INFERNO/usr/"
-	rm -f "$INFERNO/usr/$USER"
-	ln -s "$HOME" "$INFERNO/usr/$USER"
+	usr="$INFERNO/usr/$USER"
+	mkdir -p "$usr"
+	rm -f "$usr/lib"
+	ln -s "$rpath/inferno/lib" "$usr/lib"
 fi
 
