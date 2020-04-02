@@ -1,2 +1,22 @@
-# etc
-Just configuration files and so on.
+Environment installation files and scripts for it.
+To install run:
+	$ ./configure.sh
+After it config and dot files will be linked, so changing them the way like:
+	$ vi $HOME/.profile
+will affect in this git repository so you can commit it and save.
+
+The structure is supposed to be as simple as possible and scripts should be small.
+
+# configure.d/dot.sh
+"dot/*" files are linked into $HOME directory with '.' character concatenated in front.
+
+# configure.d/config.sh
+"config/*" files arel linked with the same name into $XDG_CONFIG_DIR.
+
+# configure.d/inferno.sh
+Creates directory $INFRENO/usr/$USER and links inferno/lib into it.
+
+# ... (I will describe it later if there will be need about it)
+
+If some variables aren't set then script isn about to do nothing.
+It's so to make environment setting painless.
