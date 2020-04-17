@@ -1,2 +1,1 @@
-cd $SCRIPTS/ ; 9menu -popup -teleport -warp * 
-
+cd $VVM_POP_UP_MENU_SCRIPTS/ ; 9menu -teleport * 
