@@ -1,1 +1,1 @@
-exec $(echo | dmenu -p cmd: )
+exec $(echo | xmen -p cmd: )
