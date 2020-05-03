@@ -17,6 +17,10 @@ img = $home/img
 bin = $home/bin
 pager = nobs
 profile = $lib/profile
+inferno = $home/inferno
+gopath = $home/go
+gobin = $gopath/bin
+setenv = $lib/setenv.rc
 
 switch( `{uname} ){
 case ( Linux NetBSD DragonFly OpenBSD FreeBSD )
@@ -44,7 +48,7 @@ fn .. {
 	cd ..
 }
 
-if(test -r $SETENV.rc){
-	. $SETENV.rc
+if(test -r $setenv){
+	. $setenv
 	setenv rc
 }

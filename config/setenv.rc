@@ -4,7 +4,7 @@
 
 fn setenv {
 	rc=$1
-	dirs = ($ENVDIR $env)
+	dirs = ($env)
 	# Variables.
 	for(dir in $dirs){
 		if(test -d $dir){
