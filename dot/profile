@@ -41,7 +41,8 @@ export_loop ENVDIR "$HOME/env" \
 	GIT '$HOME/git' \
 	SHARE '$HOME/share' \
 	SHARED '$HOME/shared' \
-	BIN '$HOME/bin' \
+	LOCAL '$HOME/local' \
+	BIN '$LOCAL/bin' \
 	CBIN '$HOME/cbin' \
 	TMPS '$HOME/tmps' \
 	TMP '$HOME/tmp' \
