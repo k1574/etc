@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if test -d "$ETC" \
-		-a -d "$ETC/config" \
+		-a -d "$ETC/lib" \
 		-a -n "$LIB" \
 		; then
 	rm -f "$LIB"
-	ln -s "$ETC/config" "$LIB"
+	ln -s "$ETC/lib" "$LIB"
 fi
