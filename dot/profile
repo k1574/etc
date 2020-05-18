@@ -56,6 +56,7 @@ export_loop ENVDIR "$HOME/env" \
 	DOWNLOAD '$HOME/download' \
 	TORRENT '$HOME/torrent' \
 	INFERNO '$HOME/inferno' \
+	PLAN9 '$HOME/plan9' \
 	IRRLICHT '$HOME/irrlicht' \
 	XINITRC '$HOME/.xinitrc' \
 	XRESOURCES '$HOME/.Xresources' \
@@ -65,7 +66,7 @@ export_loop ENVDIR "$HOME/env" \
 	ZSHRC '$HOME/.zshrc' \
 	BASHRC '$HOME/.bashrc' \
 	SHRC '$ENV' \
-	PATH '$BIN:$GOPATH/bin:$PATH' \
+	PATH '$BIN:$GOPATH/bin:$PATH:$PLAN9/bin' \
 
 	# No visual, because I should set it by the hand, depending on system,
 	#	or not set it at all.

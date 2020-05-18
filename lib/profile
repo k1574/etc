@@ -18,6 +18,7 @@ bin = $home/bin
 pager = nobs
 profile = $0
 inferno = $home/inferno
+plan9 = $home/plan9
 gopath = $home/go
 gobin = $gopath/bin
 setenv = $lib/setenv.rc
