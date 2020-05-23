@@ -1,31 +1,33 @@
 # jien's rc configuration file.
-prompt = '; '
 
-env = $home/env
-git = $home/git
-lib = $home/lib
-etc = $home/etc
-code = $home/code
-share = $home/share
-tmp = $home/tmp
-tmps = $home/tmps
-doc = $home/doc
-download = $home/download
-video = $home/video
-audio = $home/audio
-img = $home/img
-bin = $home/bin
-pager = nobs
-profile = $0
-inferno = $home/inferno
-plan9 = $home/plan9
-gopath = $home/go
-gobin = $gopath/bin
-setenv = $lib/setenv.rc
+prompt = '; ' # The simplest possible prompt.
+env = $home/env # Environment setting directory.
+git = $home/git # Git repos.
+lib = $home/lib # Configuration for other applications.
+etc = $home/etc # Configuration files for any system.
+shr = $home/shr # Share for notes, lists etc.
+tmp = $home/tmp # Temporary.
+tmps = $home/tmps # Templates.
+doc = $home/doc # Documents.
+download = $home/download # Downloads.
+video = $home/video # Video files.
+audio = $home/audio # Audio files.
+img = $home/img # Image files.
+local = $home/local # Program installation directory.
+bin = $local/bin # Executable binaries installation directory.
+share = $local/share # Share files for programs.
+man = $share/man # Directory for manual pages. Are supposed to be written in plain text.
+pager = nobs # Pager deleting all ESC-sequences. For 9term mostly.
+manpager = $pager # Pager for man pages.
+profile = $0 # Profile file.
+inferno = $home/inferno # Inferno.
+plan9 = $home/plan9 # Plan9.
+gopath = $home/go # Golang path.
+gobin = $gopath/bin # Golang binaries.
+setenv = $lib/setenv.rc # Setting environment script.
 
 switch( `{uname} ){
-case ( Linux NetBSD DragonFly OpenBSD FreeBSD )
-	# Sets colors on Unix systems.
+case ( Linux NetBSD DragonFly OpenBSD FreeBSD ) # On Unix-like systems.
 	# Default color.
 	LESS_TERMCAP_md = `{ perl -e 'print "\033[1;31m" ;' }
 	LESS_TERMCAP_me = `{ perl -e 'print "\033[0m"    ;' }
@@ -40,7 +42,7 @@ case ( Linux NetBSD DragonFly OpenBSD FreeBSD )
 	LESS_TERMCAP_me = `{ perl -e 'print "\033[0m"    ;' }
 	# Pager.
 	PAGER = $pager
-	MANPAGER = $PAGER
+	MANPAGER = $manpager
 case *
 	# Nothing in non-Unix systems.
 }
@@ -49,6 +51,7 @@ fn .. {
 	cd ..
 }
 
+# Setting enviroment.
 if(test -r $setenv){
 	. $setenv
 	setenv rc

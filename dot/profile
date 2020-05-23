@@ -39,7 +39,7 @@ export_loop ENVDIR "$HOME/env" \
 	ETC '$HOME/etc' \
 	LIB '$HOME/lib' \
 	GIT '$HOME/git' \
-	SHARE '$HOME/share' \
+	SHR '$HOME/shr' \
 	SHARED '$HOME/shared' \
 	LOCAL '$HOME/local' \
 	BIN '$LOCAL/bin' \
