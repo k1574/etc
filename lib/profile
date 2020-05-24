@@ -21,10 +21,33 @@ pager = nobs # Pager deleting all ESC-sequences. For 9term mostly.
 manpager = $pager # Pager for man pages.
 profile = $0 # Profile file.
 inferno = $home/inferno # Inferno.
+infernobin = `{ # Inferno executables files.
+	sys = `{uname}
+	machine = `{uname -m}
+	if(test $machine '=' x86_64){
+		machine = 386
+	}
+	echo $inferno/$sys/$machine/bin
+}
 plan9 = $home/plan9 # Plan9.
+plan9bin = $plan9/bin
 gopath = $home/go # Golang path.
 gobin = $gopath/bin # Golang binaries.
 setenv = $lib/setenv.rc # Setting environment script.
+
+path = ( $path $gobin $plan9bin $infernobin)
+# Pretend path from growing because of running many "rc"s.
+if(which goblin >/dev/null >[2=1]){
+	path = `{
+		{ for( i in $path) echo $i } | goblin uniq -U
+	}
+}
+
+# Xorg.
+xinitrc = $home/.xinitrc
+xresources = $home/.Xresources
+xmodmap = $home/.Xmodmap
+
 
 switch( `{uname} ){
 case ( Linux NetBSD DragonFly OpenBSD FreeBSD ) # On Unix-like systems.

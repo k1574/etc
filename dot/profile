@@ -26,14 +26,6 @@ export_loop ENVDIR "$HOME/env" \
 	PAGER 'more' \
 	MANPAGER '$PAGER' \
 	GOPATH '$HOME/go' \
-	NATIVE_KEYBOARD_MAP 'ru' \
-	KEYBOARD_OPTION 'grp:alt_space_toggle' \
-	NATIVE_KEYBOARD_LAYOUT '-layout $NATIVE_KEYBOARD_MAP,us -variant ,dvorak -option $KEYBOARD_OPTION' \
-	QWERTY_KEYBOARD_LAYOUT '-layout us,$NATIVE_KEYBOARD_MAP -option $KEYBOARD_OPTION' \
-	DVP_KEYBOARD_LAYOUT '-layout us,$NATIVE_KEYBOARD_MAP -variant dvp, -option $KEYBOARD_OPTION' \
-	DVORAK_KEYBOARD_LAYOUT '-layout us,$NATIVE_KEYBOARD_MAP -variant dvorak, -option $KEYBOARD_OPTION' \
-	KEYBOARD_REPEAT_RATE  60 \
-	KEYBOARD_REPEAT_DELAY 300 \
 	PROFILE '$HOME/.profile' \
 	ENV '$HOME/.shrc' \
 	ETC '$HOME/etc' \
@@ -43,18 +35,15 @@ export_loop ENVDIR "$HOME/env" \
 	SHARED '$HOME/shared' \
 	LOCAL '$HOME/local' \
 	BIN '$LOCAL/bin' \
-	CBIN '$HOME/cbin' \
 	TMPS '$HOME/tmps' \
 	TMP '$HOME/tmp' \
-	MNT '$HOME/mnt' \
+	MNT '$LOCAL/mnt' \
 	ATK '$TMP/atk' \
-	SCRIPTS '$HOME/scripts' \
 	IMG '$HOME/img' \
 	AUDIO '$HOME/audio' \
 	DOC '$HOME/doc' \
 	VIDEO '$HOME/video' \
 	DOWNLOAD '$HOME/download' \
-	TORRENT '$HOME/torrent' \
 	INFERNO '$HOME/inferno' \
 	PLAN9 '$HOME/plan9' \
 	IRRLICHT '$HOME/irrlicht' \
@@ -62,6 +51,7 @@ export_loop ENVDIR "$HOME/env" \
 	XRESOURCES '$HOME/.Xresources' \
 	XMODMAP '$HOME/.Xmodmap' \
 	XDG_CONFIG_HOME '$HOME/.config' \
+	XDG_RUNTIME_DIR '$TMP' \
 	LOGIN '$HOME/.login' \
 	ZSHRC '$HOME/.zshrc' \
 	BASHRC '$HOME/.bashrc' \
@@ -69,7 +59,8 @@ export_loop ENVDIR "$HOME/env" \
 	PATH '$BIN:$GOPATH/bin:$PATH:$PLAN9/bin' \
 
 	# No visual, because I should set it by the hand, depending on system,
-	#	or not set it at all.
+	# or not set it at all.
+	# Because it sucks.
 
 . "$SETENV.sh"
 setenv profile
