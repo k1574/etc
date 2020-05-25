@@ -34,6 +34,7 @@ plan9bin = $plan9/bin
 gopath = $home/go # Golang path.
 gobin = $gopath/bin # Golang binaries.
 setenv = $lib/setenv.rc # Setting environment script.
+font = /lib/font/bit/fixed/unicode.9x15.font # The standard font for Plan9 program.
 
 path = ( $bin $path $gobin $plan9bin $infernobin)
 # Pretend path from growing because of running many "rc"s.
