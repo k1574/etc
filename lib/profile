@@ -34,7 +34,9 @@ plan9bin = $plan9/bin
 gopath = $home/go # Golang path.
 gobin = $gopath/bin # Golang binaries.
 setenv = $lib/setenv.rc # Setting environment script.
-font = /lib/font/bit/fixed/unicode.9x15.font # The standard font for Plan9 program.
+font = $plan9/font/fixed/unicode.9x15.font # The standard font for Plan9 program.
+editor = E
+shell = rc
 
 path = ( $bin $path $gobin $plan9bin $infernobin)
 # Pretend path from growing because of running many "rc"s.
@@ -67,6 +69,8 @@ case ( Linux NetBSD DragonFly OpenBSD FreeBSD ) # On Unix-like systems.
 	# Pager.
 	PAGER = $pager
 	MANPAGER = $manpager
+	# Editor.
+	EDITOR = $editor
 case *
 	# Nothing in non-Unix systems.
 }
