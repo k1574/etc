@@ -1,5 +1,5 @@
 " Jien's VIM color file.
-" Jien: Jien FAK <jienfak@protonmail.com>.
+" k1574: <k1574@yandex.ru>.
 " (originally looked at slate.)
 set background=dark
 if exists("syntax_on")
