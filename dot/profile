@@ -36,7 +36,7 @@ export_loop ENVDIR "$HOME/env" \
 	LOCAL '$HOME/local' \
 	BIN '$LOCAL/bin' \
 	TMPS '$HOME/tmps' \
-	TMP '$HOME/tmp' \
+	TMP '$LOCAL/tmp' \
 	MNT '$LOCAL/mnt' \
 	ATK '$TMP/atk' \
 	IMG '$HOME/img' \
