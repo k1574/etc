@@ -16,8 +16,8 @@ export_loop(){
 }
 
 # Standard variables.
-export_loop ENVDIR "$HOME/env" \
-	SETENV '$HOME/.setenv' \
+export_loop  \
+	ENV '$HOME/.shrc' \
 	SHPROMPT '"; "' \
 	PS1 '"$SHPROMPT"' \
 	SUDO_PROMPT '"#"' \
@@ -25,32 +25,33 @@ export_loop ENVDIR "$HOME/env" \
 	GIT_EDITOR '$EDITOR' \
 	PAGER 'more' \
 	MANPAGER '$PAGER' \
-	GOPATH '$HOME/go' \
 	PROFILE '$HOME/.profile' \
-	ENV '$HOME/.shrc' \
-	ETC '$HOME/etc' \
-	LIB '$HOME/lib' \
-	GIT '$HOME/git' \
-	SHR '$HOME/shr' \
+	TXT '$HOME/txt' \
 	SHARED '$HOME/shared' \
-	LOCAL '$HOME/local' \
-	BIN '$LOCAL/bin' \
 	TMPS '$HOME/tmps' \
+	LOCAL '$HOME/local' \
+	ENVDIR '$LOCAL/env' \
+	GIT '$LOCAL/git' \
+	ETC '$LOCAL/etc' \
+	SETENV '$ETC/env/setenv' \
 	TMP '$LOCAL/tmp' \
+	SHR '$LOCAL/shr' \
 	MNT '$LOCAL/mnt' \
-	ATK '$TMP/atk' \
+	BIN '$LOCAL/bin' \
+	GOPATH '$LOCAL/go' \
+	PLAN9 '$LOCAL/plan9' \
+	INFERNO '$LOCAL/inferno' \
+	LIB '$HOME/lib' \
 	IMG '$HOME/img' \
 	AUDIO '$HOME/audio' \
 	DOC '$HOME/doc' \
 	VIDEO '$HOME/video' \
 	DOWNLOAD '$HOME/download' \
-	INFERNO '$HOME/inferno' \
-	PLAN9 '$HOME/plan9' \
-	IRRLICHT '$HOME/irrlicht' \
+	IRRLICHT '$LOCAL/irrlicht' \
 	XINITRC '$HOME/.xinitrc' \
 	XRESOURCES '$HOME/.Xresources' \
 	XMODMAP '$HOME/.Xmodmap' \
-	XDG_CONFIG_HOME '$HOME/.config' \
+	XDG_CONFIG_HOME '$LIB' \
 	XDG_RUNTIME_DIR '$TMP' \
 	LOGIN '$HOME/.login' \
 	ZSHRC '$HOME/.zshrc' \

@@ -1,4 +1,5 @@
 #!/bin/sh
 
-mkdir -p $VIDEO $AUDIO $IMG $TMP $TORRENT \
-	$DOWNLOAD $DOC $SHARED
+mkdir -p $VIDEO $AUDIO $IMG $TMP $TMPS \
+	$DOWNLOAD $DOC $SHARED \
+	$SHR $BIN $MNT $LIB $ENVDIR

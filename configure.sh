@@ -6,7 +6,7 @@ configure="$rpath/configure.d"
 arg="$@"
 
 # Getting profile variables first.
-. "$rpath/dot/setenv.sh"
+. "$rpath/env/setenv.sh"
 rm -f "$HOME/.setenv.sh"
 ln -s "$SETENV.sh" "$HOME/.setenv.sh"
 . "$rpath/dot/profile"

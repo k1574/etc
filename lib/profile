@@ -1,26 +1,28 @@
 # jien's rc configuration file.
 
 prompt = '; ' # The simplest possible prompt.
-env = $home/env # Environment setting directory.
-git = $home/git # Git repos.
-lib = $home/lib # Configuration for other applications.
-etc = $home/etc # Configuration files for any system.
-shr = $home/shr # Share for notes, lists etc.
+txt = $home/shr # Directory for notes, lists etc.
 tmps = $home/tmps # Templates.
 doc = $home/doc # Documents.
+txt = $home/txt # Plain text files. Lists, notes etc.
 download = $home/download # Downloads.
 video = $home/video # Video files.
 audio = $home/audio # Audio files.
 img = $home/img # Image files.
 local = $home/local # Program installation directory.
+env = $local/env # Environment setting directory.
+git = $local/git # Git repos.
+lib = $local/lib # Configuration for other applications.
+etc = $local/etc # Configuration files for any system.
 bin = $local/bin # Executable binaries installation directory.
 tmp = $local/tmp # Temporary.
-share = $local/share # Share files for programs.
-man = $share/man # Directory for manual pages. Are supposed to be written in plain text.
+shr = $local/shr # Share files for programs.
+man = $shr/man # Directory for manual pages. Are supposed to be written in plain text.
 pager = nobs # Pager deleting all ESC-sequences. For 9term mostly.
 manpager = $pager # Pager for man pages.
 profile = $0 # Profile file.
-inferno = $home/inferno # Inferno.
+
+inferno = $local/inferno # Inferno.
 infernobin = `{ # Inferno executables files.
 	sys = `{uname}
 	machine = `{uname -m}
@@ -29,11 +31,12 @@ infernobin = `{ # Inferno executables files.
 	}
 	echo $inferno/$sys/$machine/bin
 }
-plan9 = $home/plan9 # Plan9.
+
+plan9 = $local/plan9 # Plan9.
 plan9bin = $plan9/bin
 gopath = $home/go # Golang path.
 gobin = $gopath/bin # Golang binaries.
-setenv = $lib/setenv.rc # Setting environment script.
+setenv = $etc/env/setenv # Setting environment script.
 font = $plan9/font/fixed/unicode.9x15.font # The standard font for Plan9 program.
 editor = E
 shell = rc
@@ -80,7 +83,7 @@ fn .. {
 }
 
 # Setting enviroment.
-if(test -r $setenv){
-	. $setenv
+if(test -r $setenv.rc){
+	. $setenv.rc
 	setenv rc
 }
