@@ -22,7 +22,8 @@ export_loop  \
 	PS1 '"$SHPROMPT"' \
 	SUDO_PROMPT '"#"' \
 	EDITOR 'ed' \
-	GIT_EDITOR '$EDITOR' \
+	VISUAL 'vi' \
+	GIT_EDITOR '$VISUAL' \
 	PAGER 'more' \
 	MANPAGER '$PAGER' \
 	PROFILE '$HOME/.profile' \
@@ -58,10 +59,6 @@ export_loop  \
 	BASHRC '$HOME/.bashrc' \
 	SHRC '$ENV' \
 	PATH '$BIN:$GOPATH/bin:$PATH:$PLAN9/bin' \
-
-	# No visual, because I should set it by the hand, depending on system,
-	# or not set it at all.
-	# Because it sucks.
 
 . "$SETENV.sh"
 setenv profile
