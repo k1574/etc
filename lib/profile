@@ -82,6 +82,10 @@ fn .. {
 	cd ..
 }
 
+fn l {
+	ls | fmt
+}
+
 # Setting enviroment.
 if(test -r $setenv.rc){
 	. $setenv.rc
