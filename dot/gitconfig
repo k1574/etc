@@ -5,6 +5,7 @@
 	co = checkout
 	ci = commit
 	cl = clone
+	clr = clone --recursive
 	st = status
 	ad = add
 	br = branch
