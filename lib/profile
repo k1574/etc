@@ -33,8 +33,8 @@ infernobin = `{ # Inferno executables files.
 }
 
 plan9 = $local/plan9 # Plan9.
-plan9bin = $plan9/bin
-gopath = $home/go # Golang path.
+plan9bin = $plan9/bin # Plan9 bnaries.
+gopath = $local/go # Golang path.
 gobin = $gopath/bin # Golang binaries.
 setenv = $etc/env/setenv # Setting environment script.
 font = $plan9/font/fixed/unicode.9x15.font # The standard font for Plan9 program.
@@ -83,7 +83,7 @@ fn .. {
 }
 
 fn l {
-	ls | fmt
+	goblin ls | goblin quote | fmt
 }
 
 # Setting enviroment.
