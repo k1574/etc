@@ -1,4 +1,3 @@
-! prog term {{{ 
 *utf8Title : true
 *utf8 : 2
 *locale : true
@@ -18,12 +17,12 @@ xterm*boldMode: true
 *saveLines: 10000
 *visualBell: false
 *.bellIsUrgent: false
-*cursorBlink: true
+*cursorBlink: false
 *.metaSendsEscape: true
 
 *background : rgb:00/00/00
 *foreground : rgb:FF/FF/FF
-*cursorColor : rgb:FF/00/00
+*cursorColor : rgb:FF/FF/FF
 ! Black.
 *color0 : rgb:00/00/00
 *color8 : rgb:66/66/66
