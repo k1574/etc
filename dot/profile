@@ -40,7 +40,9 @@ export_loop  \
 	MNT '$LOCAL/mnt' \
 	BIN '$LOCAL/bin' \
 	GOPATH '$LOCAL/go' \
-	PLAN9 '$LOCAL/plan9' \
+	PLAN9BASE '/usr/local/plan9' \
+	PLAN9PORT '$LOCAL/plan9' \
+	PLAN9 '$PLAN9PORT' \
 	INFERNO '$LOCAL/inferno' \
 	LIB '$HOME/lib' \
 	IMG '$HOME/img' \
@@ -58,7 +60,7 @@ export_loop  \
 	ZSHRC '$HOME/.zshrc' \
 	BASHRC '$HOME/.bashrc' \
 	SHRC '$ENV' \
-	PATH '$BIN:$GOPATH/bin:$PATH:$PLAN9/bin' \
+	PATH '$BIN:$GOPATH/bin:$PATH:$PLAN9BASE/bin:$PLAN9PORT/bin' \
 
 . "$SETENV.sh"
 setenv profile
