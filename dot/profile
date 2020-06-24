@@ -51,6 +51,7 @@ export_loop  \
 	VIDEO '$HOME/video' \
 	DOWNLOAD '$HOME/download' \
 	IRRLICHT '$LOCAL/irrlicht' \
+	RAYLIB '$LOCAL/raylib' \
 	XINITRC '$HOME/.xinitrc' \
 	XRESOURCES '$HOME/.Xresources' \
 	XMODMAP '$HOME/.Xmodmap' \
