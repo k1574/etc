@@ -70,7 +70,7 @@ background white
 
 # Expand tabs and have tabstops every four columns
 tabs 4
-expandtabs true
+#expandtabs true
 
 # Automatically indent lines
 autoindent true
