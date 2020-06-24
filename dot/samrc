@@ -10,6 +10,10 @@ bind C l command charright
 bind C j command linedown
 bind C k command lineup
 
+# Scrolling as in "less".
+bind C f command scrolldown
+bind C b command scrollup
+
 # Control-Space highlights recent text
 bind C space command escape
 
