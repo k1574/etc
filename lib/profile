@@ -38,7 +38,7 @@ gopath = $local/go # Golang path.
 gobin = $gopath/bin # Golang binaries.
 setenv = $etc/env/setenv # Setting environment script.
 font = $plan9/font/fixed/unicode.9x15.font # The standard font for Plan9 program.
-editor = E
+editor = ed
 shell = rc
 
 path = ( $bin $path $gobin $plan9bin $infernobin)
@@ -79,11 +79,41 @@ case *
 }
 
 fn .. {
-	cd ..
+	# Move in to parent directory $1 times.
+	if(test -z $1)
+		builtin cd ..
+	if not
+		for(i in `{seq $1})
+			builtin cd ..
+	cds = (`{pwd} $cds)
 }
 
 fn l {
 	goblin ls | goblin quote | fmt
+}
+
+cds = (`{pwd})
+fn cd {
+	# History implementation.
+ 	if(builtin cd $1 && test -n $1)
+		cds = (`{pwd} $cds)
+}
+
+fn - {
+	# Move back in history for $1 notes.
+	if(test -z $1)
+		1 = 1
+	builtin cd $cds($1)
+}
+
+fn cds {
+	# Print history.
+	{for(i in $cds) echo $i } | nl
+}
+
+fn ucds {
+	# Let be in history just unique notes.
+	cds = `{ {for(i in $cds) echo $i} | goblin uniq -U}
 }
 
 # Setting enviroment.
