@@ -1,1 +1,4 @@
 rcs/vim/.netrwhist
+lib/xsrf/cache
+lib/xsrf/certificates
+lib/xsrf/cookies.txt
