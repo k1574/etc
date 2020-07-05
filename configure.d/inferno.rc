@@ -1,0 +1,7 @@
+#!/bin/env rc
+if(test -d $inferno){
+	usr=$inferno/usr/$user
+	mkdir -p $usr
+	rm -f $usr/lib
+	ln -s $rpath/inferno/lib $usr/lib
+}

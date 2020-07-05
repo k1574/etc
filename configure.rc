@@ -1,0 +1,16 @@
+#!/bin/env rc
+# Automatic user configuration installation and updating script.
+rpath=`{dirname `{readlink -f $0}}
+configure=$rpath/configure.d
+# Setting environment.
+. $rpath/env/setenv.rc
+. $rpath/lib/profile
+setenv rc
+if(test -d $configure){
+	for(i in $configure/*.rc)
+		if(test -r $i){
+			echo $i
+			. $i
+		}
+}
+

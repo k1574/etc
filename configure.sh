@@ -7,8 +7,6 @@ arg="$@"
 
 # Getting profile variables first.
 . "$rpath/env/setenv.sh"
-rm -f "$HOME/.setenv.sh"
-ln -s "$SETENV.sh" "$HOME/.setenv.sh"
 . "$rpath/dot/profile"
 setenv profile
 

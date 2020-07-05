@@ -1,0 +1,11 @@
+#!/bin/env rc
+if(test -n $lib){
+	mkdir -p $lib
+	config=$etc/lib
+	if(test -d $etc -a -d $config)
+		for(i in $config/*){
+			ln = $lib/`{basename $i}	
+			rm -f $ln
+			ln -s $i $ln
+		}
+}

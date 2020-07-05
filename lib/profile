@@ -74,6 +74,7 @@ case ( Linux NetBSD DragonFly OpenBSD FreeBSD ) # On Unix-like systems.
 	MANPAGER = $manpager
 	# Editor.
 	EDITOR = $editor
+	user = $USER
 case *
 	# Nothing in non-Unix systems.
 }

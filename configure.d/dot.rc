@@ -1,0 +1,7 @@
+#!/bin/env rc
+dot = $etc/dot
+for(i in $dot/*){
+	ln = $home/.`{basename $i}
+	rm -f $ln
+	ln -s $i $ln
+}

@@ -1,0 +1,4 @@
+#!/bin/env rc
+mkdir -p $video $audio $img $tmp $tmps \
+	$download $doc $shared \
+	$shr $bin $mnt $lib $env $git
