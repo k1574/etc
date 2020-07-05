@@ -1,22 +1,25 @@
+# etc
+etc - configuration file control system.
+## Installation
 Environment installation files and scripts for it.
-To install run:
-	$ ./configure.sh
-After it config and dot files will be linked, so changing them the way like:
-	$ vi $HOME/.profile
-will affect in this git repository so you can commit it and save.
+To install run: ``$ mk install``
+Or: ``$ ./configure.sh``
+Or: ``$ ./configure.rc``
 
+After it config and dot files will be linked, so changing them the way like:
+``$ vi $HOME/.profile``
+will affect in this git repository so you can commit it and save.
 The structure is supposed to be as simple as possible and scripts should be small.
 
-# configure.d/dot.sh
-"dot/*" files are linked into $HOME directory with '.' character concatenated in front.
+### configure.d/dot.(sh|rc)
+"dot/*" files are linked into home directory with '.' character concatenated in front.
 
-# configure.d/config.sh
-"config/*" files arel linked with the same name into $XDG_CONFIG_DIR.
+### configure.d/lib.(sh|rc)
+"lib/*" files arel linked with the same name into "$XDG_CONFIG_DIR".
 
-# configure.d/inferno.sh
+### configure.d/inferno.(sh|rc)
 Creates directory $INFRENO/usr/$USER and links inferno/lib into it.
 
-# ... (I will describe it later if there will be need about it)
-
+### ... (I will describe it later if there will be need about it)
 If some variables aren't set then script isn about to do nothing.
 It's so to make environment setting painless.
