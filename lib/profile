@@ -50,9 +50,9 @@ if(which goblin >/dev/null >[2=1]){
 }
 
 # Xorg.
-xinitrc = $home/.xinitrc
-xresources = $home/.Xresources
-xmodmap = $home/.Xmodmap
+xinitrc = $lib/xinitrc
+xresources = $home/xresources
+xmodmap = $home/xmodmap
 
 
 switch( `{uname} ){
