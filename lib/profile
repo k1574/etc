@@ -51,8 +51,8 @@ if(which goblin >/dev/null >[2=1]){
 
 # Xorg.
 xinitrc = $lib/xinitrc
-xresources = $home/xresources
-xmodmap = $home/xmodmap
+xresources = $lib/xresources
+xmodmap = $lib/xmodmap
 
 
 switch( `{uname} ){
@@ -90,7 +90,11 @@ fn .. {
 }
 
 fn l {
-	goblin ls | goblin quote | fmt
+	goblin ls $* | goblin quote | fmt
+}
+
+fn ll {
+	goblin ls $* | finfo
 }
 
 cds = (`{pwd})
