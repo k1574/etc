@@ -1,6 +1,9 @@
 # jien's rc configuration file.
 
-prompt = '; ' # The simplest possible prompt.
+prompt = '% ' # The simplest possible prompt.
+fn % {
+	$*
+}
 txt = $home/shr # Directory for notes, lists etc.
 tmps = $home/tmps # Templates.
 doc = $home/doc # Documents.
