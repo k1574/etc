@@ -57,6 +57,7 @@ export_loop  \
 	XMODMAP '$HOME/.Xmodmap' \
 	XDG_CONFIG_HOME '$LIB' \
 	XDG_RUNTIME_DIR '$TMP' \
+	XDG_DATA_HOME '$LOCAL' \
 	LOGIN '$HOME/.login' \
 	ZSHRC '$HOME/.zshrc' \
 	BASHRC '$HOME/.bashrc' \
