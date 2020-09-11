@@ -2,7 +2,11 @@
 
 prompt = '% ' # The simplest possible prompt.
 fn % {
-	$*
+	switch($#*){
+		case 0
+		case *
+			$*
+	}
 }
 txt = $home/shr # Directory for notes, lists etc.
 tmps = $home/tmps # Templates.
