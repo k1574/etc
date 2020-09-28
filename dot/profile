@@ -1,5 +1,5 @@
 #!/bin/sh
-# Jien's profile.
+# k1574's profile.
 
 export_loop(){
 	# Chore, because I'm lazy to type "export" so many times.
@@ -29,7 +29,7 @@ export_loop  \
 	PROFILE '$HOME/.profile' \
 	TXT '$HOME/txt' \
 	SHARED '$HOME/shared' \
-	TMPS '$HOME/tmps' \
+	TMPL '$HOME/tmpl' \
 	LOCAL '$HOME/local' \
 	ENVDIR '$LOCAL/env' \
 	GIT '$LOCAL/git' \

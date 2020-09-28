@@ -9,7 +9,7 @@ fn % {
 	}
 }
 txt = $home/shr # Directory for notes, lists etc.
-tmps = $home/tmps # Templates.
+tmpl = $home/tmpl # Templates.
 doc = $home/doc # Documents.
 lib = $home/lib # Configuration for other applications.
 txt = $home/txt # Plain text files. Lists, notes etc.
