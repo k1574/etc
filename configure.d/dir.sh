@@ -1,5 +1,5 @@
 #!/bin/sh
 
-mkdir -p $VIDEO $AUDIO $IMG $TMP $TMPS \
+mkdir -p $VIDEO $AUDIO $IMG $TMP $TMPL \
 	$DOWNLOAD $DOC $SHARED \
 	$SHR $BIN $MNT $LIB $ENVDIR $GIT
