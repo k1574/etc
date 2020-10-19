@@ -25,7 +25,7 @@ export_loop  \
 	VISUAL 'vi' \
 	GIT_EDITOR '$VISUAL' \
 	PAGER 'more' \
-	MANPAGER '$PAGER' \
+	MANPAGER 'more' \
 	PROFILE '$HOME/.profile' \
 	TXT '$HOME/txt' \
 	SHARED '$HOME/shared' \

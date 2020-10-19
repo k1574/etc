@@ -27,6 +27,7 @@ shr = $local/shr # Share files for programs.
 man = $shr/man # Directory for manual pages. Are supposed to be written in plain text.
 pager = nobs # Pager deleting all ESC-sequences. For 9term mostly.
 manpager = $pager # Pager for man pages.
+gophpager = less # Pager for goph.
 profile = $0 # Profile file.
 
 inferno = $local/inferno # Inferno.
