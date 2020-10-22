@@ -129,6 +129,10 @@ fn ucds {
 	cds = `{ {for(i in $cds) echo $i} | goblin uniq -U}
 }
 
+fn p {
+	plumb $*
+}
+
 # Setting enviroment.
 if(test -r $setenv.rc){
 	. $setenv.rc
