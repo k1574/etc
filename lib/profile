@@ -44,12 +44,13 @@ plan9 = $local/plan9 # Plan9.
 plan9bin = $plan9/bin # Plan9 bnaries.
 gopath = $local/go # Golang path.
 gobin = $gopath/bin # Golang binaries.
+vpath = $git/v # VLang binaries and scripts.
 setenv = $etc/env/setenv # Setting environment script.
 font = $plan9/font/fixed/unicode.9x15.font # The standard font for Plan9 program.
 editor = ed
 shell = rc
 
-path = ( $bin $path $gobin $plan9bin $infernobin)
+path = ( $bin $path $gobin $plan9bin $infernobin $vpath)
 # Pretend path from growing because of running many "rc"s.
 if(which goblin >/dev/null >[2=1]){
 	path = `{
